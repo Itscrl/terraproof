@@ -1556,3 +1556,401 @@ dd {
     width: 100%;
   }
 }
+
+/* Guided tasks: one decision and one primary action at a time. */
+.planting-flow,
+.income-flow {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 12px 0 36px;
+}
+.flow-progress {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  padding: 0 0 24px;
+  margin: 0 0 38px;
+  border-bottom: 1px solid var(--line);
+}
+.flow-progress li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.flow-progress li > span {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #b6c4bb;
+  border-radius: 50%;
+}
+.flow-progress .current {
+  color: #205448;
+  font-weight: 600;
+}
+.flow-progress .current > span,
+.flow-progress .complete > span {
+  color: white;
+  background: #246c61;
+  border-color: #246c61;
+}
+.flow-heading {
+  margin-bottom: 30px;
+}
+.flow-eyebrow {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.flow-heading h1 {
+  font-size: 32px;
+  font-weight: 600;
+  max-width: 680px;
+  outline: none;
+}
+.flow-heading p {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 650px;
+  margin-top: 14px;
+}
+.date-question {
+  max-width: 650px;
+}
+.date-choice {
+  padding: 26px;
+  margin: 0;
+  border: 1px solid #cbd9cf;
+  border-radius: 12px;
+  background: #f7faf7;
+}
+.date-choice legend {
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 500;
+}
+.date-fields {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 18px;
+}
+.date-fields .field {
+  font-size: 15px;
+}
+.date-fields input,
+.date-fields select,
+.income-questions input {
+  min-height: 52px;
+  font-size: 18px;
+}
+.field-explanation {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 20px;
+}
+.flow-helper,
+.sample-note {
+  font-size: 15px;
+  color: var(--muted);
+  margin: 22px 0;
+}
+.flow-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+.flow-actions .button,
+.next-step .button {
+  min-height: 50px;
+  padding: 12px 22px;
+  font-size: 16px;
+}
+.flow-footnote {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  max-width: 650px;
+}
+.before-compare {
+  margin-top: 28px;
+}
+.before-compare p {
+  font-size: 16px;
+  margin-top: 8px;
+}
+.before-compare small {
+  display: block;
+  color: var(--muted);
+  margin-top: 10px;
+  font-size: 14px;
+}
+.flow-advanced,
+.flow-details {
+  margin-top: 26px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+.flow-advanced summary,
+.flow-details summary {
+  min-height: 36px;
+  line-height: 1.6;
+  font-size: 15px;
+}
+.flow-advanced .plan-grid {
+  margin: 20px 0;
+}
+.flow-advanced fieldset {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 15px;
+}
+.flow-advanced > p {
+  color: var(--muted);
+  margin: 14px 0;
+}
+.weather-takeaway {
+  padding: 24px;
+  border-radius: 12px;
+  background: #eaf2ec;
+}
+.weather-takeaway h2 {
+  font-size: 24px;
+  max-width: 650px;
+  margin: 16px 0 12px;
+}
+.weather-takeaway p {
+  font-size: 15px;
+  color: #425c4b;
+}
+.weather-definitions {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 14px;
+}
+.flow-secondary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+  margin: 26px 0;
+}
+.flow-details .field {
+  max-width: 320px;
+  margin: 18px 0;
+}
+.flow-details .chart-legend {
+  margin: 20px 0;
+}
+.support-tools {
+  padding: 16px 10px 0;
+  margin-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.support-tools > summary {
+  font-size: 13px;
+  color: var(--muted);
+}
+.support-tools button {
+  width: 100%;
+  margin-top: 8px;
+}
+.income-flow {
+  max-width: 700px;
+}
+.income-date-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.income-date-picker button {
+  padding: 12px 22px;
+  border: 1px solid #a5b8ad;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.income-date-picker .selected {
+  background: #246c61;
+  color: white;
+  border-color: #246c61;
+}
+.sample-note {
+  padding: 16px 18px;
+  background: #f5f1e7;
+  border-radius: 8px;
+  color: #655532;
+}
+.income-questions {
+  display: grid;
+  gap: 28px;
+  max-width: 580px;
+}
+.income-questions .field > span {
+  font-size: 17px;
+  font-weight: 500;
+}
+.income-questions .field > small {
+  font-size: 14px;
+}
+.input-with-unit {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.input-with-unit input {
+  flex: 1;
+  min-width: 0;
+}
+.input-with-unit > span {
+  color: var(--muted);
+  font-size: 15px;
+}
+.income-answer {
+  padding: 30px;
+  border-radius: 12px;
+  background: #eaf2ec;
+}
+.income-answer h2 {
+  font-size: 44px;
+  margin: 14px 0 4px;
+}
+.income-answer > p {
+  font-size: 18px;
+}
+.income-answer dl {
+  margin-top: 28px;
+}
+.income-answer dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  border-top: 1px solid #c8d6cc;
+  padding-top: 14px;
+  margin-top: 14px;
+  font-size: 17px;
+}
+.income-answer dd {
+  margin: 0;
+  font-weight: 500;
+}
+.flow-back {
+  margin-top: 32px;
+  min-height: 44px;
+}
+@media (max-width: 680px) {
+  .flow-progress {
+    gap: 10px;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+  .flow-progress li {
+    flex-direction: column;
+    gap: 7px;
+    text-align: center;
+    font-size: 12px;
+  }
+  .flow-heading h1 {
+    font-size: 27px;
+  }
+  .flow-heading p {
+    font-size: 16px;
+  }
+  .date-choice {
+    padding: 20px 16px;
+  }
+  .date-choice legend {
+    font-size: 16px;
+  }
+  .flow-actions .button {
+    flex: 1;
+  }
+  .flow-actions .button.primary {
+    min-width: 180px;
+  }
+  .weather-takeaway {
+    padding: 20px;
+  }
+  .weather-takeaway h2 {
+    font-size: 22px;
+  }
+  .income-answer {
+    padding: 22px;
+  }
+  .income-answer h2 {
+    font-size: 36px;
+  }
+}
+.simple-weather-table {
+  width: 100%;
+  margin-top: 24px;
+  table-layout: fixed;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+.simple-weather-table caption {
+  text-align: left;
+  color: var(--muted);
+  padding-bottom: 12px;
+  font-size: 14px;
+}
+.simple-weather-table th {
+  white-space: normal;
+}
+.simple-weather-table thead th {
+  background: #f5f8f5;
+  font-size: 17px;
+  color: var(--ink);
+}
+.simple-weather-table thead th:first-child {
+  width: 44%;
+}
+.simple-weather-table tbody th {
+  font-size: 15px;
+  font-weight: 400;
+}
+.simple-weather-table td {
+  font-size: 23px;
+  font-weight: 500;
+  text-align: center;
+}
+.simple-weather-table thead th:not(:first-child) {
+  text-align: center;
+}
+.skip-link:not(:focus) {
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+@media (max-width: 680px) {
+  .simple-weather-table th,
+  .simple-weather-table td {
+    padding: 14px 10px;
+  }
+  .simple-weather-table thead th {
+    font-size: 15px;
+  }
+  .simple-weather-table tbody th {
+    font-size: 14px;
+  }
+  .simple-weather-table td {
+    font-size: 21px;
+  }
+}

@@ -6,6 +6,13 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Added
 
+- Guided sowing-date flow with one decision at a time, explicit back/continue
+  actions, understandable result summary and optional detailed weather tables.
+- Four-question income calculator in kg and pesos with one plan at a time,
+  optional expense breakdown, example-value guidance and focused result screens.
+- Simplified primary navigation, secondary data/source tools, consistent screen
+  focus and phone layouts verified across the complete task journey.
+
 - Connected Albay data explorer with selectable municipal boundaries, year/period
   filters, historical yield chart/table, context download and saved experiment cards.
 - Read-only research APIs with server-side source/year/value filtering, explicit

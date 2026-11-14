@@ -80,6 +80,7 @@ test("Albay explorer links map selection, history and research reports", async (
     }),
   );
   await page.goto("/");
+  await page.getByText("Data & sources", { exact: true }).click();
   await page.getByRole("button", { name: "Albay data", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: "Explore Albay rice data" }),
@@ -136,6 +137,7 @@ test("Albay unavailable state keeps experiment reports accessible", async ({
     route.fulfill({ json: { available: false, message: "No local download" } }),
   );
   await page.goto("/");
+  await page.getByText("Data & sources", { exact: true }).click();
   await page.getByRole("button", { name: "Albay data", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: "Albay data is not available here yet" }),

@@ -36,16 +36,19 @@ Vite proxies `/api` to port 8000. Rebuild before checking the single-server expe
 
 ## Try the primary workflow
 
-1. Change the June and July sowing dates. Expand each calendar to change its name,
-   variety label, or approximate stage durations.
-2. Replay the same years. Compare heat and heavy-rain counts, then inspect one year,
-   crop stages, and flagged dates.
-3. Open **Farm economics**, replace the illustrative area, yield, selling price,
-   costs, market and date, and recalculate. Exposure never changes assumed yield.
-4. Save a comparison. **Saved comparisons** reopens its original result and provenance;
-   export daily CSV or the complete JSON evidence bundle.
-5. **Evidence & methods** explains thresholds. Live NASA mode can retrieve another
-   point in the pilot bounding box; failures are explicit.
+1. Choose your first sowing month and day, then press **Continue**. The example
+   date is ready to try; no weather data or growing-stage knowledge is needed.
+2. Choose a second date and press **Show my comparison**. Crop duration and past
+   years are optional settings. Impossible dates and identical dates are rejected.
+3. Read the main finding and compare rain, hot days and dry spells in one short
+   table. Exact yearly values and growing-stage details are optional disclosures.
+4. Choose **Estimate my income** for a four-question calculator: farm area,
+   expected harvest in kilograms per hectare, selling price and total expenses.
+   Edit the sample values. An itemized expense breakdown is optional. Calculate
+   one date at a time; income never changes automatically because of weather.
+5. Save or download from the result screen. Reopen records in **Saved comparisons**.
+   Municipal data and research reports remain accessible under **Data & sources**;
+   they are separate from the guided planting task.
 
 Defaults are illustrations, not market quotes. Recurring annual calendars reject
 February 29 and impossible dates. Stages count from **sowing**, not transplanting.
@@ -78,7 +81,7 @@ stages retain the [preparation plan's](docs/dataset-preparation-and-ml-plan.md) 
 
 ## Explore the connected Albay data
 
-Open **Albay data** in the sidebar to select a municipality on the map, change the
+Expand **Data & sources**, then open **Albay data** in the sidebar to select a municipality on the map, change the
 reporting year/period, inspect yield history and download the context records.
 The page also displays saved research results from the HDF5, IRRI and PSA experiments.
 These are archived results, not on-demand farm predictions or model promotion.
