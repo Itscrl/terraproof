@@ -1,0 +1,214 @@
+{
+  "$defs": {
+    "Economics": {
+      "additionalProperties": false,
+      "properties": {
+        "area_ha": {
+          "default": 1,
+          "exclusiveMinimum": 0,
+          "maximum": 10000,
+          "title": "Area Ha",
+          "type": "number"
+        },
+        "yield_t_ha": {
+          "default": 4.5,
+          "maximum": 30,
+          "minimum": 0,
+          "title": "Yield T Ha",
+          "type": "number"
+        },
+        "price_php_kg": {
+          "default": 20,
+          "maximum": 1000,
+          "minimum": 0,
+          "title": "Price Php Kg",
+          "type": "number"
+        },
+        "seeds_php_ha": {
+          "default": 3500,
+          "maximum": 10000000.0,
+          "minimum": 0,
+          "title": "Seeds Php Ha",
+          "type": "number"
+        },
+        "fertilizer_php_ha": {
+          "default": 12000,
+          "maximum": 10000000.0,
+          "minimum": 0,
+          "title": "Fertilizer Php Ha",
+          "type": "number"
+        },
+        "labor_php_ha": {
+          "default": 18000,
+          "maximum": 10000000.0,
+          "minimum": 0,
+          "title": "Labor Php Ha",
+          "type": "number"
+        },
+        "irrigation_php_ha": {
+          "default": 5000,
+          "maximum": 10000000.0,
+          "minimum": 0,
+          "title": "Irrigation Php Ha",
+          "type": "number"
+        },
+        "other_php_ha": {
+          "default": 6500,
+          "maximum": 10000000.0,
+          "minimum": 0,
+          "title": "Other Php Ha",
+          "type": "number"
+        },
+        "assumption_date": {
+          "default": "2026-11-14",
+          "format": "date",
+          "title": "Assumption Date",
+          "type": "string"
+        },
+        "market": {
+          "default": "Illustrative PHP assumptions; replace with local quotes",
+          "maxLength": 200,
+          "title": "Market",
+          "type": "string"
+        }
+      },
+      "title": "Economics",
+      "type": "object"
+    },
+    "Plan": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "default": "June planting",
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "planting_month": {
+          "default": 6,
+          "maximum": 12,
+          "minimum": 1,
+          "title": "Planting Month",
+          "type": "integer"
+        },
+        "planting_day": {
+          "default": 1,
+          "maximum": 31,
+          "minimum": 1,
+          "title": "Planting Day",
+          "type": "integer"
+        },
+        "variety": {
+          "default": "Illustrative 115-day rice",
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Variety",
+          "type": "string"
+        },
+        "stages": {
+          "items": {
+            "$ref": "#/$defs/Stage"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "title": "Stages",
+          "type": "array"
+        },
+        "economics": {
+          "$ref": "#/$defs/Economics"
+        }
+      },
+      "title": "Plan",
+      "type": "object"
+    },
+    "Stage": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "maxLength": 40,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "days": {
+          "maximum": 150,
+          "minimum": 1,
+          "title": "Days",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "days"
+      ],
+      "title": "Stage",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "title": {
+      "default": "Albay rice comparison",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "latitude": {
+      "default": 13.1391,
+      "maximum": 13.6,
+      "minimum": 12.7,
+      "title": "Latitude",
+      "type": "number"
+    },
+    "longitude": {
+      "default": 123.7438,
+      "maximum": 124.2,
+      "minimum": 123.2,
+      "title": "Longitude",
+      "type": "number"
+    },
+    "start_year": {
+      "default": 2015,
+      "maximum": 2024,
+      "minimum": 1981,
+      "title": "Start Year",
+      "type": "integer"
+    },
+    "end_year": {
+      "default": 2024,
+      "maximum": 2024,
+      "minimum": 1981,
+      "title": "End Year",
+      "type": "integer"
+    },
+    "source": {
+      "default": "bundled",
+      "enum": [
+        "bundled",
+        "live"
+      ],
+      "title": "Source",
+      "type": "string"
+    },
+    "heat_threshold_c": {
+      "default": 35,
+      "maximum": 42,
+      "minimum": 30,
+      "title": "Heat Threshold C",
+      "type": "number"
+    },
+    "plans": {
+      "items": {
+        "$ref": "#/$defs/Plan"
+      },
+      "maxItems": 4,
+      "minItems": 2,
+      "title": "Plans",
+      "type": "array"
+    }
+  },
+  "title": "Comparison",
+  "type": "object"
+}
