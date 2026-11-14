@@ -10,12 +10,13 @@ This document defines intended product behavior, not evidence of a deployed syst
 
 ## 2. Questions to answer before modeling
 
-1. Which crop, variety, and region are in scope? Start with the proposed Albay rice demonstration; document the selected variety or label it as illustrative.
+1. Which crop, variety, and region are in scope?
 2. What decision should a model support: stage-specific hazard exposure, yield estimation, or scenario ranking? Treat these as separate tasks.
 3. What observed outcome is available (for example, measured yield, crop damage, or farmer-reported harvest), at what spatial and temporal scale, and under what consent and quality controls?
 4. Which years and locations can be held out for genuinely independent evaluation?
 
-If the target labels and suitable coverage are not available, do not train a crop-damage model. Deliver historical exposure indicators using documented rules instead.
+For this questions answer it on your own base on your understanding and look for it's approach on the actual challenge, dataset and whatever you need information just look for it on the web and don't ask questions.
+Make sure to document it well.
 
 ## 3. Dataset inventory
 
@@ -113,3 +114,19 @@ Every output should identify the crop/variety/region coverage, data period and s
 - Rice and an illustrative variety may be used for a demonstration, with stage parameters explicitly disclosed.
 - The target outcome, data access/permissions, available sample size, and validation partners remain undecided.
 - The recommended model family is conditional on data quality and independent validation; no technique can compensate for absent or biased labels.
+
+## 10. Implementation checkpoint — 14 November 2026
+
+Stage A is implemented with Python/FastAPI, React, real archived NASA POWER data,
+source/quality metadata, editable calendars/economics, local persistence and exports.
+The selected pilot is a Legazpi-area point, 2015–2024 planting years and an explicitly
+illustrative 115-day sowing-based rice calendar. These decisions do not establish
+cultivar validation. Earlier assumptions above describe the initial planning state.
+
+Stage B has an offline CLI enforcing measured-label, consent, provenance, preplant
+feature, spatial/time holdout and baseline-evaluation gates. No observed yield labels
+were supplied; the empty template fails closed. Synthetic fixtures test wiring only.
+Stages C/D, soil-informed rotations and predictive recommendations remain future work.
+
+See [data contracts](data-contracts.md), [training](training.md), [research/platforms](research-and-platforms.md)
+and [operations](operations.md) for decisions, citations and reproducible commands.
