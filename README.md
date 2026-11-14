@@ -34,6 +34,21 @@ alongside the Python source, rather than packaged into a standalone wheel.
 For UI development, keep the Python server running and run `pnpm dev` in `frontend`;
 Vite proxies `/api` to port 8000. Rebuild before checking the single-server experience.
 
+For a pip-based Python environment, activate a Python 3.12+ virtual environment and run:
+
+```powershell
+python -m pip install -r requirements.txt
+python -m pip install --no-deps -e .
+```
+
+The second command installs TerraProof and its CLI from this checkout. The requirements
+file contains pinned runtime dependencies; development tools remain in the uv `dev`
+group. After updating `uv.lock`, regenerate it with:
+
+```powershell
+uv export --frozen --no-dev --no-emit-project --no-hashes --format requirements.txt --output-file requirements.txt
+```
+
 ## Try the primary workflow
 
 1. Change the June and July sowing dates. Expand each calendar to change its name,

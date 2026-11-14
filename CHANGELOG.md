@@ -6,6 +6,8 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Added
 
+- Pinned runtime `requirements.txt` exported from `uv.lock`, with pip installation
+  and regeneration instructions for environments that do not use uv.
 - Frozen-install CI workflow, local Docker/Compose packaging, Windows launcher,
   operational/rollback guidance, and a reproducible local verification report.
 - Updated setup and usage documentation distinguishing the verified native MVP,
