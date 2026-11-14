@@ -6,6 +6,15 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Added
 
+- Read-only HDF5 inventory and streamed SHA-256/MD5 audit with optional NASA CMR
+  archive verification; documented checksum failures for both supplied NISAR files.
+  Satellite originals remain local and are excluded from Git and Docker contexts.
+- Reproducible NASA POWER seven-day rainfall research training, temporal holdouts,
+  seasonal/persistence benchmarks, portable JSON model, CLI inference and explicit
+  research API endpoints. Test MAE is 38.67 mm versus 37.85 mm seasonal baseline;
+  this is not trained on HDF5 and is not approved for operational recommendations.
+- Leakage, missingness, integrity, inference and API tests; satellite recovery
+  instructions, model card, observed evaluation and research references.
 - Pinned runtime `requirements.txt` exported from `uv.lock`, with pip installation
   and regeneration instructions for environments that do not use uv.
 - Frozen-install CI workflow, local Docker/Compose packaging, Windows launcher,

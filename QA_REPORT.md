@@ -1,5 +1,28 @@
 # Local MVP verification
 
+## Research extension — 15 November 2026
+
+- `pytest -q`: **29 passed**, including the original suite plus HDF5 corruption,
+  archive checksum, external-storage rejection, future-data exclusion, incomplete
+  windows, temporal splits, training-only scaling, JSON inference round trips and
+  research API boundaries. One upstream Starlette/httpx deprecation warning remains.
+- `ruff check src tests` and `ruff format --check src tests`: passed.
+- Real POWER training completed: 308 training, 103 validation and 156 test weeks.
+  Bundled coefficients reproduce from the training command; test MAE 38.67 mm,
+  versus 37.85 mm for the training-only monthly mean. No operational promotion.
+- CLI prediction for issue date 2025-12-22 returned 118.4069 mm for December 23–29,
+  with source/model fingerprints and explicit research-only limitations. This is a
+  historical model output, not verified field rainfall or a current forecast.
+- Both supplied NISAR files failed file-level NASA MD5 comparison and HDF5 reads.
+  The read-only audit rejects them; originals are intact and excluded from Git.
+  NASA public metadata was accessible; replacement data returned Earthdata HTTP 401.
+- No HDF5 model was trained. The rainfall experiment uses NASA POWER exclusively.
+  [Audit, recovery steps and evaluation](docs/satellite-and-rainfall-research.md).
+- The React UI was not changed in this extension. Browser/build evidence below is
+  from the original MVP acceptance, not a claim of a new browser test run.
+
+## Original MVP acceptance
+
 Date: **14 November 2026 (Asia/Manila)**. Environment: Windows, Python 3.12.14,
 Node 24.22.1, React 19.3.1, Vite 7.3.8, Playwright 1.65.0, installed Google Chrome.
 Application: `http://127.0.0.1:8000`, built React assets served by FastAPI.

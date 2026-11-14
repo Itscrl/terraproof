@@ -2,8 +2,12 @@
 
 Stage A is the user-facing MVP. Stage B's offline code path is connected and tested,
 but no measured field-season yield labels were supplied. There is no validated crop
-model or prediction endpoint. Hazard flags and assumed yields are never used as
+model or crop-outcome prediction endpoint. Hazard flags and assumed yields are never used as
 observed damage/yield labels.
+
+A separate [rainfall research experiment](satellite-and-rainfall-research.md) has been
+trained on NASA POWER and connected to experimental CLI/API inference. It does not
+use the corrupted NISAR inputs or substitute for the crop-outcome pipeline below.
 
 ```mermaid
 flowchart LR

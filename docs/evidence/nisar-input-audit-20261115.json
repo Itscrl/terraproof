@@ -1,0 +1,54 @@
+[
+  {
+    "filename": "NISAR_L2_PR_GCOV_034_104_D_082_4005_DHDH_A_20261031T101612_20261031T101646_P05036_N_F_J_001.h5",
+    "bytes": 5091885056,
+    "sha256": "798e70ca6371f17434bcc1531b1aa3aa6a30bc9a3905cb6eabcae2cbbfd27ddb",
+    "md5": "08f4bd5b22019da40ba42b1aed1c3b83",
+    "source_checksum_verified": false,
+    "inspected_at": "2026-11-14T20:20:35.993514+00:00",
+    "metadata_readable": false,
+    "training_ready": false,
+    "datasets": [],
+    "errors": [
+      "Source archive checksum mismatch or unsupported algorithm",
+      "HDF5 read failed: 'Unable to synchronously open object (message not aligned)'"
+    ],
+    "limits": "Metadata inspection only; raster values, quality, labels and pairing unverified",
+    "source_archive_record": {
+      "Name": "NISAR_L2_PR_GCOV_034_104_D_082_4005_DHDH_A_20261031T101612_20261031T101646_P05036_N_F_J_001.h5",
+      "SizeInBytes": 5091885056,
+      "Format": "HDF5",
+      "Checksum": {
+        "Value": "8bfb4cd82b8a617431c35588de6b4793",
+        "Algorithm": "MD5"
+      }
+    },
+    "next_step": "Re-download to a new file via Earthdata/ASF; preserve this input for diagnosis"
+  },
+  {
+    "filename": "NISAR_L3_PR_SME2_033_104_D_082_4005_DHDH_A_20261019T101612_20261019T101646_P05023_N_F_J_001.h5",
+    "bytes": 77594624,
+    "sha256": "8c1411e00019c0357ccf8a5adb9b660bd9e9504f7cbf1fe3b0cf4b7ff25528e7",
+    "md5": "595642aad13b3cb79af484880638ef58",
+    "source_checksum_verified": false,
+    "inspected_at": "2026-11-14T20:20:36.161577+00:00",
+    "metadata_readable": false,
+    "training_ready": false,
+    "datasets": [],
+    "errors": [
+      "Source archive checksum mismatch or unsupported algorithm",
+      "HDF5 read failed: Unable to synchronously open file (file signature not found)"
+    ],
+    "limits": "Metadata inspection only; raster values, quality, labels and pairing unverified",
+    "source_archive_record": {
+      "Name": "NISAR_L3_PR_SME2_033_104_D_082_4005_DHDH_A_20261019T101612_20261019T101646_P05023_N_F_J_001.h5",
+      "SizeInBytes": 77594624,
+      "Format": "HDF5",
+      "Checksum": {
+        "Value": "e4617082fa2ab415933adc162b825ee4",
+        "Algorithm": "MD5"
+      }
+    },
+    "next_step": "Re-download to a new file via Earthdata/ASF; preserve this input for diagnosis"
+  }
+]

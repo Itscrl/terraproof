@@ -6,7 +6,7 @@ serves a React/TypeScript workspace and persists comparisons in SQLite.
 
 The pilot is an illustrative rice calendar near Legazpi, Albay, Philippines
 (13.1391° N, 123.7438° E). It replays planting years 2015–2024 using an archived
-2015–2025 NASA dataset. It does **not** forecast weather, predict crop damage,
+2015–2025 NASA dataset. The planning workflow does **not** forecast weather, predict crop damage,
 recommend a winning plan, or validate a particular rice variety.
 
 ## Run locally
@@ -80,6 +80,12 @@ February 29 and impossible dates. Stages count from **sowing**, not transplantin
 
 ## Training and reproducibility
 
+An additional **research-only seven-day rainfall model** is trained and callable
+through the CLI and API. It uses NASA POWER, not the supplied HDF5 inputs: both local
+NISAR files failed NASA checksum and HDF5 integrity checks. The model's test MAE
+(38.67 mm) is worse than the seasonal baseline (37.85 mm); operational use is blocked.
+See [satellite diagnosis, results and runnable commands](docs/satellite-and-rainfall-research.md).
+
 ```powershell
 uv run terraproof replay --output artifacts/replay.json
 uv run terraproof train --outcomes data/templates/outcomes.csv --manifest data/templates/climate-manifest.json --holdout-groups held-out-region --test-from-year 2022 --output artifacts/readiness-check
@@ -112,6 +118,7 @@ runners may need permission to spawn browser processes and access test temp fold
 - [Scientific evidence, NASA challenge and Azure roadmap](docs/research-and-platforms.md)
 - [Source register and data dictionary](docs/data-contracts.md)
 - [Training pipeline and readiness gates](docs/training.md)
+- [NISAR integrity checks and trained rainfall experiment](docs/satellite-and-rainfall-research.md)
 - [Architecture, API and operations](docs/operations.md)
 - [Product decisions](PRODUCT.md), [build notes](BUILD_NOTES.md), [design system](DESIGN.md)
 - [Verification report](QA_REPORT.md), [changelog](CHANGELOG.md)

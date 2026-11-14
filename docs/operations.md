@@ -14,7 +14,13 @@ flowchart TD
 ```
 
 `models.py` owns contracts, `climate.py` ingestion, `replay.py` pure computation,
-`storage.py` SQL, `api.py` wiring and `training.py` offline research. React does not
+`storage.py` SQL, `api.py` wiring and `training.py` offline crop-outcome research.
+`satellite.py` audits HDF5 integrity; `forecast.py` trains and runs the separate
+retrospective rainfall experiment. `GET /api/research/rainfall` returns its model
+card; `POST /api/research/rainfall/predict` takes `{"issue_date":"2025-12-22"}`.
+These endpoints use fixed bundled research artifacts and never update planning or
+economic results. See [the research runbook](satellite-and-rainfall-research.md).
+React does not
 duplicate scientific calculations. Dependencies are locked in `uv.lock` and
 `frontend/pnpm-lock.yaml`. CI uses bundled history and no NASA network call.
 
