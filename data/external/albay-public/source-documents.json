@@ -1,0 +1,34 @@
+[
+  {
+    "file": "raw/albay-rice-occurrence-map.pdf",
+    "url": "https://amia.da.gov.ph/wp-content/uploads/2024/03/Albay_CRVA_Crop-Occurence_Maps.pdf",
+    "bytes": 4396436,
+    "sha256": "4f4b37b5fa1a48922233ac563ec4e9fafcdd078c421b5692647cab637bc985b5",
+    "status": "archived_context_only",
+    "training_eligible": false
+  },
+  {
+    "file": "raw/varmix-2023.pdf",
+    "url": "https://scienggj.org/2023/SciEnggJ%202023-vol16-no01-p8-18-Pacada%20and%20Francia.pdf",
+    "bytes": 2379484,
+    "sha256": "f6847860bc0d8f375f3bf90594f38ff52848af049210814e264a053710daacad",
+    "status": "archived_context_only",
+    "training_eligible": false
+  },
+  {
+    "file": "raw/polangui-irrigation-2026.html",
+    "url": "https://www.pna.gov.ph/article/nia-bicol-provides-solar-irrigation-p935-m-livelihood-aid-to-albay-farmers",
+    "bytes": 173223,
+    "sha256": "8e7bca4dfe2e437572de937dc5bef18e725bb8279efe80a1fd1f8b2052c3ad0f",
+    "status": "archived_context_only",
+    "training_eligible": false
+  },
+  {
+    "file": "raw/philrice-2012-los-banos.pdf.partial",
+    "url": "https://www.philrice.gov.ph/wp-content/uploads/2015/05/2012_Los-Banos.pdf",
+    "bytes": 916881,
+    "sha256": "97b016d1a904e4d044bc25cf8b8d50477759eece0f3c06b31032f845343f4a2b",
+    "status": "incomplete_download_not_usable",
+    "training_eligible": false
+  }
+]

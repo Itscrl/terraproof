@@ -1,0 +1,383 @@
+{
+  "scraped_at_utc": "2026-11-14T22:36:55.295666+00:00",
+  "landing_page": "https://ricelytics.philrice.gov.ph/rice_industry?psgc_code=0500500000&locType=2",
+  "advertised_years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "historical_rows": 456,
+  "historical_municipal_rows": 432,
+  "unverified_year_rows": 38,
+  "measured_field_labels_found": 0,
+  "training_eligible": false,
+  "dataset_role": "context_only",
+  "context_table": "context/municipal-yield-history.csv",
+  "reason": "No independently measured field yields with matched dates and locations",
+  "interpretation": [
+    "Public map estimates are not crop-cut or measured field-season yield observations.",
+    "Reporting periods are request parameters; exact crop-season dates are not supplied.",
+    "The map-view center is provincial, not a field coordinate; it is not assigned to observations.",
+    "2026 responses are quarantined because the years endpoint only advertises earlier years.",
+    "Annual and semester summaries overlap and must not be treated as independent samples.",
+    "No data joined to HDF5 pixels; no promotion or training-label eligibility inferred."
+  ],
+  "requests": [
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2018,
+        "psgc_code": "0500500000",
+        "period": "Annual"
+      },
+      "file": "raw/ricelytics-2018-Annual.json",
+      "status": "archived",
+      "sha256": "edc685754cbc990d136fd717b37a843c180083ab7b5e624430acebeb006b0176",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2018,
+        "psgc_code": "0500500000",
+        "period": "Semester 1"
+      },
+      "file": "raw/ricelytics-2018-Semester-1.json",
+      "status": "archived",
+      "sha256": "2a270effddfade4bfdc15990d5b01bbf51e1ba2c8bc33d6c8001ac2c7274f0d1",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2018,
+        "psgc_code": "0500500000",
+        "period": "Semester 2"
+      },
+      "file": "raw/ricelytics-2018-Semester-2.json",
+      "status": "archived",
+      "sha256": "8318aa647de2370a8c060bbe34bee0bfe7b90b82aa8450f728e2abe05633828f",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2019,
+        "psgc_code": "0500500000",
+        "period": "Annual"
+      },
+      "file": "raw/ricelytics-2019-Annual.json",
+      "status": "archived",
+      "sha256": "e4ed0138b17612bee796990d1022a4b5c5070c1ac5733cc3d0cda10dc469a0fc",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2019,
+        "psgc_code": "0500500000",
+        "period": "Semester 1"
+      },
+      "file": "raw/ricelytics-2019-Semester-1.json",
+      "status": "archived",
+      "sha256": "c713b5a2a884450d5203c00c814e172121c0b499c7ef6ff9003da32ad77bbe5e",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2019,
+        "psgc_code": "0500500000",
+        "period": "Semester 2"
+      },
+      "file": "raw/ricelytics-2019-Semester-2.json",
+      "status": "archived",
+      "sha256": "cf737e7711d435cecce90c1b438317bc824980c07f85a38e007d8da88e590616",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2020,
+        "psgc_code": "0500500000",
+        "period": "Annual"
+      },
+      "file": "raw/ricelytics-2020-Annual.json",
+      "status": "archived",
+      "sha256": "526a3585bfcdc72c1b4becccda4bba7e07a3c16bb0193d6cfccc1f3298062b46",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2020,
+        "psgc_code": "0500500000",
+        "period": "Semester 1"
+      },
+      "file": "raw/ricelytics-2020-Semester-1.json",
+      "status": "archived",
+      "sha256": "8ff3e3e839bc7b46ca6972684f6ea04813c5f11edd1aba91f5bb9f2d66368896",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2020,
+        "psgc_code": "0500500000",
+        "period": "Semester 2"
+      },
+      "file": "raw/ricelytics-2020-Semester-2.json",
+      "status": "archived",
+      "sha256": "1099d0d82f459d6d04f3efee3c6741fc7ebcb2cd75e1f4bdc9a98fc20c78c0dd",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2021,
+        "psgc_code": "0500500000",
+        "period": "Annual"
+      },
+      "file": "raw/ricelytics-2021-Annual.json",
+      "status": "archived",
+      "sha256": "856b24794a861bc352e32a1246e504ffdb58163167638f9bf589ab64959d13aa",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2021,
+        "psgc_code": "0500500000",
+        "period": "Semester 1"
+      },
+      "file": "raw/ricelytics-2021-Semester-1.json",
+      "status": "archived",
+      "sha256": "2493509fc9f65dd3c6ed5427c50b1fede79f0d5756bc5f58f53fa828fdbe8faa",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2021,
+        "psgc_code": "0500500000",
+        "period": "Semester 2"
+      },
+      "file": "raw/ricelytics-2021-Semester-2.json",
+      "status": "archived",
+      "sha256": "df98cf1002b18f033a80bc961ad96610c9b3768284f1da479a6e91abc0cc2f0e",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2022,
+        "psgc_code": "0500500000",
+        "period": "Annual"
+      },
+      "file": "raw/ricelytics-2022-Annual.json",
+      "status": "archived",
+      "sha256": "24eda2e0c73b8f120613f1cc608c0214d4db2ad76c4e2ac3738be93b0315c5a0",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2022,
+        "psgc_code": "0500500000",
+        "period": "Semester 1"
+      },
+      "file": "raw/ricelytics-2022-Semester-1.json",
+      "status": "archived",
+      "sha256": "c90336e0f858d3bb67389d3326c0ef3fa72127cde006e4df766725ad21e90920",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2022,
+        "psgc_code": "0500500000",
+        "period": "Semester 2"
+      },
+      "file": "raw/ricelytics-2022-Semester-2.json",
+      "status": "archived",
+      "sha256": "b94307772d8a53cd09dcceeb9df8fdc09c383d34b6e7aec74cff7865cd7e1f84",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2023,
+        "psgc_code": "0500500000",
+        "period": "Annual"
+      },
+      "file": "raw/ricelytics-2023-Annual.json",
+      "status": "archived",
+      "sha256": "4dd57deb1d29a895e599d54a298e3e5a2d1df569d5ad956801b06aa2a2821af0",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2023,
+        "psgc_code": "0500500000",
+        "period": "Semester 1"
+      },
+      "file": "raw/ricelytics-2023-Semester-1.json",
+      "status": "archived",
+      "sha256": "83de8a17980f20cfd0ef768e37d741eaa6e015c5f76382979481ae7d5c56208b",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2023,
+        "psgc_code": "0500500000",
+        "period": "Semester 2"
+      },
+      "file": "raw/ricelytics-2023-Semester-2.json",
+      "status": "archived",
+      "sha256": "8764b485e12faef2f82eb2ef03f4be3a058f12f62e509599b7aa408cbd7599de",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2024,
+        "psgc_code": "0500500000",
+        "period": "Annual"
+      },
+      "file": "raw/ricelytics-2024-Annual.json",
+      "status": "archived",
+      "sha256": "46e46aa00203377812933427c33e9cb6544d9ad43a87d64a13d811789227e0af",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2024,
+        "psgc_code": "0500500000",
+        "period": "Semester 1"
+      },
+      "file": "raw/ricelytics-2024-Semester-1.json",
+      "status": "archived",
+      "sha256": "c890d6bc4a5ec47d43a9c5a2adc845b3eeba22d118e4a4fd7603e09ab3435f9c",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2024,
+        "psgc_code": "0500500000",
+        "period": "Semester 2"
+      },
+      "file": "raw/ricelytics-2024-Semester-2.json",
+      "status": "archived",
+      "sha256": "11ea64c5aecc247bb8a4feb067398ec972cbd6b2ea6155b9a538f709b0c41147",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2025,
+        "psgc_code": "0500500000",
+        "period": "Annual"
+      },
+      "file": "raw/ricelytics-2025-Annual.json",
+      "status": "archived",
+      "sha256": "61dc6c9fcd74a6f11d04b9cb9ebecd7da590e8f02fc28733c689d3ede4f4b85e",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2025,
+        "psgc_code": "0500500000",
+        "period": "Semester 1"
+      },
+      "file": "raw/ricelytics-2025-Semester-1.json",
+      "status": "archived",
+      "sha256": "a8819c37ae6e3a30aa0d6972447c77e28c1695905907649458355e4b3a451080",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2025,
+        "psgc_code": "0500500000",
+        "period": "Semester 2"
+      },
+      "file": "raw/ricelytics-2025-Semester-2.json",
+      "status": "archived",
+      "sha256": "e53909cc9c9a676d2919775f0c837c9a3f4bba6445cbbe33770fc014cfd84d3a",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2026,
+        "psgc_code": "0500500000",
+        "period": "Annual"
+      },
+      "file": "raw/ricelytics-2026-Annual.json",
+      "status": "archived",
+      "sha256": "4dcc35c89404df45e6f47c6776188e67796ddd3ed794faf536e9e8628b1bcc63",
+      "record_count": 0
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2026,
+        "psgc_code": "0500500000",
+        "period": "Semester 1"
+      },
+      "file": "raw/ricelytics-2026-Semester-1.json",
+      "status": "archived",
+      "sha256": "ffce5ecd9b5c98b7cdfc993be2b79e177b3a18f9d432a229c5d1b91a3ea454d2",
+      "record_count": 19
+    },
+    {
+      "url": "https://ricelytics.philrice.gov.ph/fetch/get_data_by_province_psgc_new",
+      "method": "POST",
+      "query": {
+        "year": 2026,
+        "psgc_code": "0500500000",
+        "period": "Semester 2"
+      },
+      "file": "raw/ricelytics-2026-Semester-2.json",
+      "status": "archived",
+      "sha256": "e3056de8c41a9c55405921ed2b947ebcd3d15432301dccb45f9364e973dff69d",
+      "record_count": 19
+    }
+  ]
+}

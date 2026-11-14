@@ -28,3 +28,6 @@ data/external/**/*.html
 data/external/**/*.R
 data/external/psa-rice/production.json
 data/external/psa-rice/area.json
+data/external/albay-public/raw/
+data/external/albay-public/*.geojson
+data/external/albay-public/context/

@@ -1,0 +1,8 @@
+{
+  "url": "https://ricelytics.philrice.gov.ph/js/maps_coordinates/phl-city-geo1.js",
+  "source_sha256": "041da26b7295b421a46a6f19263bef0bafe6e49bd5475f064234ea5754c0405a",
+  "feature_count": 18,
+  "filter": "properties.ADM2_EN == Albay",
+  "interpretation": "Administrative boundaries, not rice fields or measured plot locations.",
+  "license": "Not stated in map JavaScript; review source reuse terms."
+}

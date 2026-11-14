@@ -6,6 +6,9 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Added
 
+- Public Albay municipal-yield/geometry scraper with source hashes, context-only
+  outputs and explicit exclusion of unverified years and non-field estimates.
+
 - Plain-language planting workflow, quick-start guide, summary cards, optional
   season detail and a direct path to costs/income; verified desktop/mobile flows.
 - Validation-selected HDF5 model comparison and a separate IRRI trial-yield
