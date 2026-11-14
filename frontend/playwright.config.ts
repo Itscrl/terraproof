@@ -9,7 +9,10 @@ export default defineConfig({
     baseURL: "http://127.0.0.1:8000",
     headless: true,
     screenshot: "only-on-failure",
-    launchOptions: process.env.CI ? {} : { channel: "chrome" },
+    launchOptions: process.env.PLAYWRIGHT_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH } :
+      process.env.CI || process.env.PLAYWRIGHT_CHROMIUM
+        ? {}
+        : { channel: "chrome" },
   },
   webServer: {
     command: `"${resolve("..", ".venv", process.platform === "win32" ? "Scripts/python.exe" : "bin/python")}" -m uvicorn terraproof.api:app --host 127.0.0.1 --port 8000`,

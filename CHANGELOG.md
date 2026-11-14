@@ -6,6 +6,21 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Added
 
+- Plain-language planting workflow, quick-start guide, summary cards, optional
+  season detail and a direct path to costs/income; verified desktop/mobile flows.
+- Validation-selected HDF5 model comparison and a separate IRRI trial-yield
+  experiment, with alternative-source suitability records and research reports.
+
+- HDF5 SME2 soil-moisture Ridge research experiment with embedded quality-bit
+  screening, buffered spatial holdout, mean baseline and saved-model verification.
+
+- Reproducible province-level PSA yield Ridge experiment using prior-year features,
+  held-out provinces/later years, mean and persistence baselines, and research artifacts.
+
+- Archived public PSA palay production/area histories and derived aggregate yield CSVs
+  for all listed locations, Bicol and Albay, with source metadata, checksums,
+  reproducible conversion and explicit field-label limitations.
+
 - Standalone HDF5 viewer, optional viewer/training dependencies, and a pip training
   requirements entry point; raw HDF5 files and viewer environments stay out of Git.
 - Frozen-install CI workflow, local Docker/Compose packaging, Windows launcher,

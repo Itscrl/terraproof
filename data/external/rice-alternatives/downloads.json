@@ -1,0 +1,32 @@
+[
+  {
+    "file": "irri-1987.zip",
+    "url": "https://geodata.ucdavis.edu/carob/zip/doi_10.7910_DVN_75MPJJ.zip",
+    "status": "available_locally",
+    "sha256": "6f1994bb94c454f1047509bde1c6e7da7193580f5c3e9cac7b3b50fc08f79ad0"
+  },
+  {
+    "file": "irri-1988.zip",
+    "url": "https://geodata.ucdavis.edu/carob/zip/doi_10.7910_DVN_WYCUMH.zip",
+    "status": "available_locally",
+    "sha256": "9b35218eb423fb482dfa7461c7bc60d4b10f3a069a90a6d42187c5948b58916f"
+  },
+  {
+    "file": "irri-1989.zip",
+    "url": "https://geodata.ucdavis.edu/carob/zip/doi_10.7910_DVN_ECKKQO.zip",
+    "status": "available_locally",
+    "sha256": "8ae0877283a31385d65a8d845149b27b9ec4dd6a0e1092397031687ee1a9a702"
+  },
+  {
+    "file": "china-paddy-2023.zip",
+    "url": "https://zenodo.org/records/20077393/files/PaddyYield2023.zip?download=1",
+    "status": "available_locally",
+    "sha256": "c111e4ff6349f296f138479d5cd07c082e943052e0e5622c13d3a47bdfbbabeb"
+  },
+  {
+    "file": "ph-yield-nutrients.csv",
+    "url": "https://zenodo.org/api/records/22639994/files/PH_Rice_Yield_Nutrients_Water_Ecosystems_N83.csv/content",
+    "status": "available_locally",
+    "sha256": "ad32984e376fbca33fa487e411264d1c12b423e93074caaf841ea04cbf6750ef"
+  }
+]

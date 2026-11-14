@@ -1,0 +1,64 @@
+{
+  "status": "exploratory_within_site_only",
+  "promotion_allowed": false,
+  "task": "experimental rice grain yield, tonnes/ha",
+  "features": [
+    "N_fertilizer",
+    "season",
+    "variety"
+  ],
+  "train_n": 287,
+  "validation_n": 288,
+  "test_n": 263,
+  "excluded_n": 0,
+  "split": {
+    "train_year": 1987,
+    "validation_year": 1988,
+    "test_year": 1989
+  },
+  "validation_scores": {
+    "mean": {
+      "mae_t_ha": 1.156808326074332,
+      "rmse_t_ha": 1.3760560128333026
+    },
+    "ridge": {
+      "mae_t_ha": 0.7058875010736091,
+      "rmse_t_ha": 0.8926162729754542
+    },
+    "random_forest": {
+      "mae_t_ha": 0.6922443154387903,
+      "rmse_t_ha": 0.8661956188859603
+    }
+  },
+  "selected_model": "random_forest",
+  "selection_rule": "Lowest validation RMSE among fixed candidates; test scored once",
+  "test_metrics": {
+    "mae_t_ha": 0.6032860748603289,
+    "rmse_t_ha": 0.786241225220452
+  },
+  "test_mean_baseline": {
+    "mae_t_ha": 0.894805871676316,
+    "rmse_t_ha": 1.1169695474445565
+  },
+  "source_hashes": {
+    "doi_10.7910_DVN_75MPJJ.csv": "da8c08d155f7f52bd06502b3c19392a0b4bab09d1514d14d2e6caeec66a10e7c",
+    "doi_10.7910_DVN_WYCUMH.csv": "15b0e6a7a8e752a76000758da605be35da9a6889bf879aea001d62148491b309",
+    "doi_10.7910_DVN_ECKKQO.csv": "bdbc6f3a9c3da40966e8907330982daee7ad19d0310bf131837814cceb68db91"
+  },
+  "unit_conversion": "Carob standardized yield = GYkgha, divided by 1000 for t/ha; source agronomy-functions.R",
+  "dependencies": {
+    "scikit-learn": "1.9.1",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4",
+    "joblib": "1.6.0"
+  },
+  "limitations": [
+    "Single IRRI station in Laguna, 1987\u20131989; not Albay farm validation.",
+    "Long-term plots and treatment groups can recur across years; no independent spatial holdout is possible.",
+    "Experimental nitrogen regimen is a management input, not a recommendation or causal effect estimate.",
+    "Standardizer documents fertilizer discrepancies and inferred month dates/coordinates; inspect source records.",
+    "Current original metadata lists CC BY-NC-SA 4.0/restricted historical files; standardized copy lists CC0. License discrepancy unresolved; raw archives remain local and are not redistributed by this commit.",
+    "No linkage to 2026 HDF5 observations; no climate features or calibrated uncertainty.",
+    "Cannot pass the existing measured-field spatial-validation deployment gate; not connected to application."
+  ]
+}

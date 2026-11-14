@@ -136,3 +136,13 @@ rejections and artifacts only. Their metrics never appear as agricultural accura
 For Azure ML later, wrap this same CLI in a command job with versioned private data,
 Git commit, locks, snapshot digests and split configuration. Keep registry promotion
 separate from job success. See [the platform roadmap](research-and-platforms.md).
+
+## Separate exploratory experiments
+
+See [recorded research runs](research-runs/README.md) for additional PSA aggregate,
+SME2 retrieval-surrogate and IRRI trial experiments. These scripts are separate from
+`terraproof train`; they do not relax its consent, field linkage or independent
+spatial/time holdout gates. They save results under ignored `artifacts/` directories
+and are not loaded by the API. A favorable within-scene or within-station score does
+not establish prospective Albay field performance. Raw downloads and model binaries
+stay local; source metadata, download recipes and summarized reports are tracked.

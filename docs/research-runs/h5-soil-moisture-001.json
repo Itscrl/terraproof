@@ -1,0 +1,187 @@
+{
+  "status": "research_only",
+  "promotion_allowed": false,
+  "task": "same-acquisition satellite soil-moisture retrieval surrogate",
+  "target": "science/LSAR/SME2/grids/soilMoisture",
+  "target_units": "m3/m3",
+  "features": [
+    "hh_db",
+    "hv_db",
+    "hh_minus_hv_db",
+    "incidence_angle_degrees"
+  ],
+  "model": "StandardScaler + Ridge(alpha=1.0)",
+  "input": "NISAR_L3_PR_SME2_033_104_D_082_4005_DHDH_A_20261019T101612_20261019T101646_P05023_N_F_J_001.h5",
+  "input_sha256": "2ed725177f7bf99910cc7a30fe33ba86bb1c3acb104d22bbbd12aa06f1bf5e15",
+  "raster_shape": [
+    1935,
+    1575
+  ],
+  "valid_pixels": 37305,
+  "train_n": 36337,
+  "test_n": 310,
+  "buffer_excluded_n": 658,
+  "split": {
+    "axis": "raster columns",
+    "boundary_column": 1102,
+    "buffer_each_side_pixels": 32,
+    "selection": "first 70% for training, last 30% for test, with buffer; selected before fitting"
+  },
+  "quality_screen": [
+    "All selected datasets finite and nonfill",
+    "retrievalQualityFlag least significant bit = 0 (recommended), per embedded description",
+    "waterbodyFraction = 0",
+    "positive linear HH/HV",
+    "0 < incidence angle < 90",
+    "0 <= soil moisture <= 1"
+  ],
+  "model_metrics": {
+    "mae_m3_m3": 0.05823243781924248,
+    "rmse_m3_m3": 0.07882238179445267,
+    "r2": -0.18896770477294922
+  },
+  "mean_baseline_metrics": {
+    "mae_m3_m3": 0.0591435581445694,
+    "rmse_m3_m3": 0.07420340925455093,
+    "r2": -0.053704023361206055
+  },
+  "dataset_attributes": {
+    "soilMoisture": {
+      "_FillValue": "-9999.0",
+      "description": "b'Averaged soil moisture. If recommended retrievals are available, the average is computed using only the recommended retrievals. If no recommended retrievals are available, the average is computed using all retrievals'",
+      "grid_mapping": "b'projection'",
+      "long_name": "b'Soil moisture'",
+      "max_value": "0.584",
+      "mean_value": "0.28519887",
+      "min_value": "0.02",
+      "sample_stddev": "0.053345326",
+      "units": "b'meter^3/meter^3'"
+    },
+    "radarData/frequencyA/sigma0HH": {
+      "_FillValue": "-9999.0",
+      "description": "b'Sigma nought at HH polarization'",
+      "grid_mapping": "b'projection'",
+      "long_name": "b'Sigma0 HH'",
+      "max_value": "29.976261",
+      "mean_value": "0.048451547",
+      "min_value": "0.0021095537",
+      "sample_stddev": "0.06889076",
+      "units": "b'1'"
+    },
+    "radarData/frequencyA/sigma0HV": {
+      "_FillValue": "-9999.0",
+      "description": "b'Sigma nought at HV polarization'",
+      "grid_mapping": "b'projection'",
+      "long_name": "b'Sigma0 HV'",
+      "max_value": "5.8608894",
+      "mean_value": "0.012052724",
+      "min_value": "0.0010754048",
+      "sample_stddev": "0.017579671",
+      "units": "b'1'"
+    },
+    "ancillaryData/localIncidenceAngle": {
+      "_FillValue": "-9999.0",
+      "description": "b'Local incidence angle'",
+      "grid_mapping": "b'projection'",
+      "long_name": "b'Local incidence angle'",
+      "max_value": "104.801796",
+      "mean_value": "41.26723",
+      "min_value": "3.5839415",
+      "sample_stddev": "6.5360923",
+      "units": "b'degrees'"
+    },
+    "retrievalQualityFlag": {
+      "_FillValue": "-9999",
+      "description": "b'Soil moisture retrieval quality flag. The least significant bit indicates whether the retrieval is recommended (0 = recommended, 1 = not recommended). The second bit indicates the use of the PMI algorithm (0 = not applied, 1 = applied). The third bit indicates the use of the TSR algorithm (0 = not applied, 1 = applied). The most significant bit indicates the use of the DSG algorithm (0 = not applied, 1 = applied)'",
+      "grid_mapping": "b'projection'",
+      "long_name": "b'Retrieval quality flag'",
+      "units": "b'1'"
+    },
+    "ancillaryData/waterbodyFraction": {
+      "_FillValue": "-9999.0",
+      "description": "b'Water body fraction'",
+      "grid_mapping": "b'projection'",
+      "long_name": "b'Water body fraction'",
+      "max_value": "1.0",
+      "mean_value": "0.7050472",
+      "min_value": "0.0",
+      "sample_stddev": "0.44790626",
+      "units": "b'1'"
+    }
+  },
+  "coordinates": {
+    "xCoordinates": {
+      "shape": [
+        1575
+      ],
+      "attributes": {
+        "CLASS": "b'DIMENSION_SCALE'",
+        "REFERENCE_LIST": "[(<HDF5 object reference>, 1) (<HDF5 object reference>, 1)\n (<HDF5 object reference>, 1) (<HDF5 object reference>, 1)]",
+        "description": "b'X coordinates in specified projection'",
+        "long_name": "b'x coordinate of projection'",
+        "standard_name": "b'projection_x_coordinate'",
+        "units": "b'meters'"
+      }
+    },
+    "yCoordinates": {
+      "shape": [
+        1935
+      ],
+      "attributes": {
+        "CLASS": "b'DIMENSION_SCALE'",
+        "REFERENCE_LIST": "[(<HDF5 object reference>, 0) (<HDF5 object reference>, 0)\n (<HDF5 object reference>, 0) (<HDF5 object reference>, 0)]",
+        "description": "b'Y coordinates in specified projection'",
+        "long_name": "b'y coordinate of projection'",
+        "standard_name": "b'projection_y_coordinate'",
+        "units": "b'meters'"
+      }
+    },
+    "xCoordinateSpacing": {
+      "shape": [],
+      "attributes": {
+        "description": "b'X coordinate spacing'",
+        "long_name": "b'X coordinate spacing'",
+        "units": "b'meters'"
+      },
+      "value": "200.17900466918945"
+    },
+    "yCoordinateSpacing": {
+      "shape": [],
+      "attributes": {
+        "description": "b'Y coordinate spacing'",
+        "long_name": "b'Y coordinate spacing'",
+        "units": "b'meters'"
+      },
+      "value": "-200.17900466988795"
+    },
+    "projection": {
+      "shape": [],
+      "attributes": {
+        "description": "b'Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes'",
+        "ellipsoid": "b'WGS84'",
+        "epsg_code": "6933",
+        "false_easting": "0.0",
+        "false_northing": "0.0",
+        "grid_mapping_name": "b'lambert_cylindrical_equal_area'",
+        "inverse_flattening": "298.25723",
+        "latitude_of_projection_origin": "0.0",
+        "longitude_of_central_meridian": "0.0",
+        "longitude_of_projection_origin": "0.0",
+        "semi_major_axis": "6.378137e+06",
+        "spatial_ref": "b'PROJCS[\"WGS 84 / NSIDC EASE-Grid 2.0 Global\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Cylindrical_Equal_Area\"],PARAMETER[\"standard_parallel_1\",30],PARAMETER[\"central_meridian\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"EPSG\",\"6933\"]]'",
+        "standard_parallel": "30.0"
+      },
+      "value": "6933"
+    }
+  },
+  "limitations": [
+    "Target is a satellite retrieval derived from radar, not independent measured ground truth; radar inputs overlap retrieval inputs.",
+    "One acquisition only: no temporal holdout or future forecasting validation.",
+    "Spatial buffer reduces proximity overlap but does not guarantee independent pixels.",
+    "Surface quality flag meanings were not assumed; screening uses the product recommendation bit plus water/physical checks.",
+    "No crop yield, damage or planting-plan predictions; not deployed.",
+    "L2 file excluded because it is a different acquisition date; L3 contains aligned radar and target grids.",
+    "No calibrated intervals or external validation."
+  ],
+  "created_at_utc": "2026-11-14T21:04:28.559323+00:00"
+}

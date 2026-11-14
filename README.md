@@ -76,6 +76,17 @@ consented measured labels and mapped climate snapshots. Synthetic test fixtures 
 wiring only; they are not agricultural validation. Stage A is implemented; later
 stages retain the [preparation plan's](docs/dataset-preparation-and-ml-plan.md) gates.
 
+## Additional local research experiments
+
+The [research reports](docs/research-runs/README.md) record PSA province-yield,
+NISAR HDF5 soil-moisture and IRRI experimental grain-yield runs. These are isolated
+research scripts, not application predictions. Candidate selection uses a validation
+split before final evaluation. The HDF5 model estimates a satellite retrieval;
+the IRRI experiment uses historical trial data from one Laguna station, without an
+independent spatial holdout. Neither validates Albay farm outcomes or planting advice.
+Raw observations and model binaries remain local; source metadata, acquisition scripts,
+metrics and limitations are tracked. See the [alternative source register](data/external/rice-alternatives/README.md).
+
 ## Verification
 
 ```powershell

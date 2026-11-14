@@ -1,6 +1,13 @@
 import type { ReactNode } from "react";
 import type { Plan, Result, Season } from "./types";
 
+const stageLabel = (name: string) =>
+  ({
+    vegetative: "Leaf & stem growth",
+    reproductive: "Flowering",
+    ripening: "Grain ripening",
+  })[name.toLowerCase()] ?? name;
+
 export const months = [
   "January",
   "February",
@@ -63,7 +70,7 @@ export function PlanEditor({
         {plan.name}
       </legend>
       <div className="input-pair">
-        <Field label="Sowing month">
+        <Field label="Month to sow seeds">
           <select
             value={plan.planting_month}
             onChange={(e) =>
@@ -77,7 +84,7 @@ export function PlanEditor({
             ))}
           </select>
         </Field>
-        <Field label="Sowing day">
+        <Field label="Day of month">
           <input
             type="number"
             required
@@ -104,12 +111,12 @@ export function PlanEditor({
         ))}
       </div>
       <div className="stage-legend">
-        <span>Vegetative</span>
-        <span>Reproductive</span>
-        <span>Ripening</span>
+        <span>Leaf & stem growth</span>
+        <span>Flowering</span>
+        <span>Grain ripening</span>
       </div>
       <details>
-        <summary>Edit approximate crop calendar</summary>
+        <summary>More options: plan name and growing stages</summary>
         <Field label={`Plan ${index + 1} name`}>
           <input
             required
@@ -118,7 +125,7 @@ export function PlanEditor({
             onChange={(e) => update({ ...plan, name: e.target.value })}
           />
         </Field>
-        <Field label="Variety / calendar label">
+        <Field label="Rice variety or calendar name">
           <input
             maxLength={100}
             required
@@ -128,7 +135,7 @@ export function PlanEditor({
         </Field>
         <div className="stage-inputs">
           {plan.stages.map((s, i) => (
-            <Field key={s.name} label={`${s.name} days`}>
+            <Field key={s.name} label={`${stageLabel(s.name)} (days)`}>
               <input
                 type="number"
                 required
@@ -148,8 +155,8 @@ export function PlanEditor({
           ))}
         </div>
         <p className="muted">
-          Starts at sowing. Default 55 / 30 / 30 days is illustrative; use
-          locally reviewed stages.
+          Stages begin when you sow seeds. The example lasts 115 days; ask a
+          local adviser about your variety.
         </p>
       </details>
     </fieldset>
@@ -230,9 +237,7 @@ export function SeasonEvidence({
   );
   return (
     <>
-      <p className="table-scroll-hint">
-        Scroll horizontally to see all stage indicators.
-      </p>
+      <p className="table-scroll-hint">Swipe sideways to see the full table.</p>
       <div
         className="table-wrap"
         tabIndex={0}
@@ -246,14 +251,14 @@ export function SeasonEvidence({
               <th>Crop stage</th>
               <th>Dates</th>
               <th>Heat days</th>
-              <th>Rain ≥20 mm days</th>
-              <th>Longest dry spell</th>
+              <th>Heavy-rain days</th>
+              <th>Longest run of dry days</th>
             </tr>
           </thead>
           <tbody>
             {season.stages.map((s) => (
               <tr key={s.name}>
-                <th scope="row">{s.name}</th>
+                <th scope="row">{stageLabel(s.name)}</th>
                 <td>
                   {s.start}
                   <br />
@@ -268,13 +273,17 @@ export function SeasonEvidence({
         </table>
       </div>
       <details className="event-details">
-        <summary>Inspect {events.length} flagged dates</summary>
+        <summary>
+          Inspect {events.length} hot, rainy or missing-data dates
+        </summary>
         <p className="muted">
           Heat, heavy-rain or data-quality flags. Unflagged days remain in the
           exported daily record.
         </p>
         {events.length === 0 ? (
-          <p>No threshold exceedances or missing values in this season.</p>
+          <p>
+            No hot days, heavy-rain days or missing readings in this season.
+          </p>
         ) : (
           <div
             className="table-wrap events"
@@ -286,7 +295,7 @@ export function SeasonEvidence({
               <thead>
                 <tr>
                   <th>Date</th>
-                  <th>Tmax °C</th>
+                  <th>Highest temperature (°C)</th>
                   <th>Rain mm</th>
                   <th>Evidence</th>
                 </tr>
@@ -300,7 +309,7 @@ export function SeasonEvidence({
                     <td>
                       {[
                         d.tmax_c !== null && d.tmax_c >= threshold
-                          ? "Heat proxy"
+                          ? "Hot day"
                           : "",
                         d.rain_mm !== null && d.rain_mm >= 20
                           ? "Heavy rain"

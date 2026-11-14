@@ -1,0 +1,86 @@
+{
+  "prepared_at_utc": "2026-11-14T20:57:53.582726+00:00",
+  "source": "Philippine Statistics Authority OpenSTAT",
+  "production_url": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/2E/CS/0012E4EVCP0.px",
+  "area_url": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/2E/CS/0022E4EAHC0.px",
+  "method": "production in metric tonnes / harvested area in hectares; missing retained",
+  "rows": {
+    "palay-yield-all-locations.csv": 91560,
+    "palay-yield-bicol.csv": 5040,
+    "palay-yield-albay.csv": 840
+  },
+  "limitations": [
+    "Aggregate survey estimates, not independently measured field-season outcomes.",
+    "2026 and other source estimates may be provisional or incomplete; inspect raw metadata.",
+    "Annual, semester and quarter periods overlap; do not treat them as independent samples.",
+    "National, regional and province/city totals overlap; geographic definitions can change.",
+    "No field coordinates, exact planting dates, variety or consent records supplied.",
+    "Not compatible with the existing measured-field-outcomes training contract."
+  ],
+  "restricted_sources": [
+    {
+      "source": "PSADA Palay Production Survey microdata",
+      "status": "not_downloaded",
+      "reason": "Direct catalog request returned HTTP 403; microdata access requires checking registration and dataset-specific conditions."
+    },
+    {
+      "source": "PhilRice/PRiSM measured field records",
+      "status": "not_downloaded",
+      "reason": "Requires a data request; no request submitted."
+    }
+  ],
+  "files": {
+    "README.md": {
+      "bytes": 1943,
+      "sha256": "a6eca9221717654bd710363dff99ce65a6cd2ca0bf36b9cd644ca5168124b3e6"
+    },
+    "area-metadata.json": {
+      "bytes": 3849,
+      "sha256": "e299fb1818a5d9a612bed72ae229da8a65e9827c3abebb94b431a360acafe2aa"
+    },
+    "area-query.json": {
+      "bytes": 3083,
+      "sha256": "4a7498b896203152f79f7c21af2378f4a34124c9065feffc7e8274424a4a52e1"
+    },
+    "area.json": {
+      "bytes": 4429081,
+      "sha256": "5e18c77a519ab13a1b3af312772c5c1447f78e2953a6fcd7db2bc3725c53d94b"
+    },
+    "catalog.json": {
+      "bytes": 3239,
+      "sha256": "d97ec2a38508eb5051a313548104f25e605f202bee201b18addab91dd5918dcd"
+    },
+    "palay-yield-albay.csv": {
+      "bytes": 98185,
+      "sha256": "fa8bdd58b7533cbbe88256e0e8f6afa70d5bb38692a245e1eca9e0e8191454f9"
+    },
+    "palay-yield-all-locations.csv": {
+      "bytes": 10727842,
+      "sha256": "10192932ba79a25c40035dc6bf0645fe51a73d27d623f082dae33737dd41706e"
+    },
+    "palay-yield-bicol.csv": {
+      "bytes": 609242,
+      "sha256": "fd43d40eec8f174933c9f53635f87db29c23e49313cbed6f800fd466f98642c7"
+    },
+    "production-metadata.json": {
+      "bytes": 3858,
+      "sha256": "5f4b4ccf85e6e066f954d7839879121ece01e56a6571f07648e39ac5f923467c"
+    },
+    "production-query.json": {
+      "bytes": 3083,
+      "sha256": "4a7498b896203152f79f7c21af2378f4a34124c9065feffc7e8274424a4a52e1"
+    },
+    "production.json": {
+      "bytes": 4465169,
+      "sha256": "426166a9fe1b9d974b699d2ad5e3538c48fde496005d578663f6114c6a07c189"
+    },
+    "ricelytics-albay-industry.html": {
+      "bytes": 522205,
+      "sha256": "f50e82bafb8a33ee9620ae989bb7302076bde8ffc4f95bfa7aeaa02c5d6801d0"
+    },
+    "ricelytics-albay-yield.html": {
+      "bytes": 405180,
+      "sha256": "34836ce6361cec8843c74a7b88f2944142366da7d1d94fd7ff65f2c348797843"
+    }
+  }
+}

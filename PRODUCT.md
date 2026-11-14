@@ -15,7 +15,7 @@ The initial audience and advisory workflow come from the repository's preparatio
 ## Evidence boundaries
 Historical exposure, observed outcomes and user-entered economics are separate.
 No validated yield prediction, damage estimate, weather forecast or crop recommendation.
-No supplied observed outcome labels. Training must fail closed until eligible data exists.
+No matched Albay field-season labels. The main training pipeline must fail closed until eligible data exists; separate historical research experiments are documented without promotion.
 
 ## Assumptions selected for this MVP
 Legazpi-area point 13.1391 N, 123.7438 E, not an Albay administrative boundary;

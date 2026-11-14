@@ -1,0 +1,56 @@
+{
+  "status": "research_only",
+  "promotion_allowed": false,
+  "task": "satellite soil-moisture retrieval surrogate, m3/m3",
+  "preprocessing_source": "artifacts/h5-soil-moisture-001/model-card.json",
+  "features": [
+    "hh_db",
+    "hv_db",
+    "hh_minus_hv_db",
+    "incidence_angle_degrees"
+  ],
+  "train_n": 24193,
+  "validation_n": 12048,
+  "test_n": 105,
+  "split": {
+    "axis": "rows",
+    "boundaries": [
+      1161,
+      1548
+    ],
+    "buffer_each_side_pixels": 24
+  },
+  "selection": "Lowest validation RMSE among four fixed candidates, including mean baseline",
+  "validation_scores": {
+    "mean": {
+      "mae_m3_m3": 0.07846935318887309,
+      "rmse_m3_m3": 0.0873076322423498
+    },
+    "ridge": {
+      "mae_m3_m3": 0.05088763620222902,
+      "rmse_m3_m3": 0.06300757440542519
+    },
+    "random_forest": {
+      "mae_m3_m3": 0.0468692433966335,
+      "rmse_m3_m3": 0.06025078613445826
+    },
+    "gradient_boosting": {
+      "mae_m3_m3": 0.04679463092233455,
+      "rmse_m3_m3": 0.059937004595530634
+    }
+  },
+  "selected_model": "gradient_boosting",
+  "test_metrics": {
+    "mae_m3_m3": 0.03738857048639363,
+    "rmse_m3_m3": 0.04716350762835913
+  },
+  "test_mean_baseline": {
+    "mae_m3_m3": 0.09117745543950335,
+    "rmse_m3_m3": 0.09651351582044634
+  },
+  "limitations": [
+    "Same scene already explored in experiment 001; this is exploratory spatial validation, not independent confirmation.",
+    "Satellite-derived targets, no field truth or future-date validation.",
+    "No test-driven retuning, no deployment, no rice yield claims."
+  ]
+}

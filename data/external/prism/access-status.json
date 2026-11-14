@@ -1,0 +1,20 @@
+{
+  "checked_at_utc": "2026-11-14T20:59:22.523935+00:00",
+  "status": "not_downloaded",
+  "records_downloaded": 0,
+  "portal": "https://prism.philrice.gov.ph/",
+  "portal_response": "portal-response.html",
+  "portal_response_sha256": "a3aa68861384876cc5b025f648d49a44a818a648f6424ae0ec80d494395e607f",
+  "blockers": [
+    "Portal returned browser security verification, not records.",
+    "No public download of the requested measured field-season yield records was verified.",
+    "PhilRice FOI responses indicate requests are reviewed and broad requests may require an agreement; field-record availability is unconfirmed."
+  ],
+  "sources": [
+    "https://www.foi.gov.ph/agencies/philrice/rice-data-from-philippine-rice-information-system/",
+    "https://www.foi.gov.ph/agencies/philrice/request-for-access-raw-data-on-fertilizer-application-and-other-factors-that-influenced-rice-growth/",
+    "https://www.foi.gov.ph/agencies/philrice/"
+  ],
+  "request_draft": "data-request-draft.md",
+  "request_submitted": false
+}

@@ -1,0 +1,76 @@
+{
+  "status": "research_only",
+  "promotion_allowed": false,
+  "target": "PSA aggregate annual palay yield, t/ha, at province level",
+  "features": [
+    "yield_lag1_t_ha",
+    "yield_trailing3_t_ha",
+    "year"
+  ],
+  "model": "StandardScaler + Ridge(alpha=1.0)",
+  "source_sha256": "fd43d40eec8f174933c9f53635f87db29c23e49313cbed6f800fd466f98642c7",
+  "split": {
+    "test_from_year": 2020,
+    "held_out_provinces": [
+      "Albay",
+      "Sorsogon"
+    ],
+    "train_provinces": [
+      "Camarines Norte",
+      "Camarines Sur",
+      "Catanduanes",
+      "Masbate"
+    ],
+    "train_years": [
+      1990,
+      2019
+    ],
+    "test_years": [
+      2020,
+      2025
+    ]
+  },
+  "train_n": 120,
+  "test_n": 12,
+  "unused_feature_rows": 84,
+  "model_metrics": {
+    "mae_t_ha": 0.21194983092761455,
+    "rmse_t_ha": 0.30520153532084837
+  },
+  "mean_baseline_metrics": {
+    "mae_t_ha": 1.3881474508447935,
+    "rmse_t_ha": 1.4119760465907307
+  },
+  "persistence_baseline_metrics": {
+    "mae_t_ha": 0.21672803986434308,
+    "rmse_t_ha": 0.3010743955436912
+  },
+  "province_metrics": {
+    "Albay": {
+      "n": 6,
+      "mae_t_ha": 0.20895648005777243,
+      "rmse_t_ha": 0.2657165532966722
+    },
+    "Sorsogon": {
+      "n": 6,
+      "mae_t_ha": 0.21494318179745667,
+      "rmse_t_ha": 0.3401333086137594
+    }
+  },
+  "limitations": [
+    "Retrospective aggregate estimates, not measured field yields or crop damage.",
+    "Six provinces only; geographic holdouts share regional weather and are not fully independent.",
+    "Historical PSA revisions/publication lags are not reconstructed; operational as-of availability is unverified.",
+    "Rolling one-year forecasts use each preceding year's observed yield, including prior test years; not a fixed multi-year forecast.",
+    "No climate, management, planting-date or HDF5 predictors; this model cannot rank planting plans.",
+    "No calibrated intervals, prospective validation or agronomic review.",
+    "Holdout chosen before this run, after data acquisition; no hyperparameter tuning on test scores."
+  ],
+  "dependencies": {
+    "scikit-learn": "1.9.1",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "joblib": "1.6.0"
+  },
+  "created_at_utc": "2026-11-14T21:02:57.730301+00:00"
+}

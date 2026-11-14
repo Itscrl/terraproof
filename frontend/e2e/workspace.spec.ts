@@ -8,24 +8,26 @@ test("real NASA replay, economics, persistence, exports and validation", async (
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
   await expect(
-    page.getByText("10 complete years shared by every plan"),
+    page.getByText("10 years with weather data for both plans"),
   ).toBeVisible();
   await expect(
     page.getByRole("cell", { name: "7.1", exact: true }),
   ).toBeVisible();
-  await page.getByLabel("Sowing month").first().selectOption("5");
+  await page.getByLabel("Month to sow seeds").first().selectOption("5");
   await expect(
     page.getByText("You have changed the inputs.", { exact: false }),
   ).toBeVisible();
-  await page.getByRole("button", { name: "Replay seasons" }).click();
+  await page.getByRole("button", { name: "Compare weather" }).click();
   await expect(
     page.getByText("You have changed the inputs.", { exact: false }),
   ).toHaveCount(0);
   await page
-    .getByRole("button", { name: "Farm economics", exact: true })
+    .getByRole("button", { name: "Costs & income", exact: true })
     .click();
-  await page.getByLabel("June planting: Area (ha)", { exact: true }).fill("2");
-  await page.getByRole("button", { name: "Recalculate assumptions" }).click();
+  await page
+    .getByLabel("June planting: Farm area (hectares)", { exact: true })
+    .fill("2");
+  await page.getByRole("button", { name: "Update estimate" }).click();
   await expect(
     page.locator(".money-summary").first().locator("strong"),
   ).toHaveText("₱90,000.00");
@@ -47,9 +49,9 @@ test("real NASA replay, economics, persistence, exports and validation", async (
   await row.getByRole("link", { name: "Daily CSV" }).click();
   expect((await csvPromise).suggestedFilename()).toBe("terraproof-daily.csv");
   await row.getByRole("button", { name: "Open comparison" }).click();
-  await expect(page.getByLabel("Sowing month").first()).toHaveValue("5");
+  await expect(page.getByLabel("Month to sow seeds").first()).toHaveValue("5");
   const jsonPromise = page.waitForEvent("download");
-  await page.getByRole("button", { name: "Export JSON" }).click();
+  await page.getByRole("button", { name: "Download results" }).click();
   expect((await jsonPromise).suggestedFilename()).toBe(
     "terraproof-comparison.json",
   );
@@ -61,11 +63,11 @@ test("real NASA replay, economics, persistence, exports and validation", async (
     .click();
   await expect(page.getByRole("heading", { name: title })).toHaveCount(0);
   await page
-    .getByRole("button", { name: "Planting comparison", exact: true })
+    .getByRole("button", { name: "Compare dates", exact: true })
     .click();
-  await page.getByLabel("Sowing month").first().selectOption("2");
-  await page.getByLabel("Sowing day").first().fill("30");
-  await page.getByRole("button", { name: "Replay seasons" }).click();
+  await page.getByLabel("Month to sow seeds").first().selectOption("2");
+  await page.getByLabel("Day of month").first().fill("30");
+  await page.getByRole("button", { name: "Compare weather" }).click();
   await expect(page.getByRole("alert")).toContainText("day");
   expect(errors).toEqual([]);
 });
@@ -77,7 +79,7 @@ test("responsive pages, accessibility and visual evidence", async ({
     await page.setViewportSize({ width, height: 1000 });
     await page.goto("/");
     await expect(
-      page.getByText("10 complete years shared by every plan"),
+      page.getByText("10 years with weather data for both plans"),
     ).toBeVisible();
     await page.evaluate(() => document.fonts.ready);
     expect(
@@ -95,8 +97,8 @@ test("responsive pages, accessibility and visual evidence", async ({
     expect(scan.violations).toEqual([]);
     if (width === 1440 || width === 390) {
       for (const name of [
-        "Farm economics",
-        "Evidence & methods",
+        "Costs & income",
+        "How it works",
         "Saved comparisons",
       ]) {
         if (width < 680)
@@ -125,7 +127,7 @@ test("responsive pages, accessibility and visual evidence", async ({
 test("keyboard entry and failed request recovery", async ({ page }) => {
   await page.goto("/");
   await expect(
-    page.getByText("10 complete years shared by every plan"),
+    page.getByText("10 years with weather data for both plans"),
   ).toBeVisible();
   await page.keyboard.press("Tab");
   await expect(
@@ -141,7 +143,7 @@ test("keyboard entry and failed request recovery", async ({ page }) => {
       }),
     }),
   );
-  await page.getByRole("button", { name: "Replay seasons" }).click();
+  await page.getByRole("button", { name: "Compare weather" }).click();
   await expect(page.getByRole("alert")).toContainText(
     "NASA source unavailable",
   );

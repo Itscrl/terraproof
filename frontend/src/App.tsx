@@ -29,20 +29,20 @@ import type { Economics, Request, Result, Saved } from "./types";
 
 type View = "compare" | "economics" | "evidence" | "saved";
 const tabs = [
-  { id: "compare", label: "Planting comparison", icon: CalendarDays },
-  { id: "economics", label: "Farm economics", icon: Wallet },
-  { id: "evidence", label: "Evidence & methods", icon: BookOpen },
+  { id: "compare", label: "Compare dates", icon: CalendarDays },
+  { id: "economics", label: "Costs & income", icon: Wallet },
+  { id: "evidence", label: "How it works", icon: BookOpen },
   { id: "saved", label: "Saved comparisons", icon: FolderOpen },
 ] as const;
 const economicFields: [keyof Economics, string, number, number][] = [
-  ["area_ha", "Area (ha)", 0.01, 10000],
-  ["yield_t_ha", "Assumed yield (t/ha)", 0, 30],
-  ["price_php_kg", "Selling price (PHP/kg)", 0, 1000],
-  ["seeds_php_ha", "Seeds (PHP/ha)", 0, 1e7],
-  ["fertilizer_php_ha", "Fertilizer (PHP/ha)", 0, 1e7],
-  ["labor_php_ha", "Labor (PHP/ha)", 0, 1e7],
-  ["irrigation_php_ha", "Irrigation (PHP/ha)", 0, 1e7],
-  ["other_php_ha", "Other costs (PHP/ha)", 0, 1e7],
+  ["area_ha", "Farm area (hectares)", 0.01, 10000],
+  ["yield_t_ha", "Expected harvest (tonnes per hectare)", 0, 30],
+  ["price_php_kg", "Selling price (pesos per kg)", 0, 1000],
+  ["seeds_php_ha", "Seeds (pesos per hectare)", 0, 1e7],
+  ["fertilizer_php_ha", "Fertilizer (pesos per hectare)", 0, 1e7],
+  ["labor_php_ha", "Labor (pesos per hectare)", 0, 1e7],
+  ["irrigation_php_ha", "Irrigation (pesos per hectare)", 0, 1e7],
+  ["other_php_ha", "Other costs (pesos per hectare)", 0, 1e7],
 ];
 
 export default function App() {
@@ -89,7 +89,7 @@ export default function App() {
     setBusy(
       save
         ? "Saving comparison with source evidence"
-        : "Replaying historical seasons",
+        : "Comparing past weather",
     );
     setError("");
     setNotice("");
@@ -171,7 +171,7 @@ export default function App() {
         <div className="workspace-label">
           <span className="location-dot" />
           <div>
-            Albay rice pilot<small>Philippines</small>
+            Rice in Albay<small>Philippines</small>
           </div>
         </div>
         <nav aria-label="Workspace">
@@ -192,17 +192,17 @@ export default function App() {
         </nav>
         <div className="sidebar-note">
           <FlaskConical size={20} />
-          <strong>Evidence before advice</strong>
+          <strong>Based on past weather</strong>
           <p>
-            Historical replay is available. Predictive crop outcomes still
-            require field validation.
+            Explore past seasons to prepare for planting. These results do not
+            predict your harvest.
           </p>
           <button className="text-button" onClick={() => setView("evidence")}>
-            Read the methods <ArrowRight size={15} />
+            About these results <ArrowRight size={15} />
           </button>
         </div>
         <div className="sidebar-footer">
-          TerraProof MVP <span>v0.1</span>
+          TerraProof <span>v0.1</span>
         </div>
       </aside>
       <div className="main-frame">
@@ -230,18 +230,18 @@ export default function App() {
             <div>
               <h1>
                 {view === "compare"
-                  ? "A season starts with a choice."
+                  ? "Compare two planting dates"
                   : view === "economics"
-                    ? "Make the assumptions yours."
+                    ? "Estimate your costs and income"
                     : view === "evidence"
-                      ? "Follow the evidence."
+                      ? "Where the numbers come from"
                       : "Your saved comparisons."}
               </h1>
               <p>
                 {view === "compare"
-                  ? "Compare rice planting dates against the same climate history."
+                  ? "Choose two sowing dates. See how hot days and heavy rain differed in past years."
                   : view === "economics"
-                    ? "Separate the climate question from the cost of growing."
+                    ? "Enter your expected harvest, selling price and costs for each plan."
                     : view === "evidence"
                       ? "Sources, rules and limits behind every result."
                       : "Reopen the exact history and assumptions you reviewed."}
@@ -256,7 +256,7 @@ export default function App() {
                   }
                   disabled={!!busy || dirty}
                 >
-                  <Download size={16} /> Export JSON
+                  <Download size={16} /> Download results
                 </button>
               )}
               <button
@@ -293,8 +293,8 @@ export default function App() {
           )}
           {dirty && (
             <div className="message pending" role="status">
-              You have changed the inputs. Results below still show the last
-              replay.
+              You have changed the inputs. Update the comparison to see your new
+              results.
               <button
                 className="text-button"
                 disabled={!!busy}
@@ -316,12 +316,26 @@ export default function App() {
 
           {view === "compare" && request && (
             <>
+              <div
+                className="quick-start"
+                aria-label="How to compare planting dates"
+              >
+                <span>
+                  <b>1</b> Choose two dates
+                </span>
+                <span>
+                  <b>2</b> Compare past weather
+                </span>
+                <span>
+                  <b>3</b> Check costs &amp; income
+                </span>
+              </div>
               <div className="context-line">
                 <span>
-                  <MapPin size={15} /> Albay pilot point · {request.latitude}°
+                  <MapPin size={15} /> Near Legazpi, Albay · {request.latitude}°
                   N, {request.longitude}° E
                 </span>
-                <span>Rice · approximate stages from sowing</span>
+                <span>Dates count from sowing seeds</span>
               </div>
               <form
                 onSubmit={(e) => {
@@ -346,7 +360,7 @@ export default function App() {
                 </div>
                 <div className="replay-controls">
                   <div className="year-controls">
-                    <Field label="From planting year">
+                    <Field label="First year">
                       <input
                         type="number"
                         min={request.source === "bundled" ? 2015 : 1981}
@@ -358,7 +372,7 @@ export default function App() {
                         }
                       />
                     </Field>
-                    <Field label="To planting year">
+                    <Field label="Last year">
                       <input
                         type="number"
                         min={request.start_year}
@@ -372,16 +386,15 @@ export default function App() {
                     </Field>
                   </div>
                   <p>
-                    One historical window.
-                    <br />
-                    Two calendars. No forecast.
+                    Same past years.
+                    <br />A fair comparison of both dates.
                   </p>
                   <button
                     className="button primary"
                     disabled={!!busy}
                     type="submit"
                   >
-                    <Play size={15} /> Replay seasons
+                    <Play size={15} /> Compare weather
                   </button>
                 </div>
               </form>
@@ -390,13 +403,13 @@ export default function App() {
                   <section className="results-section">
                     <div className="section-heading">
                       <div>
-                        <h2>What changes with the calendar?</h2>
+                        <h2>How did the two dates compare?</h2>
                         <p>
-                          {common} complete years shared by every plan ·{" "}
+                          {common} years with weather data for both plans ·{" "}
                           {result.request.start_year}–{result.request.end_year}
                         </p>
                       </div>
-                      <Field label="Compare exposure">
+                      <Field label="Weather to compare">
                         <select
                           value={metric}
                           onChange={(e) =>
@@ -404,10 +417,11 @@ export default function App() {
                           }
                         >
                           <option value="heavy_rain_days">
-                            Rain ≥20 mm days
+                            Heavy-rain days (20 mm or more)
                           </option>
                           <option value="heat_days">
-                            Tmax ≥{result.request.heat_threshold_c} °C days
+                            Hot days ({result.request.heat_threshold_c} °C or
+                            more)
                           </option>
                         </select>
                       </Field>
@@ -418,6 +432,31 @@ export default function App() {
                         unavailable; inspect source coverage.
                       </p>
                     )}
+                    <div className="plain-results">
+                      {result.plans.map((plan, i) => (
+                        <article
+                          key={plan.name}
+                          className={`result-card result-${i}`}
+                        >
+                          <span>
+                            Plan {String.fromCharCode(65 + i)} · {plan.name}
+                          </span>
+                          <strong>
+                            {number(plan.average[metric])}{" "}
+                            <small>days per season</small>
+                          </strong>
+                          <p>
+                            {metric === "heat_days"
+                              ? `At ${result.request.heat_threshold_c} °C or hotter`
+                              : "With 20 mm of rain or more"}
+                          </p>
+                        </article>
+                      ))}
+                    </div>
+                    <p className="result-explainer">
+                      These are averages from past years, not a forecast.
+                      Compare both weather measures before making a decision.
+                    </p>
                     <div className="results-grid">
                       <div>
                         <div className="chart-legend">
@@ -432,7 +471,7 @@ export default function App() {
                         <YearChart result={result} metric={metric} />
                       </div>
                       <div className="comparison-summary">
-                        <h3>Season averages</h3>
+                        <h3>Average days per season</h3>
                         <table>
                           <thead>
                             <tr>
@@ -450,9 +489,15 @@ export default function App() {
                                 "heat_days",
                                 `Heat ≥${result.request.heat_threshold_c} °C`,
                               ],
-                              ["reproductive_heat_days", "Reproductive heat"],
+                              [
+                                "reproductive_heat_days",
+                                "Hot days during flowering",
+                              ],
                               ["heavy_rain_days", "Rain ≥20 mm"],
-                              ["longest_dry_spell_days", "Longest dry spell"],
+                              [
+                                "longest_dry_spell_days",
+                                "Longest run of dry days",
+                              ],
                             ].map(([key, label]) => (
                               <tr key={key}>
                                 <th scope="row">
@@ -467,8 +512,8 @@ export default function App() {
                           </tbody>
                         </table>
                         <p className="muted">
-                          Exposure does not establish crop damage or identify a
-                          winning plan.
+                          Fewer hot or rainy days does not guarantee a better
+                          harvest.
                         </p>
                       </div>
                     </div>
@@ -489,7 +534,7 @@ export default function App() {
                               {result.plans.map((p) => (
                                 <th key={p.name}>{p.name} · days</th>
                               ))}
-                              <th>Shared complete year</th>
+                              <th>Data for both plans</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -517,13 +562,14 @@ export default function App() {
                       </div>
                     </details>
                   </section>
-                  <section className="season-section">
+                  <details className="season-section season-disclosure">
+                    <summary>Explore dates and weather within a season</summary>
                     <div className="section-heading">
                       <div>
-                        <h2>Inside a growing season</h2>
+                        <h2>Look closer at one season</h2>
                         <p>
-                          Trace each indicator to the crop stage and daily
-                          record.
+                          See when hot days and heavy rain occurred during
+                          growth.
                         </p>
                       </div>
                       <div className="inline-fields">
@@ -557,13 +603,27 @@ export default function App() {
                         threshold={result.request.heat_threshold_c}
                       />
                     )}
-                  </section>
+                  </details>
+                  <div className="next-step">
+                    <div>
+                      <h2>What would each plan cost?</h2>
+                      <p>
+                        Add your expected harvest and expenses to compare
+                        income.
+                      </p>
+                    </div>
+                    <button
+                      className="button primary"
+                      onClick={() => setView("economics")}
+                    >
+                      Estimate costs &amp; income <ArrowRight size={16} />
+                    </button>
+                  </div>
                   <div className="closing-note">
                     <BookOpen size={18} />
                     <p>
-                      NASA POWER grid estimates, not field measurements. Heat is
-                      a screening proxy; rain does not measure flooding or
-                      typhoon winds.
+                      Weather comes from NASA estimates near Legazpi. Conditions
+                      on your farm may differ.
                     </p>
                     <button
                       className="text-button"
@@ -580,9 +640,12 @@ export default function App() {
           {view === "economics" && request && (
             <>
               <div className="context-line">
-                <span>PHP · editable scenario assumptions</span>
                 <span>
-                  Yield is entered by you; exposure does not change it.
+                  Amounts in Philippine pesos · replace the examples with your
+                  own numbers
+                </span>
+                <span>
+                  Expected harvest is your estimate, not a prediction.
                 </span>
               </div>
               <form
@@ -630,7 +693,7 @@ export default function App() {
                           </Field>
                         ))}
                       </div>
-                      <Field label="Assumption date">
+                      <Field label="Date of your estimate">
                         <input
                           type="date"
                           required
@@ -653,7 +716,7 @@ export default function App() {
                           }
                         />
                       </Field>
-                      <Field label="Market / source of assumptions">
+                      <Field label="Market or source of your prices">
                         <input
                           required
                           maxLength={200}
@@ -678,11 +741,11 @@ export default function App() {
                       </Field>
                       {result && (
                         <div className="money-summary">
-                          <span>Scenario net return</span>
+                          <span>Estimated income after costs</span>
                           <strong>{peso(result.plans[i].economics.net)}</strong>
                           <dl>
                             <div>
-                              <dt>Gross revenue</dt>
+                              <dt>Harvest sales</dt>
                               <dd>{peso(result.plans[i].economics.revenue)}</dd>
                             </div>
                             <div>
@@ -726,7 +789,7 @@ export default function App() {
                     forecast is implied.
                   </p>
                   <button className="button primary" disabled={!!busy}>
-                    Recalculate assumptions
+                    Update estimate
                   </button>
                 </div>
               </form>
@@ -737,7 +800,7 @@ export default function App() {
             <>
               <section className="method-intro">
                 <div>
-                  <h2>A transparent historical replay</h2>
+                  <h2>The same past weather for both plans</h2>
                   <p>
                     Each plan is applied to the same past planting years. We
                     count exposure within approximate crop stages and keep the
@@ -777,7 +840,7 @@ export default function App() {
                         </dd>
                       </div>
                       <div>
-                        <dt>Replay period</dt>
+                        <dt>Years compared</dt>
                         <dd>
                           {result.request.start_year}–{result.request.end_year}{" "}
                           planting years
@@ -801,12 +864,12 @@ export default function App() {
                         <dt>Quality</dt>
                         <dd>
                           {result.quality.flagged_days} flagged /{" "}
-                          {result.quality.expected_days} source days; no
-                          imputation
+                          {result.quality.expected_days} source days; missing
+                          readings left blank
                         </dd>
                       </div>
                       <div>
-                        <dt>Payload SHA-256</dt>
+                        <dt>Download fingerprint</dt>
                         <dd className="digest">{result.provenance.sha256}</dd>
                       </div>
                     </dl>
@@ -838,8 +901,12 @@ export default function App() {
                           })
                         }
                       >
-                        <option value="bundled">Bundled NASA snapshot</option>
-                        <option value="live">Live NASA POWER request</option>
+                        <option value="bundled">
+                          Saved NASA data (works offline)
+                        </option>
+                        <option value="live">
+                          Fetch data from NASA (internet needed)
+                        </option>
                       </select>
                     </Field>
                     <div className="input-pair">
@@ -909,8 +976,8 @@ export default function App() {
                       </article>
                     ))}
                   <Field
-                    label="Heat screening threshold (°C)"
-                    hint="Default 35 °C is a configurable proxy, not a cultivar-specific injury threshold."
+                    label="Count a day as hot at (°C)"
+                    hint="Starts at 35 °C. This is a weather indicator, not a damage prediction for your variety."
                   >
                     <input
                       type="number"
@@ -937,7 +1004,7 @@ export default function App() {
               </section>
               <section className="method-row">
                 <div>
-                  <h2>What remains outside this MVP</h2>
+                  <h2>What this tool cannot tell you</h2>
                 </div>
                 <div>
                   <p>
@@ -1040,7 +1107,7 @@ export default function App() {
           )}
           <footer className="sheet-footer">
             <span>Built on NASA Earth science data.</span>
-            <span>Historical exposure · Independent economic assumptions</span>
+            <span>Past weather · Your own cost estimates</span>
           </footer>
         </main>
       </div>

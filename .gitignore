@@ -20,3 +20,11 @@ artifacts/
 frontend/test-results/
 frontend/playwright-report/
 frontend/*.tsbuildinfo
+
+# Downloaded research data stays local; retain source metadata and queries.
+data/external/**/*.csv
+data/external/**/*.zip
+data/external/**/*.html
+data/external/**/*.R
+data/external/psa-rice/production.json
+data/external/psa-rice/area.json
