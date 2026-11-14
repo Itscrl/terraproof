@@ -1,4 +1,7 @@
 .venv/
+# Local satellite inputs are large and must retain their original bytes.
+*.h5
+*.hdf5
 .cache/
 __pycache__/
 *.py[cod]

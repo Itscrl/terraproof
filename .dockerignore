@@ -1,4 +1,6 @@
 .git
+*.h5
+*.hdf5
 .venv
 .cache
 **/node_modules
