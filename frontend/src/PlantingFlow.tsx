@@ -8,7 +8,14 @@ import {
   Save,
 } from "lucide-react";
 import { downloadJSON } from "./api";
-import { Field, months, number, SeasonEvidence, YearChart } from "./components";
+import {
+  Field,
+  NumberInput,
+  months,
+  number,
+  SeasonEvidence,
+  YearChart,
+} from "./components";
 import type { Request, Result } from "./types";
 
 const dateName = (month: number, day: number) => `${months[month - 1]} ${day}`;
@@ -161,8 +168,7 @@ export default function PlantingFlow({
                   </select>
                 </Field>
                 <Field label="Day">
-                  <input
-                    type="number"
+                  <NumberInput
                     required
                     min={1}
                     max={new Date(
@@ -171,9 +177,7 @@ export default function PlantingFlow({
                       0,
                     ).getDate()}
                     value={request.plans[step].planting_day}
-                    onChange={(e) =>
-                      edit(step, "planting_day", +e.target.value)
-                    }
+                    onValueChange={(value) => edit(step, "planting_day", value)}
                   />
                 </Field>
               </div>
@@ -216,13 +220,12 @@ export default function PlantingFlow({
                           key={stage.name}
                           label={`${["Leaf and stem growth", "Flowering", "Grain ripening"][k] ?? stage.name} (days)`}
                         >
-                          <input
-                            type="number"
+                          <NumberInput
                             min={1}
                             max={150}
                             required
                             value={stage.days}
-                            onChange={(e) =>
+                            onValueChange={(value) =>
                               update({
                                 ...request,
                                 plans: request.plans.map((p, j) =>
@@ -230,9 +233,7 @@ export default function PlantingFlow({
                                     ? {
                                         ...p,
                                         stages: p.stages.map((s, n) =>
-                                          n === k
-                                            ? { ...s, days: +e.target.value }
-                                            : s,
+                                          n === k ? { ...s, days: value } : s,
                                         ),
                                       }
                                     : p,
@@ -247,26 +248,24 @@ export default function PlantingFlow({
                 </div>
                 <div className="input-pair">
                   <Field label="First year">
-                    <input
-                      type="number"
+                    <NumberInput
                       required
                       min={request.source === "bundled" ? 2015 : 1981}
                       max={2024}
                       value={request.start_year}
-                      onChange={(e) =>
-                        update({ ...request, start_year: +e.target.value })
+                      onValueChange={(value) =>
+                        update({ ...request, start_year: value })
                       }
                     />
                   </Field>
                   <Field label="Last year">
-                    <input
-                      type="number"
+                    <NumberInput
                       required
                       min={request.start_year}
                       max={2024}
                       value={request.end_year}
-                      onChange={(e) =>
-                        update({ ...request, end_year: +e.target.value })
+                      onValueChange={(value) =>
+                        update({ ...request, end_year: value })
                       }
                     />
                   </Field>

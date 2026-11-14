@@ -18,7 +18,7 @@ import AlbayData from "./AlbayData";
 import PlantingFlow from "./PlantingFlow";
 import IncomeFlow from "./IncomeFlow";
 import { api, downloadJSON } from "./api";
-import { Field } from "./components";
+import { Field, NumberInput } from "./components";
 import type { Request, Result, Saved } from "./types";
 
 type View = "compare" | "economics" | "evidence" | "saved" | "data";
@@ -76,6 +76,12 @@ export default function App() {
 
   async function run(save = false) {
     if (!request) return false;
+    const inputs = document.querySelectorAll<HTMLInputElement>(
+      '#workspace input[type="number"]',
+    );
+    for (const input of inputs) {
+      if (!input.reportValidity()) return false;
+    }
     setBusy(
       save
         ? "Saving comparison with source evidence"
@@ -464,28 +470,26 @@ export default function App() {
                     </Field>
                     <div className="input-pair">
                       <Field label="Latitude">
-                        <input
+                        <NumberInput
                           disabled={request.source === "bundled"}
-                          type="number"
                           step="0.0001"
                           min={12.7}
                           max={13.6}
                           value={request.latitude}
-                          onChange={(e) =>
-                            change({ ...request, latitude: +e.target.value })
+                          onValueChange={(value) =>
+                            change({ ...request, latitude: value })
                           }
                         />
                       </Field>
                       <Field label="Longitude">
-                        <input
+                        <NumberInput
                           disabled={request.source === "bundled"}
-                          type="number"
                           step="0.0001"
                           min={123.2}
                           max={124.2}
                           value={request.longitude}
-                          onChange={(e) =>
-                            change({ ...request, longitude: +e.target.value })
+                          onValueChange={(value) =>
+                            change({ ...request, longitude: value })
                           }
                         />
                       </Field>
@@ -532,16 +536,15 @@ export default function App() {
                     label="Count a day as hot at (°C)"
                     hint="Starts at 35 °C. This is a weather indicator, not a damage prediction for your variety."
                   >
-                    <input
-                      type="number"
+                    <NumberInput
                       step="0.1"
                       min={30}
                       max={42}
                       value={request.heat_threshold_c}
-                      onChange={(e) =>
+                      onValueChange={(value) =>
                         change({
                           ...request,
-                          heat_threshold_c: +e.target.value,
+                          heat_threshold_c: value,
                         })
                       }
                     />

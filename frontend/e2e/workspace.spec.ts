@@ -203,3 +203,48 @@ test("keyboard entry and failed comparison retry preserve the task", async ({
   ).toBeVisible();
   await expect(page.getByRole("alert")).toHaveCount(0);
 });
+
+test("number fields can be cleared and retyped without inserting a leading zero", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const day = page.getByRole("spinbutton", { name: "Day", exact: true });
+  await day.click();
+  await day.press("ControlOrMeta+A");
+  await day.press("Backspace");
+  await expect(day).toHaveValue("");
+  await day.pressSequentially("20");
+  await expect(day).toHaveValue("20");
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Costs & income", exact: true })
+    .click();
+  const harvest = page.getByLabel("Expected harvest in kilograms per hectare", {
+    exact: true,
+  });
+  await harvest.click();
+  await harvest.press("ControlOrMeta+A");
+  await harvest.press("Backspace");
+  await expect(harvest).toHaveValue("");
+  let calls = 0;
+  page.on("request", (r) => {
+    if (r.url().endsWith("/api/compare") && r.method() === "POST") calls++;
+  });
+  await page
+    .getByRole("button", { name: "Calculate my income", exact: true })
+    .click();
+  expect(calls).toBe(0);
+  await expect(harvest).toHaveValue("");
+  await harvest.pressSequentially("2000");
+  await expect(harvest).toHaveValue("2000");
+  const area = page.getByLabel("Farm area in hectares", { exact: true });
+  await area.click();
+  await area.press("ControlOrMeta+A");
+  await area.press("Backspace");
+  await area.pressSequentially("0.5");
+  await expect(area).toHaveValue("0.5");
+  await page
+    .getByRole("button", { name: "Calculate my income", exact: true })
+    .click();
+  await expect(page.locator(".income-answer h2")).toHaveText("-₱2,500.00");
+});

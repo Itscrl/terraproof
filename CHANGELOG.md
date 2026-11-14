@@ -4,6 +4,12 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ## [Unreleased]
 
+### Fixed
+
+- Numeric inputs retain an empty draft while editing instead of inserting zero;
+  typed decimals and replacement values remain intact, required blanks cannot be
+  submitted, and leading zeros are normalized on blur. Shared across all numeric fields.
+
 ### Added
 
 - Guided sowing-date flow with one decision at a time, explicit back/continue

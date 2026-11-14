@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Field, months, number, peso } from "./components";
+import { Field, NumberInput, months, number, peso } from "./components";
 import type { Economics, Request, Result } from "./types";
 const costs = [
   "seeds_php_ha",
@@ -80,6 +80,7 @@ export default function IncomeFlow({
       </div>
       {!showResult ? (
         <form
+          key={index}
           onSubmit={async (e) => {
             e.preventDefault();
             if (await calculate()) setShowResult(true);
@@ -95,15 +96,14 @@ export default function IncomeFlow({
               hint="In hectares. Half a hectare is 0.5."
             >
               <div className="input-with-unit">
-                <input
+                <NumberInput
                   aria-label="Farm area in hectares"
-                  type="number"
                   min={0.01}
                   max={10000}
                   step=".01"
                   required
                   value={values.area_ha}
-                  onChange={(e) => change({ area_ha: +e.target.value })}
+                  onValueChange={(value) => change({ area_ha: value })}
                 />
                 <span>hectares</span>
               </div>
@@ -113,16 +113,15 @@ export default function IncomeFlow({
               hint="Your estimate, not a prediction. For example, 100 sacks × 50 kg = 5,000 kg."
             >
               <div className="input-with-unit">
-                <input
+                <NumberInput
                   aria-label="Expected harvest in kilograms per hectare"
-                  type="number"
                   min={0}
                   max={30000}
                   step={1}
                   required
                   value={Math.round(values.yield_t_ha * 1000)}
-                  onChange={(e) =>
-                    change({ yield_t_ha: +e.target.value / 1000 })
+                  onValueChange={(value) =>
+                    change({ yield_t_ha: value / 1000 })
                   }
                 />
                 <span>kg</span>
@@ -134,15 +133,14 @@ export default function IncomeFlow({
             >
               <div className="input-with-unit">
                 <span>₱</span>
-                <input
+                <NumberInput
                   aria-label="Selling price in pesos per kilogram"
-                  type="number"
                   min={0}
                   max={1000}
                   step=".01"
                   required
                   value={values.price_php_kg}
-                  onChange={(e) => change({ price_php_kg: +e.target.value })}
+                  onValueChange={(value) => change({ price_php_kg: value })}
                 />
                 <span>per kg</span>
               </div>
@@ -153,21 +151,20 @@ export default function IncomeFlow({
             >
               <div className="input-with-unit">
                 <span>₱</span>
-                <input
+                <NumberInput
                   aria-label="Total expenses in pesos per hectare"
-                  type="number"
                   min={0}
                   max={1e7}
                   step=".01"
                   required
                   value={total}
-                  onChange={(e) =>
+                  onValueChange={(value) =>
                     change({
                       seeds_php_ha: 0,
                       fertilizer_php_ha: 0,
                       labor_php_ha: 0,
                       irrigation_php_ha: 0,
-                      other_php_ha: +e.target.value,
+                      other_php_ha: value,
                     })
                   }
                 />
@@ -186,14 +183,13 @@ export default function IncomeFlow({
             <div className="income-questions">
               {costs.map((key, i) => (
                 <Field key={key} label={`${labels[i]} (pesos per hectare)`}>
-                  <input
-                    type="number"
+                  <NumberInput
                     required
                     min={0}
                     max={1e7}
                     step=".01"
                     value={values[key]}
-                    onChange={(e) => change({ [key]: +e.target.value })}
+                    onValueChange={(value) => change({ [key]: value })}
                   />
                 </Field>
               ))}

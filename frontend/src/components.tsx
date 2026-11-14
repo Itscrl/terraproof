@@ -1,4 +1,10 @@
-import type { ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type InputHTMLAttributes,
+  type ReactNode,
+} from "react";
 import type { Plan, Result, Season } from "./types";
 
 const stageLabel = (name: string) =>
@@ -33,6 +39,57 @@ export const peso = (value: number | null) =>
         style: "currency",
         currency: "PHP",
       }).format(value);
+
+type NumberInputProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "type" | "value" | "onChange"
+> & {
+  value: number;
+  onValueChange: (value: number) => void;
+};
+
+// Keep text while editing so clearing a field does not coerce an empty string to zero.
+export function NumberInput({
+  value,
+  onValueChange,
+  onFocus,
+  onBlur,
+  required = true,
+  ...props
+}: NumberInputProps) {
+  const [draft, setDraft] = useState(String(value));
+  const editing = useRef(false);
+  useEffect(() => {
+    if (!editing.current) setDraft(String(value));
+  }, [value]);
+  return (
+    <input
+      {...props}
+      required={required}
+      type="number"
+      value={draft}
+      onFocus={(event) => {
+        editing.current = true;
+        onFocus?.(event);
+      }}
+      onChange={(event) => {
+        const input = event.currentTarget;
+        setDraft(input.value);
+        if (input.value !== "" && Number.isFinite(input.valueAsNumber)) {
+          onValueChange(input.valueAsNumber);
+        }
+      }}
+      onBlur={(event) => {
+        editing.current = false;
+        const input = event.currentTarget;
+        if (input.value !== "" && Number.isFinite(input.valueAsNumber)) {
+          setDraft(String(input.valueAsNumber));
+        }
+        onBlur?.(event);
+      }}
+    />
+  );
+}
 
 export function Field({
   label,
@@ -85,13 +142,12 @@ export function PlanEditor({
           </select>
         </Field>
         <Field label="Day of month">
-          <input
-            type="number"
+          <NumberInput
             required
             min={1}
             max={31}
             value={plan.planting_day}
-            onChange={(e) => update({ ...plan, planting_day: +e.target.value })}
+            onValueChange={(value) => update({ ...plan, planting_day: value })}
           />
         </Field>
       </div>
@@ -136,17 +192,16 @@ export function PlanEditor({
         <div className="stage-inputs">
           {plan.stages.map((s, i) => (
             <Field key={s.name} label={`${stageLabel(s.name)} (days)`}>
-              <input
-                type="number"
+              <NumberInput
                 required
                 min={1}
                 max={150}
                 value={s.days}
-                onChange={(e) =>
+                onValueChange={(value) =>
                   update({
                     ...plan,
                     stages: plan.stages.map((p, j) =>
-                      j === i ? { ...p, days: +e.target.value } : p,
+                      j === i ? { ...p, days: value } : p,
                     ),
                   })
                 }
