@@ -1,18 +1,126 @@
 # TerraProof
 
-TerraProof is intended to help farmers compare planting plans through historical climate replay and transparent, editable economic assumptions.
+A local working MVP for comparing rice planting dates through **real NASA POWER
+historical climate replay** and **editable economic assumptions**. Python/FastAPI
+serves a React/TypeScript workspace and persists comparisons in SQLite.
 
-## Project documentation
+The pilot is an illustrative rice calendar near Legazpi, Albay, Philippines
+(13.1391° N, 123.7438° E). It replays planting years 2015–2024 using an archived
+2015–2025 NASA dataset. It does **not** forecast weather, predict crop damage,
+recommend a winning plan, or validate a particular rice variety.
 
-- [Dataset Preparation and Machine Learning Plan](docs/dataset-preparation-and-ml-plan.md)
-- [Changelog](CHANGELOG.md)
+## Run locally
 
-This repository currently contains planning documentation. It does not include assembled datasets, a deployed application, or validated predictive models.
+Requirements: Python 3.12+, [uv](https://docs.astral.sh/uv/), Node 24,
+and pnpm 11.25.0. All Python and JavaScript dependency resolutions are locked.
+The bundled historical dataset needs no account, secret, or network connection.
 
-## Initial scope
+From this repository in PowerShell:
 
-The proposed pilot is a rice demonstration in Albay, Philippines. Exact boundaries, climate period, and variety remain to be selected. The planned MVP provides explainable historical hazard exposure and an editable profit calculator. Predictive crop outcomes and recommendations depend on suitable labels, independent validation, and qualified agronomic review.
+```powershell
+uv sync --frozen --python 3.12
+Set-Location frontend
+pnpm install --frozen-lockfile
+pnpm build
+Set-Location ..
+uv run uvicorn terraproof.api:app --host 127.0.0.1 --port 8000
+```
 
-## Documentation maintenance
+Open **[http://127.0.0.1:8000](http://127.0.0.1:8000)**.
+Subsequent starts can use `./scripts/dev.ps1`. On Linux/macOS use `cd` instead of
+`Set-Location`. Run from this checkout; reference data and frontend build are shipped
+alongside the Python source, rather than packaged into a standalone wheel.
 
-Update the changelog's `Unreleased` section when making meaningful changes. Describe completed work separately from planned capabilities, retain data provenance and validation requirements, and use descriptive commit messages such as `docs: clarify pilot scope`.
+For UI development, keep the Python server running and run `pnpm dev` in `frontend`;
+Vite proxies `/api` to port 8000. Rebuild before checking the single-server experience.
+
+## Try the primary workflow
+
+1. Change the June and July sowing dates. Expand each calendar to change its name,
+   variety label, or approximate stage durations.
+2. Replay the same years. Compare heat and heavy-rain counts, then inspect one year,
+   crop stages, and flagged dates.
+3. Open **Farm economics**, replace the illustrative area, yield, selling price,
+   costs, market and date, and recalculate. Exposure never changes assumed yield.
+4. Save a comparison. **Saved comparisons** reopens its original result and provenance;
+   export daily CSV or the complete JSON evidence bundle.
+5. **Evidence & methods** explains thresholds. Live NASA mode can retrieve another
+   point in the pilot bounding box; failures are explicit.
+
+Defaults are illustrations, not market quotes. Recurring annual calendars reject
+February 29 and impossible dates. Stages count from **sowing**, not transplanting.
+
+## Implemented capabilities
+
+- NASA acquisition, raw snapshots, metadata/checksums, explicit units, quality flags,
+  local caching and provenance exports.
+- Stage/season heat screening, days with rain ≥20 mm, rainfall total and longest
+  <1 mm dry spell. Missing stays missing; averages use years complete for every plan.
+- Itemized per-hectare costs, scenario net return and break-even calculations.
+- SQLite persistence, protected CSV exports, responsive React UI, pending/error/retry
+  states and keyboard-accessible evidence tables.
+- Offline research: measured outcome validation → preplant features → spatial/time
+  holdout → Ridge/mean baseline comparison → metrics and model card. No auto-promotion.
+- Backend/pipeline/browser tests, CI, and a local container recipe.
+
+## Training and reproducibility
+
+```powershell
+uv run terraproof replay --output artifacts/replay.json
+uv run terraproof train --outcomes data/templates/outcomes.csv --manifest data/templates/climate-manifest.json --holdout-groups held-out-region --test-from-year 2022 --output artifacts/readiness-check
+```
+
+The training command **exits 2 by design** with a readiness report because no real
+outcome labels were supplied. See [the training runbook](docs/training.md) to connect
+consented measured labels and mapped climate snapshots. Synthetic test fixtures prove
+wiring only; they are not agricultural validation. Stage A is implemented; later
+stages retain the [preparation plan's](docs/dataset-preparation-and-ml-plan.md) gates.
+
+## Verification
+
+```powershell
+uv run ruff check src tests
+uv run ruff format --check src tests
+uv run pytest -q
+Set-Location frontend
+pnpm build
+pnpm test:e2e
+```
+
+Local browser tests use installed Chrome; CI installs Chromium. Tests start a
+temporary Python server if port 8000 is free, using ignored `artifacts/e2e-data`.
+See [QA_REPORT.md](QA_REPORT.md) for observed results and limits. Restricted Windows
+runners may need permission to spawn browser processes and access test temp folders.
+
+## Documentation
+
+- [Scientific evidence, NASA challenge and Azure roadmap](docs/research-and-platforms.md)
+- [Source register and data dictionary](docs/data-contracts.md)
+- [Training pipeline and readiness gates](docs/training.md)
+- [Architecture, API and operations](docs/operations.md)
+- [Product decisions](PRODUCT.md), [build notes](BUILD_NOTES.md), [design system](DESIGN.md)
+- [Verification report](QA_REPORT.md), [changelog](CHANGELOG.md)
+
+The inferred challenge is **2026 Field Shift: Adapting Farms with NASA Data**. This
+rice-calendar MVP is a subset; rotations, soil analysis and validated recommendations
+remain future work. NASA's 2026 offer names Azure and Planetary Computer; credits,
+eligibility and quotas need verification. No cloud resources have been deployed.
+
+## Storage and delivery boundary
+
+`data/local/` holds SQLite, `data/cache/` live snapshots, and `artifacts/` research
+runs; all are ignored by Git. `TERRAPROOF_DATA_DIR` relocates writable application
+data. Back up SQLite before upgrades. Public reference data is tracked separately.
+
+This is a **single-user loopback MVP**, without accounts. Hosted use needs the
+identity/ownership/storage work in the operations roadmap before private farm data
+is collected. Optional local packaging: `docker compose up --build`; it binds port
+8000 to loopback and uses persistent volumes. Container verification is reported
+separately from native verification.
+
+## Contributing
+
+Update `CHANGELOG.md` under `Unreleased`, distinguish completed work from plans,
+retain provenance, and use descriptive commits such as `feat: add historical replay`.
+No project software license has been assigned; dependency/data terms remain their
+owners' terms. NASA data access does not confer a blanket project license.
