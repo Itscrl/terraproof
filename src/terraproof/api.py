@@ -2,7 +2,9 @@
 
 import csv
 import io
+import json
 from contextlib import asynccontextmanager
+from datetime import date
 from pathlib import Path
 from uuid import UUID
 
@@ -13,9 +15,13 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 from . import __version__
 from .climate import DATA, ROOT, ClimateError, load_climate
-from .models import Comparison, Economics
+from .models import Comparison, Contract, Economics
 from .replay import RULES, economics, replay
 from .storage import Store
+
+
+class RainfallRequest(Contract):
+    issue_date: date
 
 
 def create_app(db_path: Path | None = None) -> FastAPI:
@@ -73,6 +79,27 @@ def create_app(db_path: Path | None = None) -> FastAPI:
             return replay(request, rows, quality, provenance)
         except ClimateError as exc:
             raise HTTPException(503, str(exc)) from exc
+
+    @app.get("/api/research/rainfall")
+    def rainfall_card():
+        try:
+            path = ROOT / "data/reference/rainfall-research-v1/model-card.json"
+            return json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            raise HTTPException(503, "Rainfall research report unavailable") from exc
+
+    @app.post("/api/research/rainfall/predict")
+    def rainfall_prediction(request: RainfallRequest):
+        from .forecast import predict_rainfall
+
+        try:
+            return predict_rainfall(
+                ROOT / "data/reference/rainfall-research-v1/model.json",
+                ROOT / "data/reference/albay-power-2015-2025.json",
+                request.issue_date,
+            )
+        except ClimateError as exc:
+            raise HTTPException(422, str(exc)) from exc
 
     @app.post("/api/economics")
     def calculate(values: Economics):

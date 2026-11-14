@@ -1,0 +1,113 @@
+{
+  "schema": "power-rainfall-research-v1",
+  "coordinates_lon_lat": [
+    123.744,
+    13.139
+  ],
+  "source_sha256": "47e916fcb8aef62a1f5ee661de804ef05cac82a6bd7e15b9b0b51da13647048c",
+  "research_only": true,
+  "operational_use_allowed": false,
+  "training_target_end": "2020-12-28",
+  "created_at": "2026-11-14T19:42:49.191842+00:00",
+  "target": "Total NASA POWER PRECTOTCORR for issue+1 through issue+7 (mm)",
+  "source": {
+    "file": "albay-power-2015-2025.json",
+    "request_url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX%2CT2M_MIN%2CPRECTOTCORR&community=AG&latitude=13.1391&longitude=123.7438&start=20150101&end=20251231&format=JSON&time-standard=LST",
+    "retrieved_at": "2026-11-14T14:48:16.830254+00:00"
+  },
+  "satellite_inputs_used": false,
+  "model": "StandardScaler + Ridge(alpha=10); negative outputs clipped to zero",
+  "features": [
+    "rain_1d",
+    "rain_7d",
+    "rain_30d",
+    "tmax_7d",
+    "tmin_7d",
+    "sin_doy",
+    "cos_doy"
+  ],
+  "split_design": "Fixed chronological blocks; targets crossing cutoffs excluded; no refit",
+  "training_weeks": 308,
+  "training_issue_start": "2015-02-02",
+  "excluded_incomplete_weeks": 0,
+  "excluded_boundary_weeks": 2,
+  "quality": {
+    "expected_days": 4018,
+    "flagged_days": 0,
+    "issues": [],
+    "imputation": "none",
+    "range_checks": "engineering plausibility, not crop limits"
+  },
+  "evaluation": {
+    "validation": {
+      "weeks": 103,
+      "issue_start": "2021-01-04",
+      "target_end": "2022-12-26",
+      "metrics": {
+        "ridge": {
+          "mae_mm": 35.06905486522442,
+          "rmse_mm": 49.46307609945268
+        },
+        "seasonal_mean": {
+          "mae_mm": 32.79209839746733,
+          "rmse_mm": 51.01839794655376
+        },
+        "persistence": {
+          "mae_mm": 43.78912621359222,
+          "rmse_mm": 66.46488463331889
+        }
+      },
+      "by_year": {
+        "2021": {
+          "mae_mm": 30.783547041409648,
+          "rmse_mm": 41.82768907337749
+        },
+        "2022": {
+          "mae_mm": 39.43859225421203,
+          "rmse_mm": 56.18988946914477
+        }
+      }
+    },
+    "test": {
+      "weeks": 156,
+      "issue_start": "2023-01-02",
+      "target_end": "2025-12-29",
+      "metrics": {
+        "ridge": {
+          "mae_mm": 38.66896491188874,
+          "rmse_mm": 53.41695321250254
+        },
+        "seasonal_mean": {
+          "mae_mm": 37.85054749068595,
+          "rmse_mm": 57.84098645794277
+        },
+        "persistence": {
+          "mae_mm": 47.479615384615386,
+          "rmse_mm": 70.14442244398339
+        }
+      },
+      "by_year": {
+        "2023": {
+          "mae_mm": 35.70099141090478,
+          "rmse_mm": 46.58855910033843
+        },
+        "2024": {
+          "mae_mm": 40.39668199940753,
+          "rmse_mm": 54.86086507720856
+        },
+        "2025": {
+          "mae_mm": 39.89966327292152,
+          "rmse_mm": 58.199337959751524
+        }
+      }
+    }
+  },
+  "limitations": "Retrospective NASA POWER grid estimate, not an operational forecast or field measurement. No crop-yield, damage, irrigation or planting recommendation. Publication latency and revisions are not simulated; uncertainty is not calibrated.",
+  "uncertainty": "No prediction intervals; weekly errors can remain serially correlated",
+  "promotion_allowed": false,
+  "dependency_versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "scikit-learn": "1.9.1"
+  }
+}
