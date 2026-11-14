@@ -9,6 +9,10 @@ description = "Auditable rice planting calendars and historical climate replay"
 requires-python = ">=3.12"
 dependencies = ["fastapi>=0.115,<1", "uvicorn>=0.34,<1", "httpx>=0.28,<1", "pydantic>=2.10,<3", "scikit-learn>=1.6,<2", "pandas>=2.2,<4", "joblib>=1.4,<2"]
 
+[project.optional-dependencies]
+training = ["h5py>=3.12,<4", "numpy>=1.26,<3", "scipy>=1.13,<2", "matplotlib>=3.9,<4"]
+viewer = ["h5py>=3.12,<4", "matplotlib>=3.9,<4", "streamlit>=1.50,<2", "pyarrow>=19,<27"]
+
 [dependency-groups]
 dev = ["pytest>=8,<10", "ruff>=0.11,<1"]
 

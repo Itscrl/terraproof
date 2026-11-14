@@ -1,0 +1,6 @@
+# Run from the repository root: python -m pip install -r requirements-training.txt
+# Uses pyproject.toml as the single dependency source, including the existing
+# scikit-learn (regressors/metrics), pandas (feature tables), and joblib (models).
+# The training extra adds h5py (HDF5), NumPy/SciPy (arrays/statistics), and
+# Matplotlib (regression diagnostics).
+.[training]

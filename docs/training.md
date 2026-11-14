@@ -20,6 +20,51 @@ flowchart LR
 
 ## Connect real data
 
+### HDF5 regression dependencies
+
+Install the optional research tools from the repository root:
+
+```bash
+uv sync --frozen --extra training --python 3.12
+# Or, inside your own virtual environment:
+python -m pip install -r requirements-training.txt
+```
+
+`pyproject.toml` defines the requirements and `uv.lock` pins the resolved versions.
+The training extra provides `h5py` to read HDF5 datasets, NumPy/SciPy for numerical
+processing, and Matplotlib for residual and predicted-versus-observed plots. The
+existing project dependencies provide pandas for feature/target tables, joblib for
+model persistence, and scikit-learn for preprocessing, regression, and evaluation.
+Scikit-learn includes LinearRegression, Ridge, RandomForestRegressor, and
+HistGradientBoostingRegressor; Ridge and a mean baseline are implemented today.
+The other estimators are available for future experiments.
+
+HDF5 is a container, so select a named dataset rather than passing the entire file
+to a regressor. For the NISAR SME2 sample, the main soil-moisture dataset is
+`/science/LSAR/SME2/grids/soilMoisture`. Mask its `_FillValue`, inspect units and
+quality flags, and align observations to field locations and acquisition dates
+before deriving feature rows. Crop-yield regression still needs independently
+measured yield targets; a satellite raster alone does not supply them. Keep shared
+pixels, fields, and later dates out of training/test overlap, and compare held-out
+MAE/RMSE against a mean baseline. Fit preprocessing only on training rows.
+
+These dependencies prepare HDF5 experiments; the current `terraproof train` command
+still takes the documented outcomes CSV and climate JSON manifest. HDF5 ingestion
+is not connected to that command yet. Raw `.h5`/`.hdf5` files are ignored by Git.
+
+To run the independent viewer in a separate environment:
+
+```bash
+uv venv .h5-viewer-runtime --python 3.12
+uv pip install --python .h5-viewer-runtime/bin/python '.[viewer]'
+.h5-viewer-runtime/bin/streamlit run h5_viewer.py
+```
+
+On Windows, use `.h5-viewer-runtime\Scripts\python.exe` and
+`.h5-viewer-runtime\Scripts\streamlit.exe` in the last two commands.
+
+### Existing training workflow
+
 1. Follow [the data contract](data-contracts.md): actual consent, measured yield in
    t/ha, stable field IDs, crop/variety, source and verified season linkage.
 2. Group farms and shared climate cells into conservative spatial blocks. Consider

@@ -6,6 +6,8 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Added
 
+- Standalone HDF5 viewer, optional viewer/training dependencies, and a pip training
+  requirements entry point; raw HDF5 files and viewer environments stay out of Git.
 - Frozen-install CI workflow, local Docker/Compose packaging, Windows launcher,
   operational/rollback guidance, and a reproducible local verification report.
 - Updated setup and usage documentation distinguishing the verified native MVP,
