@@ -1,0 +1,561 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-14T15:07:03.597Z",
+  "title": "Design System: TerraProof",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Ground",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Raised",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.023 155)",
+          "oklch(27% 0.042 155)",
+          "oklch(39% 0.055 155)",
+          "oklch(51% 0.065 155)",
+          "oklch(63% 0.065 155)",
+          "oklch(75% 0.052 155)",
+          "oklch(87% 0.029 155)",
+          "oklch(95% 0.013 155)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Accent",
+        "tonalRamp": [
+          "oklch(15% 0.032 175)",
+          "oklch(27% 0.058 175)",
+          "oklch(39% 0.076 175)",
+          "oklch(51% 0.090 175)",
+          "oklch(63% 0.090 175)",
+          "oklch(75% 0.072 175)",
+          "oklch(87% 0.041 175)",
+          "oklch(95% 0.018 175)"
+        ]
+      },
+      "focus": {
+        "role": "primary",
+        "displayName": "Focus",
+        "tonalRamp": [
+          "oklch(15% 0.032 220)",
+          "oklch(27% 0.058 220)",
+          "oklch(39% 0.076 220)",
+          "oklch(51% 0.090 220)",
+          "oklch(63% 0.090 220)",
+          "oklch(75% 0.072 220)",
+          "oklch(87% 0.041 220)",
+          "oklch(95% 0.018 220)"
+        ]
+      },
+      "field-border": {
+        "role": "neutral",
+        "displayName": "Field Border",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "field-hover": {
+        "role": "neutral",
+        "displayName": "Field Hover",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "button-hover": {
+        "role": "neutral",
+        "displayName": "Button Hover",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "primary-hover": {
+        "role": "primary",
+        "displayName": "Primary Hover",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "nav-hover": {
+        "role": "neutral",
+        "displayName": "Nav Hover",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "nav-active": {
+        "role": "neutral",
+        "displayName": "Nav Active",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "chart-comparison": {
+        "role": "secondary",
+        "displayName": "Chart Comparison",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "chart-third": {
+        "role": "secondary",
+        "displayName": "Chart Third",
+        "tonalRamp": [
+          "oklch(15% 0.009 100)",
+          "oklch(27% 0.016 100)",
+          "oklch(39% 0.021 100)",
+          "oklch(51% 0.025 100)",
+          "oklch(63% 0.025 100)",
+          "oklch(75% 0.020 100)",
+          "oklch(87% 0.011 100)",
+          "oklch(95% 0.005 100)"
+        ]
+      },
+      "chart-fourth": {
+        "role": "secondary",
+        "displayName": "Chart Fourth",
+        "tonalRamp": [
+          "oklch(15% 0.009 220)",
+          "oklch(27% 0.016 220)",
+          "oklch(39% 0.021 220)",
+          "oklch(51% 0.025 220)",
+          "oklch(63% 0.025 220)",
+          "oklch(75% 0.020 220)",
+          "oklch(87% 0.011 220)",
+          "oklch(95% 0.005 220)"
+        ]
+      },
+      "stage-vegetative": {
+        "role": "secondary",
+        "displayName": "Stage Vegetative",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "stage-reproductive": {
+        "role": "secondary",
+        "displayName": "Stage Reproductive",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "stage-ripening": {
+        "role": "secondary",
+        "displayName": "Stage Ripening",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "stage-ink": {
+        "role": "secondary",
+        "displayName": "Stage Ink",
+        "tonalRamp": [
+          "oklch(15% 0.023 155)",
+          "oklch(27% 0.042 155)",
+          "oklch(39% 0.055 155)",
+          "oklch(51% 0.065 155)",
+          "oklch(63% 0.065 155)",
+          "oklch(75% 0.052 155)",
+          "oklch(87% 0.029 155)",
+          "oklch(95% 0.013 155)"
+        ]
+      },
+      "error-bg": {
+        "role": "neutral",
+        "displayName": "Error Bg",
+        "tonalRamp": [
+          "oklch(15% 0.009 30)",
+          "oklch(27% 0.016 30)",
+          "oklch(39% 0.021 30)",
+          "oklch(51% 0.025 30)",
+          "oklch(63% 0.025 30)",
+          "oklch(75% 0.020 30)",
+          "oklch(87% 0.011 30)",
+          "oklch(95% 0.005 30)"
+        ]
+      },
+      "error-ink": {
+        "role": "neutral",
+        "displayName": "Error Ink",
+        "tonalRamp": [
+          "oklch(15% 0.023 30)",
+          "oklch(27% 0.042 30)",
+          "oklch(39% 0.055 30)",
+          "oklch(51% 0.065 30)",
+          "oklch(63% 0.065 30)",
+          "oklch(75% 0.052 30)",
+          "oklch(87% 0.029 30)",
+          "oklch(95% 0.013 30)"
+        ]
+      },
+      "pending-bg": {
+        "role": "neutral",
+        "displayName": "Pending Bg",
+        "tonalRamp": [
+          "oklch(15% 0.009 85)",
+          "oklch(27% 0.016 85)",
+          "oklch(39% 0.021 85)",
+          "oklch(51% 0.025 85)",
+          "oklch(63% 0.025 85)",
+          "oklch(75% 0.020 85)",
+          "oklch(87% 0.011 85)",
+          "oklch(95% 0.005 85)"
+        ]
+      },
+      "pending-ink": {
+        "role": "neutral",
+        "displayName": "Pending Ink",
+        "tonalRamp": [
+          "oklch(15% 0.023 85)",
+          "oklch(27% 0.042 85)",
+          "oklch(39% 0.055 85)",
+          "oklch(51% 0.065 85)",
+          "oklch(63% 0.065 85)",
+          "oklch(75% 0.052 85)",
+          "oklch(87% 0.029 85)",
+          "oklch(95% 0.013 85)"
+        ]
+      },
+      "success-bg": {
+        "role": "neutral",
+        "displayName": "Success Bg",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "success-ink": {
+        "role": "neutral",
+        "displayName": "Success Ink",
+        "tonalRamp": [
+          "oklch(15% 0.023 155)",
+          "oklch(27% 0.042 155)",
+          "oklch(39% 0.055 155)",
+          "oklch(51% 0.065 155)",
+          "oklch(63% 0.065 155)",
+          "oklch(75% 0.052 155)",
+          "oklch(87% 0.029 155)",
+          "oklch(95% 0.013 155)"
+        ]
+      },
+      "loading-bg": {
+        "role": "neutral",
+        "displayName": "Loading Bg",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "loading-ink": {
+        "role": "neutral",
+        "displayName": "Loading Ink",
+        "tonalRamp": [
+          "oklch(15% 0.023 155)",
+          "oklch(27% 0.042 155)",
+          "oklch(39% 0.055 155)",
+          "oklch(51% 0.065 155)",
+          "oklch(63% 0.065 155)",
+          "oklch(75% 0.052 155)",
+          "oklch(87% 0.029 155)",
+          "oklch(95% 0.013 155)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Page headline",
+        "purpose": "Main page title; 24px at mobile widths."
+      },
+      "body": {
+        "displayName": "Working text",
+        "purpose": "Self-hosted IBM Plex Sans; tabular numerals at the root."
+      },
+      "amount": {
+        "displayName": "Economic amount",
+        "purpose": "Visible independent economic subtotal; 28px on mobile."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "loading-pulse",
+        "value": "pulse 1.3s ease-in-out infinite",
+        "purpose": "Loading dot reaches opacity 0.3 at 50%; disabled under prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-min",
+        "value": "1600px"
+      },
+      {
+        "name": "results-stack-max",
+        "value": "1200px"
+      },
+      {
+        "name": "editors-stack-max",
+        "value": "900px"
+      },
+      {
+        "name": "mobile-max",
+        "value": "680px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Filled replay action.",
+      "html": "<button class=\"ds-primary\">Replay seasons</button>",
+      "css": ".ds-primary{font-family:\"IBM Plex Sans\",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #cdd6d0;border-radius:6px;padding:9px 13px;min-height:38px;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;white-space:nowrap;background:var(--ink,#18221e);border-color:var(--ink,#18221e);color:var(--surface,#fff)}.ds-primary:hover{background:#32453a}.ds-primary:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:4px}.ds-primary:disabled{opacity:.5;cursor:wait}"
+    },
+    {
+      "name": "Secondary button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Export and save actions.",
+      "html": "<button class=\"ds-secondary\">Save comparison</button>",
+      "css": ".ds-secondary{font-family:\"IBM Plex Sans\",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #cdd6d0;border-radius:6px;padding:9px 13px;min-height:38px;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;white-space:nowrap;background:var(--surface,#fff);color:var(--ink,#18221e)}.ds-secondary:hover{background:#edf2ef}.ds-secondary:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:4px}.ds-secondary:disabled{opacity:.5;cursor:wait}"
+    },
+    {
+      "name": "Text action",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Underlined source or disclosure-related action.",
+      "html": "<button class=\"ds-text\">Sources &amp; limits</button>",
+      "css": ".ds-text{font-family:\"IBM Plex Sans\",sans-serif;display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:500;padding:4px 0;border:0;background:none;color:var(--ink,#18221e);text-decoration:underline;text-underline-offset:4px;cursor:pointer}.ds-text:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:4px}"
+    },
+    {
+      "name": "Labeled input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Explicit label above a native editable field.",
+      "html": "<label class=\"ds-field\"><span>Sowing day</span><input class=\"ds-input\" type=\"number\" min=\"1\" max=\"31\" value=\"1\"></label>",
+      "css": ".ds-field{font-family:\"IBM Plex Sans\",sans-serif;display:flex;flex-direction:column;gap:7px;font-size:12px;color:#48594d;min-width:0}.ds-input{font-family:\"IBM Plex Sans\",sans-serif;font-size:14px;min-width:0;width:100%;height:39px;border:1px solid #cdd6d0;border-radius:6px;padding:8px 10px;background:var(--surface,#fff);color:var(--ink,#18221e);caret-color:var(--accent,#246c61)}.ds-input:hover{border-color:#8b9e91}.ds-input:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:4px}.ds-input:disabled{background:#edf1ef}"
+    },
+    {
+      "name": "Workspace navigation",
+      "kind": "nav",
+      "refersTo": "navigation-active",
+      "description": "Selected workspace view with a quiet neutral fill.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Workspace\"><button class=\"ds-nav-active\" aria-current=\"page\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M8 2v4m8-4v4M3 10h18\"/><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"/></svg>Planting comparison</button><button>Farm economics</button></nav>",
+      "css": ".ds-nav{display:grid;gap:6px;max-width:228px}.ds-nav button{font-family:\"IBM Plex Sans\",sans-serif;display:flex;align-items:center;gap:10px;text-align:left;padding:12px 10px;font-size:13px;border:0;border-radius:6px;background:none;color:#526159;cursor:pointer}.ds-nav button:hover{background:#e8eeea}.ds-nav .ds-nav-active{background:#e0e7e2;color:var(--ink,#18221e);font-weight:500}.ds-nav button:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:4px}"
+    },
+    {
+      "name": "Plan badge",
+      "kind": "chip",
+      "refersTo": "plan-badge",
+      "description": "A textual plan identifier, not an interactive filter.",
+      "html": "<span class=\"ds-badge\" aria-label=\"Plan A\">A</span>",
+      "css": ".ds-badge{font-family:\"IBM Plex Sans\",sans-serif;display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;border-radius:4px;border:1px solid #b9cdc4;font-size:12px;color:var(--accent,#246c61);vertical-align:middle;margin-right:2px}"
+    },
+    {
+      "name": "Plan panel",
+      "kind": "card",
+      "refersTo": "plan-panel",
+      "description": "Flat grouping surface for editable calendar information.",
+      "html": "<fieldset class=\"ds-panel\"><legend class=\"ds-panel-title\">June planting</legend><p class=\"ds-panel-copy\">Starts at sowing. Default 55 / 30 / 30 days is illustrative; use locally reviewed stages.</p></fieldset>",
+      "css": ".ds-panel{font-family:\"IBM Plex Sans\",sans-serif;min-width:0;border:0;background:var(--raised,#f6f8f7);padding:17px 20px 14px;border-radius:8px;margin:0;color:var(--ink,#18221e)}.ds-panel-title{float:left;width:100%;font-size:16px;font-weight:500;margin-bottom:16px;padding:0}.ds-panel-copy{clear:both;font-size:12px;line-height:1.6;color:var(--muted,#59665f);margin:0}"
+    },
+    {
+      "name": "Proportional calendar strip",
+      "kind": "custom",
+      "refersTo": "calendar-strip",
+      "description": "Three crop stages weighted by duration with explicit labels.",
+      "html": "<div class=\"ds-calendar\" aria-label=\"Vegetative 55 days, Reproductive 30 days, Ripening 30 days\"><span class=\"ds-stage-a\">55d</span><span class=\"ds-stage-b\">30d</span><span class=\"ds-stage-c\">30d</span></div><div class=\"ds-stage-legend\"><span>Vegetative</span><span>Reproductive</span><span>Ripening</span></div>",
+      "css": ".ds-calendar{font-family:\"IBM Plex Sans\",sans-serif;display:flex;gap:3px;height:25px;border-radius:3px;overflow:hidden}.ds-calendar span{display:flex;align-items:center;justify-content:center;font-size:11px;color:#193d32}.ds-stage-a{flex:55;background:#d4e3db}.ds-stage-b{flex:30;background:#89b3a1}.ds-stage-c{flex:30;background:#e3e9df}.ds-stage-legend{font-family:\"IBM Plex Sans\",sans-serif;display:flex;justify-content:space-between;color:var(--muted,#59665f);font-size:11px;margin:5px 0 13px}"
+    },
+    {
+      "name": "Scrollable stage evidence",
+      "kind": "custom",
+      "description": "Mobile discovery cue and keyboard-accessible wide table.",
+      "html": "<p class=\"ds-scroll-hint\">Scroll horizontally to see all stage indicators.</p><div class=\"ds-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Scrollable evidence table\"><table class=\"ds-table\"><thead><tr><th>Crop stage</th><th>Dates</th><th>Heat days</th><th>Rain ≥20 mm days</th><th>Longest dry spell</th></tr></thead><tbody><tr><th scope=\"row\">Vegetative</th><td>2024-06-01<br><small>to 2024-07-25</small></td><td>0</td><td>5</td><td>2 days</td></tr></tbody></table></div>",
+      "css": ".ds-scroll-hint{font-family:\"IBM Plex Sans\",sans-serif;display:none;color:var(--muted,#59665f);font-size:12px;margin:0 0 8px;line-height:1.6}.ds-table-wrap{max-width:100%;overflow:auto;scrollbar-color:#aab8af var(--raised,#f6f8f7);scrollbar-width:thin}.ds-table-wrap:focus-visible{outline:2px solid var(--focus,#126a82)}.ds-table{font-family:\"IBM Plex Sans\",sans-serif;width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums;color:var(--ink,#18221e)}.ds-table th,.ds-table td{padding:11px 8px;border-bottom:1px solid #edf1ee;text-align:right;vertical-align:middle}.ds-table th:first-child,.ds-table td:first-child{text-align:left;padding-left:0}.ds-table th:last-child,.ds-table td:last-child{padding-right:0}.ds-table thead th{font-size:11px;font-weight:400;color:var(--muted,#59665f);line-height:1.5}.ds-table tbody th{font-weight:400}.ds-table small{font-size:12px;color:var(--muted,#59665f)}@media(max-width:680px){.ds-scroll-hint{display:block}.ds-table{min-width:470px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Field Planning Sheet",
+    "overview": "A green-grey workspace frames a white working sheet. Quiet ink, restrained teal marks and compact IBM Plex Sans typography keep the interface practical for farmers and extension advisers working through historical evidence.\n\nThe recurring visual signature is a pair of crop calendars with proportional stage strips, followed by shared-year comparisons. Color identifies plans and stages; labels, units and tables carry the meaning. The visual system keeps historical exposure and independent economic assumptions legible without presenting either as a validated crop prediction.",
+    "keyCharacteristics": [
+      "Green-grey frame and white working sheet.",
+      "Flat, softly rounded groups with fine separators.",
+      "Compact labels, tabular numbers and explicit units.",
+      "Teal climate marks paired with muted comparison colors.",
+      "Responsive stacking with discoverable, keyboard-accessible evidence tables."
+    ],
+    "rules": [
+      {
+        "name": "The Evidence Label Rule",
+        "body": "Keep plan names, stage labels and units alongside color; color alone does not explain a result.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "Do preserve the green-grey frame, white sheet and flat pale panels.",
+      "Do use self-hosted IBM Plex Sans and tabular numbers for the working interface.",
+      "Do retain plan names, units and exact-value tables alongside chart colors.",
+      "Do keep keyboard focus visible and scrollable evidence regions named and focusable.",
+      "Do retain the mobile horizontal-scroll cue beside the stage evidence table.",
+      "Do keep source limits and the distinction between exposure and economics visible."
+    ],
+    "donts": [
+      "Don't add shadows or decorative gradients to the existing panel hierarchy.",
+      "Don't encode a winning plan or predicted crop damage through the comparison palette.",
+      "Don't shrink wide evidence tables until their units and dates become unreadable.",
+      "Don't replace visible field labels with placeholder-only controls.",
+      "Don't add motion that ignores the existing reduced-motion preference."
+    ]
+  }
+}
