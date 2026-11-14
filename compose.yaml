@@ -1,0 +1,11 @@
+services:
+  terraproof:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - terraproof-local:/app/data/local
+      - terraproof-cache:/app/data/cache
+volumes:
+  terraproof-local:
+  terraproof-cache:
