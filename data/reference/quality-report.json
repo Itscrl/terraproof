@@ -1,0 +1,68 @@
+{
+  "quality": {
+    "expected_days": 4018,
+    "flagged_days": 0,
+    "issues": [],
+    "imputation": "none",
+    "range_checks": "engineering plausibility, not crop limits"
+  },
+  "provenance": {
+    "dataset": "NASA POWER daily meteorology",
+    "sha256": "5fdcd3295a507ad7554cf86bd1a06e7c7b63f401d8869f2ecf5e52bbfb4dfbab",
+    "retrieved_at": "2026-11-14T14:48:16.830254+00:00",
+    "request_url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX%2CT2M_MIN%2CPRECTOTCORR&community=AG&latitude=13.1391&longitude=123.7438&start=20150101&end=20251231&format=JSON&time-standard=LST",
+    "header": {
+      "api": {
+        "name": "POWER Daily API",
+        "version": "v2.10.3"
+      },
+      "end": "20251231",
+      "fill_value": -999.0,
+      "sources": [
+        "MERRA2",
+        "POWER"
+      ],
+      "start": "20150101",
+      "time_standard": "LST",
+      "title": "NASA/POWER Source Native Resolution Daily Data"
+    },
+    "geometry": {
+      "coordinates": [
+        123.744,
+        13.139,
+        88.79
+      ],
+      "type": "Point"
+    },
+    "parameters": {
+      "PRECTOTCORR": {
+        "longname": "Precipitation Corrected",
+        "units": "mm/day"
+      },
+      "T2M_MAX": {
+        "longname": "Temperature at 2 Meters Maximum",
+        "units": "C"
+      },
+      "T2M_MIN": {
+        "longname": "Temperature at 2 Meters Minimum",
+        "units": "C"
+      }
+    },
+    "time_standard": "LST",
+    "source_mode": "bundled",
+    "spatial_resolution": "0.5\u00b0 \u00d7 0.625\u00b0 meteorology",
+    "spatial_method": "POWER point lookup; gridded estimate, not a field measurement"
+  },
+  "common_complete_years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ]
+}
