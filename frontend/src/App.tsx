@@ -16,6 +16,7 @@ import {
   Wallet,
   X,
 } from "lucide-react";
+import AlbayData from "./AlbayData";
 import { api, downloadJSON } from "./api";
 import {
   Field,
@@ -27,9 +28,10 @@ import {
 } from "./components";
 import type { Economics, Request, Result, Saved } from "./types";
 
-type View = "compare" | "economics" | "evidence" | "saved";
+type View = "compare" | "economics" | "evidence" | "saved" | "data";
 const tabs = [
   { id: "compare", label: "Compare dates", icon: CalendarDays },
+  { id: "data", label: "Albay data", icon: MapPin },
   { id: "economics", label: "Costs & income", icon: Wallet },
   { id: "evidence", label: "How it works", icon: BookOpen },
   { id: "saved", label: "Saved comparisons", icon: FolderOpen },
@@ -231,42 +233,48 @@ export default function App() {
               <h1>
                 {view === "compare"
                   ? "Compare two planting dates"
-                  : view === "economics"
-                    ? "Estimate your costs and income"
-                    : view === "evidence"
-                      ? "Where the numbers come from"
-                      : "Your saved comparisons."}
+                  : view === "data"
+                    ? "Explore Albay rice data"
+                    : view === "economics"
+                      ? "Estimate your costs and income"
+                      : view === "evidence"
+                        ? "Where the numbers come from"
+                        : "Your saved comparisons."}
               </h1>
               <p>
                 {view === "compare"
                   ? "Choose two sowing dates. See how hot days and heavy rain differed in past years."
-                  : view === "economics"
-                    ? "Enter your expected harvest, selling price and costs for each plan."
-                    : view === "evidence"
-                      ? "Sources, rules and limits behind every result."
-                      : "Reopen the exact history and assumptions you reviewed."}
+                  : view === "data"
+                    ? "Browse local yield estimates and see the results of our model experiments."
+                    : view === "economics"
+                      ? "Enter your expected harvest, selling price and costs for each plan."
+                      : view === "evidence"
+                        ? "Sources, rules and limits behind every result."
+                        : "Reopen the exact history and assumptions you reviewed."}
               </p>
             </div>
-            <div className="heading-actions">
-              {result && (
+            {view !== "data" && (
+              <div className="heading-actions">
+                {result && (
+                  <button
+                    className="button secondary"
+                    onClick={() =>
+                      downloadJSON(result, "terraproof-comparison.json")
+                    }
+                    disabled={!!busy || dirty}
+                  >
+                    <Download size={16} /> Download results
+                  </button>
+                )}
                 <button
                   className="button secondary"
-                  onClick={() =>
-                    downloadJSON(result, "terraproof-comparison.json")
-                  }
-                  disabled={!!busy || dirty}
+                  disabled={!request || !!busy}
+                  onClick={() => void run(true)}
                 >
-                  <Download size={16} /> Download results
+                  <Save size={16} /> Save comparison
                 </button>
-              )}
-              <button
-                className="button secondary"
-                disabled={!request || !!busy}
-                onClick={() => void run(true)}
-              >
-                <Save size={16} /> Save comparison
-              </button>
-            </div>
+              </div>
+            )}
           </div>
           {error && (
             <div className="message error" role="alert">
@@ -313,6 +321,8 @@ export default function App() {
               </button>
             </div>
           )}
+
+          {view === "data" && <AlbayData />}
 
           {view === "compare" && request && (
             <>

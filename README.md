@@ -76,6 +76,21 @@ consented measured labels and mapped climate snapshots. Synthetic test fixtures 
 wiring only; they are not agricultural validation. Stage A is implemented; later
 stages retain the [preparation plan's](docs/dataset-preparation-and-ml-plan.md) gates.
 
+## Explore the connected Albay data
+
+Open **Albay data** in the sidebar to select a municipality on the map, change the
+reporting year/period, inspect yield history and download the context records.
+The page also displays saved research results from the HDF5, IRRI and PSA experiments.
+These are archived results, not on-demand farm predictions or model promotion.
+
+The local context dataset is read from `data/external/albay-public/context/`.
+If it is absent in a fresh checkout, run `python scripts/scrape_albay_rice.py` with
+the project dependencies and internet access, then reload the page. Missing data
+has an explicit empty state; the application does not fabricate or silently replace it.
+The read-only endpoints are `/api/research/albay` and `/api/research/models`.
+Unadvertised years and nonmunicipal rows are filtered server-side. Raw downloads,
+model binaries and rejected 2026 values are not served.
+
 ## Additional local research experiments
 
 The [research reports](docs/research-runs/README.md) record PSA province-yield,

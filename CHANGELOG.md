@@ -6,6 +6,11 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Added
 
+- Connected Albay data explorer with selectable municipal boundaries, year/period
+  filters, historical yield chart/table, context download and saved experiment cards.
+- Read-only research APIs with server-side source/year/value filtering, explicit
+  missing-data behavior and API/browser coverage for exclusions and map selection.
+
 - Public Albay municipal-yield/geometry scraper with source hashes, context-only
   outputs and explicit exclusion of unverified years and non-field estimates.
 

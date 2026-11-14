@@ -15,6 +15,7 @@ from . import __version__
 from .climate import DATA, ROOT, ClimateError, load_climate
 from .models import Comparison, Economics
 from .replay import RULES, economics, replay
+from .research import albay_data, model_reports
 from .storage import Store
 
 
@@ -65,6 +66,17 @@ def create_app(db_path: Path | None = None) -> FastAPI:
             "pilot": "Albay, Philippines · illustrative rice calendar",
             "model_status": "No validated outcome model; research pipeline available via CLI",
         }
+
+    @app.get("/api/research/albay")
+    def research_albay():
+        try:
+            return albay_data()
+        except (ValueError, KeyError, OSError) as exc:
+            raise HTTPException(503, "The archived Albay data could not be read.") from exc
+
+    @app.get("/api/research/models")
+    def research_models():
+        return model_reports()
 
     @app.post("/api/compare")
     def compare(request: Comparison):
