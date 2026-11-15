@@ -93,6 +93,15 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Fixed
 
+- Keep phone search and saved-plot controls within the viewport, allow long notebook
+  records to scroll, and improve contrast on the soil panel's next-step caption.
+
+- Align browser regression journeys with the redesigned landing, globe, market
+  wizard and print studio instead of removed one-page headings and controls.
+  Share deterministic API fixtures and keep live-provider checks opt-in.
+- Prevent the soil drawer from covering wrapped globe toolbar controls: position
+  it below the measured toolbar and keep saved-plot/search controls above it.
+
 - Add the missing Vercel FastAPI entrypoint and API rewrites for the frontend-root
   project, with packaged public reference data, Python 3.12/web dependencies,
   temporary writable cache storage and public-mode private-record isolation.

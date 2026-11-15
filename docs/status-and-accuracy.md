@@ -1,8 +1,19 @@
 # TerraProof: delivery status and scientific claims
 
-Review date: 15 November 2026, Asia/Manila. This implementation is a local review
-build without a public application deployment. This report distinguishes
+Review date: 15 November 2026, Asia/Manila. A local review build and public Vercel
+frontend exist; the public backend repair needs deployment verification. This report distinguishes
 software operation, scientific foundations and demonstrated prediction accuracy.
+
+## Current interface scope
+
+The redesigned frontend starts on a landing page and continues through a globe,
+a three-step market/crop wizard and a printable decision brief. The wizard calls
+the historical planting assessment for month, water-context and priority changes.
+Its market-price assumptions and next-crop cards are illustrative, not live buyer
+quotes or a validated rotation model. The detailed future-climate explorer and
+three-sequence rotation-comparison UI described in earlier evidence are no longer
+mounted; those backend endpoints remain available. Historical validation below
+does not certify that those older screens are present in the current interface.
 
 ## What currently works
 

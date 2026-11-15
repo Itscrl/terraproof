@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import {
   ArrowDown,
   ArrowDownToLine,
@@ -99,7 +99,25 @@ function describePropertyValueInWords(
 }
 
 export default function SoilExplorer() {
+  const globeToolbar = useRef<HTMLElement | null>(null);
   const [view, setView] = useState<AppView>("landing");
+  useEffect(() => {
+    const toolbar = globeToolbar.current;
+    if (view !== "globe" || !toolbar) return;
+    const positionPanel = () => {
+      document.documentElement.style.setProperty(
+        "--globe-panel-top",
+        `${Math.ceil(toolbar.getBoundingClientRect().bottom) + 12}px`,
+      );
+    };
+    const observer = new ResizeObserver(positionPanel);
+    observer.observe(toolbar);
+    positionPanel();
+    return () => {
+      observer.disconnect();
+      document.documentElement.style.removeProperty("--globe-panel-top");
+    };
+  }, [view]);
   const [colorMode, setColorMode] = useState<"light" | "dark">(() => {
     try {
       const saved = localStorage.getItem("terraproof-color-mode");
@@ -725,7 +743,7 @@ export default function SoilExplorer() {
             </Suspense>
           </div>
 
-          <header className="globe-hud-top-bar">
+          <header className="globe-hud-top-bar" ref={globeToolbar}>
             <div className="globe-hud-brand-cluster">
               <button
                 type="button"

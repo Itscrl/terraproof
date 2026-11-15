@@ -1,110 +1,62 @@
 import { expect, test } from "@playwright/test";
-import AxeBuilder from "@axe-core/playwright";
+import { readFileSync } from "node:fs";
+import { mockPlanting, openGlobe, soilFixture } from "./helpers";
 
-test("globe workspace, accessible coordinates, assessment and failure recovery", async ({
+test.use({ viewport: { width: 1440, height: 1000 }, reducedMotion: "reduce" });
+
+test("globe controls, assessment retry, evidence export and changed boundaries", async ({
   page,
 }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
+  await mockPlanting(page);
   let fail = true;
-  await page.route("**/api/soil/assess", async (route) => {
-    if (fail) {
-      await route.fulfill({
-        status: 503,
-        json: { detail: "Provider unavailable; retry assessment." },
-      });
-      return;
-    }
-    const region = route.request().postDataJSON();
-    await route.fulfill({
-      json: {
-        schema: "regional-soil-v1",
-        region,
-        created_at: "2026-11-15T00:00:00Z",
-        status: "partial",
-        properties: [
-          {
-            id: "phh2o",
-            label: "Soil pH in water",
-            unit: "pH",
-            depth: region.depth,
-            status: "available",
-            median: 5.4,
-            p10: 5.1,
-            p90: 6,
-            valid_samples: 10,
-            total_samples: 20,
-            sampled_coverage_fraction: 0.5,
-            provenance: { retrieved_at: "2026-11-15", bytes: 1000 },
-          },
-        ],
-        wetness: {
-          status: "unavailable",
-          reason: "Synthetic integration fixture; NASA unavailable",
-        },
-        assessment: {
-          model: "Test fixture",
-          source: "",
-          statistics: "",
-          uncertainty: "",
-          limitations: [],
-        },
-      },
-    });
-  });
-  await page.goto("/");
-  await expect(
-    page.getByRole("heading", {
-      name: "Understand the soil beneath a region.",
-    }),
-  ).toBeVisible();
-  await page.getByRole("button", { name: "Draw a region" }).click();
-  await expect(
-    page.getByRole("button", { name: "Cancel selection" }),
-  ).toBeVisible();
-  await page.getByRole("button", { name: "Cancel selection" }).click();
-  await page.getByText("Edit coordinates", { exact: true }).click();
-  await page.getByLabel("West longitude or latitude").fill("-95");
-  await page.getByLabel("East longitude or latitude").fill("-94.9");
-  await page.getByRole("button", { name: "Assess selected region" }).click();
-  await expect(page.getByRole("alert")).toContainText("Provider unavailable");
-  fail = false;
-  await page.getByRole("button", { name: "Retry assessment" }).click();
-  await expect(
-    page.getByText("1 of 1 mapped properties available", { exact: false }),
-  ).toBeVisible();
+  await page.route("**/api/soil/assess", (route) =>
+    fail
+      ? route.fulfill({
+          status: 503,
+          json: { detail: "Provider unavailable; retry assessment." },
+        })
+      : route.fulfill({ json: soilFixture(route.request().postDataJSON()) }),
+  );
+  await openGlobe(page);
   await page
-    .locator(".soil-property")
-    .getByText("Soil acidity (pH)", { exact: true })
+    .getByRole("button", { name: "Draw a region", exact: true })
     .click();
   await expect(
-    page.getByText("10 / 20 valid samples", { exact: false }),
+    page.getByRole("button", { name: "Cancel box", exact: true }),
   ).toBeVisible();
-  await page.getByLabel("Soil depth").selectOption("5-15cm");
+  await page.getByRole("button", { name: "Cancel box", exact: true }).click();
+  await page.getByText("Adjust map boundary manually", { exact: true }).click();
+  await page.getByLabel("West longitude or latitude").fill("-95");
+  await page.getByLabel("East longitude or latitude").fill("-94.9");
+  await page
+    .getByRole("button", { name: "Check Soil Health", exact: true })
+    .click();
+  await expect(page.getByRole("alert")).toContainText("Provider unavailable");
+  fail = false;
+  await page.getByRole("button", { name: "Try again", exact: true }).click();
   await expect(
-    page.getByText("Selection changed.", { exact: false }),
+    page.getByRole("button", { name: "Refresh Soil Check", exact: true }),
   ).toBeVisible();
-  const download = page.waitForEvent("download");
-  await page.getByRole("button", { name: "Download soil report JSON" }).click();
-  expect((await download).suggestedFilename()).toBe(
-    "terraproof-soil-report.json",
-  );
+  await page.locator(".soil-property summary").first().click();
+  await expect(page.locator(".soil-property p").first()).toBeVisible();
+  const downloaded = page.waitForEvent("download");
+  await page
+    .getByRole("button", { name: "Save soil summary file", exact: true })
+    .click();
+  const file = await downloaded;
+  expect(file.suggestedFilename()).toBe("terraproof-soil-report.json");
+  const evidence = JSON.parse(readFileSync((await file.path())!, "utf8"));
+  expect(evidence.region.west).toBe(-95);
+  expect(evidence.properties[0].valid_samples).toBe(10);
+  expect(evidence.wetness.status).toBe("unavailable");
+  await page.getByLabel("Soil root layer").selectOption("5-15cm");
+  await expect(page.locator(".soil-stale")).toContainText("Location changed");
   await page.getByLabel("East longitude or latitude").fill("-96");
   await expect(
-    page.getByRole("button", { name: "Assess selected region" }),
+    page.getByRole("button", { name: "Check Soil Health", exact: true }),
   ).toBeDisabled();
-  for (const width of [1440, 768, 390, 320]) {
-    await page.setViewportSize({ width, height: 1000 });
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= innerWidth,
-      ),
-    ).toBeTruthy();
-  }
-  const accessibility = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-    .analyze();
-  expect(accessibility.violations).toEqual([]);
   expect(errors).toEqual([]);
 });
 
@@ -113,125 +65,26 @@ test("live soil selection and real data evidence", async ({
 }, testInfo) => {
   test.skip(
     process.env.TERRAPROOF_LIVE_SOIL !== "1",
-    "Explicit live-source check; requires provider network access",
+    "Opt-in live imagery/soil-provider check",
   );
   test.setTimeout(180000);
-  const errors: string[] = [];
-  page.on("pageerror", (error) => errors.push(error.message));
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  const tile = page.waitForResponse(
-    (response) =>
-      response.url().includes("gibs.earthdata.nasa.gov") &&
-      response.status() === 200,
+  await openGlobe(page);
+  await page.getByRole("button", { name: "Albay Sample", exact: true }).click();
+  const response = page.waitForResponse(
+    (r) =>
+      r.url().endsWith("/api/soil/assess") && r.request().method() === "POST",
   );
-  await page.goto("/");
-  await expect(page.locator(".cesium-widget canvas")).toBeVisible({
-    timeout: 30000,
-  });
-  await tile;
-  await page.waitForLoadState("networkidle");
-  await page.screenshot({
-    path: testInfo.outputPath("globe-initial-desktop.png"),
-    fullPage: true,
-  });
-  await page.getByRole("button", { name: "Albay example" }).click();
-  await page.waitForTimeout(1500);
-  await page.getByRole("button", { name: "Draw a region" }).click();
-  const canvas = page.locator(".cesium-widget canvas");
-  const box = await canvas.boundingBox();
-  if (!box) throw new Error("Globe canvas missing");
-  await page.mouse.click(box.x + box.width * 0.42, box.y + box.height * 0.42);
-  await page.getByRole("button", { name: "Cancel selection" }).click();
-  await page.getByRole("button", { name: "Draw a region" }).click();
-  await page.mouse.click(box.x + box.width * 0.44, box.y + box.height * 0.45);
-  await expect(
-    page.getByRole("button", { name: "Cancel selection" }),
-  ).toBeVisible();
-  await page.mouse.move(box.x + box.width * 0.56, box.y + box.height * 0.58);
-  await page.mouse.click(box.x + box.width * 0.56, box.y + box.height * 0.58);
-  await expect(
-    page.getByRole("button", { name: "Draw a region" }),
-  ).toBeVisible();
-  // Restore the pinned reference region for the live provider and visual evidence.
-  await page.getByRole("button", { name: "Albay example" }).click();
-  await page.getByRole("button", { name: "Assess selected region" }).click();
-  await expect(
-    page.getByText("8 of 8 mapped properties available", { exact: false }),
-  ).toBeVisible({ timeout: 90000 });
-  await expect(
-    page.getByRole("heading", { name: "Recent soil wetness" }),
-  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Check Soil Health", exact: true })
+    .click();
+  const data = await (await response).json();
+  expect(
+    data.properties.filter((p: { status: string }) => p.status === "available"),
+  ).toHaveLength(8);
+  await expect(page.locator(".soil-property")).toHaveCount(8);
   await expect(page.locator(".globe-failure")).toHaveCount(0);
-  await page.waitForLoadState("networkidle");
   await page.screenshot({
-    path: testInfo.outputPath("soil-desktop.png"),
+    path: testInfo.outputPath("live-soil-globe.png"),
     fullPage: true,
   });
-  for (const width of [768, 390, 320]) {
-    await page.setViewportSize({ width, height: 1000 });
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= innerWidth,
-      ),
-    ).toBeTruthy();
-    await page.screenshot({
-      path: testInfo.outputPath(`soil-${width}.png`),
-      fullPage: true,
-    });
-  }
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.getByLabel("Planting month").selectOption("6");
-  await page
-    .getByRole("button", { name: "Explore crops and past seasons" })
-    .click();
-  await expect(page.locator(".crop-row")).toHaveCount(7, { timeout: 60000 });
-  await page.getByRole("button", { name: "Explore future climate" }).click();
-  await expect(
-    page.getByText("Complete model extracts", { exact: true }),
-  ).toHaveCount(2, { timeout: 90000 });
-  await page.locator(".crop-row > summary").first().click();
-  await page
-    .locator(".planting-guide")
-    .screenshot({ path: testInfo.outputPath("planting-desktop.png") });
-  for (const width of [768, 390, 320]) {
-    await page.setViewportSize({ width, height: 1000 });
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= innerWidth,
-      ),
-    ).toBeTruthy();
-    await page
-      .locator(".planting-guide")
-      .screenshot({ path: testInfo.outputPath(`planting-${width}.png`) });
-  }
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  await page
-    .getByLabel("Find your land", { exact: true })
-    .fill("Legazpi Albay Philippines");
-  await page.getByRole("button", { name: "Search", exact: true }).click();
-  await page.locator(".place-results button").first().click();
-  await page.waitForTimeout(1500);
-  await page.waitForLoadState("networkidle");
-  await page
-    .locator(".soil-map")
-    .screenshot({ path: testInfo.outputPath("land-satellite-desktop.png") });
-  const roadTile = page.waitForResponse(
-    (response) =>
-      response.url().includes("World_Topo_Map/MapServer/tile/") &&
-      response.status() === 200,
-  );
-  await page
-    .getByRole("button", { name: "Places & roads", exact: true })
-    .click();
-  await roadTile;
-  await page.waitForLoadState("networkidle");
-  await page.waitForTimeout(500);
-  await page
-    .locator(".soil-map")
-    .screenshot({ path: testInfo.outputPath("land-roads-desktop.png") });
-  const accessibility = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-    .analyze();
-  expect(accessibility.violations).toEqual([]);
-  expect(errors).toEqual([]);
 });

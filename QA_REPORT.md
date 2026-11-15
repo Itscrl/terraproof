@@ -1,5 +1,30 @@
 # Local MVP verification
 
+## Redesigned interface regression — 15 November 2026
+
+The supplied CI failures were caused by browser journeys targeting headings and
+controls removed by the landing/globe/wizard redesign. Updated the journeys to
+exercise the screens now mounted, with shared synthetic soil and planting API
+fixtures. Removed-panel coverage is not presented as current UI coverage.
+
+- Production TypeScript/Vite build: passed; 342 Cesium runtime assets copied.
+  The existing large Cesium chunk warning remains.
+- Browser suite: **6 passed, 1 skipped** on local Chrome at port 8018. Covers
+  assessment failure/retry, invalid and changed bounds, evidence exports, notebook
+  persistence/import protection, explicit place search, water/month/priority API
+  requests, crop/rotation selections, final-report JSON and the print action.
+- Coordinate keyboard navigation and the scoped `#soil-region` axe WCAG A/AA
+  check passed. This is not a whole-application accessibility certification.
+- Reviewed screenshots at 1440, 390 and 320 px. Tests also exercise 768 px,
+  assert search-field bounds and interact with saved-plot forms at every width.
+  Fixed drawer/toolbar overlap, clipped phone controls, unscrollable notebook
+  content and next-step-caption contrast discovered during the checks.
+- Live-provider retrieval was not rerun; its explicit opt-in check is skipped.
+  These fixture-based checks establish interface behavior, not crop/market accuracy
+  or public Vercel API availability. Linux CI must still run the pushed revision.
+
+The local review server remains available at `http://127.0.0.1:8000/`.
+
 ## Production TypeScript build repair — 15 November 2026
 
 Pulled interface revision `2d305c6` and reproduced its production build errors.

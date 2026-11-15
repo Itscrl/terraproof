@@ -15,7 +15,26 @@ No farm-level accuracy percentage, laboratory diagnosis or universal health scor
 See [global sources and pipeline](docs/global-soil-assessment.md) and
 [current status and accuracy](docs/status-and-accuracy.md).
 
-## Guided rotation comparison — 15 November 2026
+## Current interface and browser checks
+
+Choose **Pinpoint Your Land** on the landing page to open the globe, then use
+**Check Soil Health** in its soil panel. **Saved Plots** opens the notebook.
+Continue through **Market Analysis** for planting-month, water-context, crop and
+next-season choices, then **Final Result** for report customization, evidence
+download and printing. The current market prices and rotation cards are
+illustrative planning assumptions, not live buyer data or a validated rotation
+recommendation. The older detailed future-climate and rotation-comparison panels
+are not mounted in this redesigned interface; their backend services remain.
+
+Browser tests follow these screens using synthetic soil/weather responses for
+reproducible interaction checks. They verify controls, persistence and exports,
+not crop accuracy or market outcomes. The live-soil check requires
+`TERRAPROOF_LIVE_SOIL=1`. Public API availability must be checked separately.
+
+## Earlier rotation-comparison interface — 15 November 2026
+
+The walkthrough below describes the previous screen. Its comparison API remains
+available; the current wizard uses the simpler rotation cards described above.
 
 After assessing your land, open **What could I grow after this crop?** Choose your
 first crop and planting month/year, your usual next crop and its planting month,
@@ -42,8 +61,9 @@ seeds, buyers, drainage and water capacity still need checking. The API endpoint
 ## Progress snapshot — 15 November 2026
 
 This README is the progress handoff for the current review build. Source control
-publication and public application hosting are separate: the app runs locally;
-no public deployment or cloud infrastructure has been provisioned.
+publication and public application hosting are separate: the app runs locally,
+and a Vercel frontend exists. The backend deployment repair is documented below;
+working public API availability still needs separate verification.
 
 | Area | Completed progress | Remaining boundary |
 | --- | --- | --- |
