@@ -1,5 +1,11 @@
 # Research evidence and platform roadmap
 
+**Scope update, 15 November 2026:** the user clarified a global soil assessment
+explorer with globe/rectangle selection as TerraProof's primary purpose. See
+[the current soil pipeline](global-soil-assessment.md) and
+[the status/accuracy assessment](status-and-accuracy.md). The rice-first decisions
+below document the original implementation and do not govern the new primary UI.
+
 Research date: **14 November 2026 (Asia/Manila)**. This document records source-backed choices, implementation assumptions, and future integration options. A listed platform is not evidence that an account, credit, deployment, or dataset connection exists.
 
 ## Challenge alignment

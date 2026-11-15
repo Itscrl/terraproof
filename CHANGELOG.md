@@ -6,6 +6,34 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Added
 
+- README progress handoff dated 15 November 2026: implemented features, NASA versus
+  non-NASA sources, Field Shift alignment gaps, proposed water-allocation scope,
+  next steps and current pre-push verification results.
+- Farmer-facing explanations, readable chart legends/data tables and actionable
+  soil-test checklists; explicit separation of missing data and source outages.
+- Region-based crop/season guide replacing calculator navigation: seven versioned
+  FAO crop profiles, ten completed NASA POWER weather years, reference-range checks,
+  harvest-duration ranges and separately reported two-model NASA climate scenarios.
+- Detailed satellite/place/road navigation, manual cached place search, optional
+  device location and visible zoom controls; source science scales remain disclosed.
+- Persistent browser field notebooks with saved plots, planting/management notes,
+  user-provided pH-in-water records, portable backup import/export and removal undo.
+- Expiring source caches with content-addressed archives, bounded scenario retries,
+  reproducible public-source proof script, crop/season tests and maintenance runbook.
+- Explicit future-soil-health scope: climate simulations do not model repeated-crop
+  soil degradation; no soil-health forecast, yield or crop-success probability claimed.
+- Global soil explorer as the primary workflow: NASA GIBS/Cesium globe, rectangular
+  selection, coordinate fallback, soil depth/date controls, regional evidence and export.
+- Bounded ISRIC SoilGrids WCS extraction for eight soil properties, area-weighted sample
+  statistics, raw response caching/hashes and NASA POWER centroid wetness context.
+  Real requests verified in Albay, Iowa, Kenya and Queensland; no whole-scene downloads required.
+- Method-specific WoSIS historical phosphorus and salinity observations where compatible
+  CC-BY records exist, with date/depth/positional uncertainty preserved. No regional
+  prediction is filled from an unrelated point sample or incompatible nutrient test.
+- NASA CMR/AppEEARS discovery script and source/layer evidence for global soil,
+  moisture, reflectance, rainfall and radar products; documented streaming/cloud path.
+- Hosted-mode host configuration and private saved-record isolation, numerical/API
+  tests and globe browser verification. Public application deployment remains deferred.
 - Read-only HDF5 inventory and streamed SHA-256/MD5 audit with optional NASA CMR
   archive verification; documented checksum failures for both supplied NISAR files.
   Satellite originals remain local and are excluded from Git and Docker contexts.

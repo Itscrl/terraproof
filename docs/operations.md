@@ -1,5 +1,16 @@
 # Architecture and operations
 
+The primary `/` route is now the global soil explorer. `soil.py` validates region
+requests, acquires bounded WCS/WFS/JSON responses, checks units/geometry/missingness
+and returns regional predictions with independent historical laboratory references.
+`POST /api/soil/assess` takes `west`, `south`, `east`, `north`, optional `depth`
+and `end_date`. See [global source/hosting operations](global-soil-assessment.md).
+The farmer guide adds `POST /api/planting/assess`, `POST /api/planting/future`,
+`GET /api/planting/crops` and manual `GET /api/places/search?q=...`.
+See [crop/season methods](farmer-guide-and-validation.md) and
+[source/record maintenance](maintenance.md). The diagram below documents archived
+climate/research backend functions; the calculator UI is no longer routed.
+
 ```mermaid
 flowchart TD
   UI[React workspace] --> API[FastAPI loopback :8000]
@@ -28,7 +39,8 @@ duplicate scientific calculations. Dependencies are locked in `uv.lock` and
 
 | Route | Behavior |
 | --- | --- |
-| GET `/api/health` | Version and local-MVP state |
+| GET `/api/health` | Version, review/public mode and public-mode flag |
+| POST `/api/soil/assess` | Global rectangle → eight soil predictions, NASA wetness and WoSIS references |
 | GET `/api/config` | Defaults and rule metadata |
 | POST `/api/compare` | Validated request → historical replay |
 | POST `/api/economics` | Assumptions → scenario arithmetic |
