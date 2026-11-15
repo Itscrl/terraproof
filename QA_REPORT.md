@@ -1,5 +1,69 @@
 # Local MVP verification
 
+## Pre-push regression — 15 November 2026
+
+- Python lint and formatting: passed (`ruff check src tests` and
+  `ruff format --check src tests`; 20 files already formatted).
+- Python tests: **46 passed**, using workspace-local `.cache/pytest-prepush`.
+  One upstream Starlette/httpx deprecation warning remains.
+- Production build: passed. The lazy-loaded Cesium engine chunk is approximately
+  3.98 MB / 1.06 MB gzip and still triggers Vite's size warning.
+- Browser regression: **4 passed, 1 skipped** using `TERRAPROOF_TEST_PORT=8015`.
+  The live-source soil test was not opted into; deterministic tests cover soil
+  assessment/error recovery, crop/future evidence, plot records/backups and place search.
+- The local launch was checked separately at port 8000: health `ok`, homepage
+  HTTP 200. No new claim of live-provider availability, field accuracy or public
+  deployment follows from this regression run.
+
+The earlier observations below retain their original dates and scopes.
+
+## Global soil explorer — 15 November 2026
+
+Earlier review preview: `http://127.0.0.1:8001`. Global hosting is the intended
+delivery; no public application deployment has been performed.
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Numerical/API suite | PASS | **38 tests**; prior suite plus region bounds, raster geometry/masks/scaling, cache integrity, response-size cap, NASA units/missingness, hosted host/origin/private-record boundaries, WoSIS method/depth/licence filtering and duplicate handling |
+| Full browser regression | PASS | **5 tests**, including live soil flow and the retained climate/economics journeys |
+| Real globe journey | PASS | Globe renders NASA tiles; two-corner selection, coordinate entry, depth changes, assessment, pending/error/retry, stale-selection notice and JSON download exercised |
+| Real global source checks | PASS for retrieval | Eight SoilGrids properties and NASA wetness retrieved in Albay, Iowa, Kenya and Queensland; no field accuracy inferred |
+| Missing indicator extension | PASS for implemented scope | Bulk density and total nitrogen use separate /100 scaling. Queensland returned compatible Olsen-P and ECe observations; Albay returned no compatible observations |
+| Public mode | PASS in API tests | Explicit hosted domain and same-origin request accepted; untrusted host/origin rejected; saved comparisons disabled |
+| Mobile / accessibility | PASS in tested states | 1440, 768, 390, 320 px, no page overflow; axe WCAG A/AA tags scanned on initial/error/report states; coordinate fields provide keyboard alternative to WebGL |
+| Production build | PASS | TypeScript and Vite; Cesium runtime assets copied and loaded. Globe engine chunk ~3.97 MB / ~1.06 MB gzip triggers the documented size warning; split-loaded, not a performance certification |
+| Source discovery | PASS | Eight exact CMR queries found one collection each; AppEEARS SMAP/HLS product/layer metadata saved in `docs/evidence/global-soil-catalog-20261115.json` |
+| Design inspector | PASS in scanned states | 0 findings at 1440, 768 and 390 px; real report captures also reviewed at 320 px |
+| Independent visual review | SHIP for scored fixes | Five refreshed captures accepted; map framing/selection outline corrected, globe-first design documentation persisted; no remaining material findings |
+| Soil predictive accuracy | NOT ESTABLISHED independently | Published SoilGrids model used; no independent TerraProof laboratory holdout, calibrated intervals or global accuracy percentage |
+| Public hosting / load / field usability | UNVERIFIED | No hosted deployment, production load test, agronomic trial, screen-reader or field-user study performed |
+
+Live browser check (explicit network use):
+
+```powershell
+$env:TERRAPROOF_TEST_PORT='8001'
+$env:TERRAPROOF_LIVE_SOIL='1'
+pnpm --dir frontend exec playwright test --reporter=line
+```
+
+Run from `frontend` with `pnpm exec playwright test` if pnpm's directory option is
+unavailable. CI skips the opt-in live-source test; synthetic fixtures test behavior
+and are never presented as agricultural accuracy. Actual real-data captures are
+under `frontend/test-results/soil-live-soil-selection-and-real-data-evidence/`:
+`globe-initial-desktop.png`, `soil-desktop.png`, `soil-768.png`, `soil-390.png`,
+`soil-320.png`. Generated screenshots are ignored. NASA imagery is attributed in-app;
+no generated bitmap illustration or mock satellite data was used.
+
+The initial browser pass caught missing Cesium runtime paths and a dependency CSP
+conflict; the final integration uses the engine directly, correct asset directories
+and `wasm-unsafe-eval` without enabling JavaScript `unsafe-eval`. A separate visual
+check caught the geographic tile-matrix mismatch; the corrected standard Web Mercator
+tile path was verified against NASA's Cesium example and real browser imagery.
+
+See [status and accuracy](docs/status-and-accuracy.md) for supported claims and the
+conditional challenge-alignment assessment. Historical reports below remain scoped
+to their original implementation dates.
+
 ## Research extension — 15 November 2026
 
 - `pytest -q`: **29 passed**, including the original suite plus HDF5 corruption,
