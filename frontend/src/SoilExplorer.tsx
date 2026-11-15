@@ -16,6 +16,7 @@ import type { Bounds, SoilReport, SoilRequest } from "./soil-types";
 import "./soil.css";
 import PlaceSearch from "./PlaceSearch";
 import PlantingGuide from "./PlantingGuide";
+import RotationGuide from "./RotationGuide";
 import EvidenceGaps from "./EvidenceGaps";
 import FarmNotebook from "./FarmNotebook";
 
@@ -144,6 +145,29 @@ export default function SoilExplorer() {
             setSelecting(false);
           }}
         />
+        <section
+          className="planting-guide farmer-start"
+          aria-label="How to use TerraProof"
+        >
+          <h2>New here? Follow these three steps</h2>
+          <ol>
+            <li>
+              <b>Find your land.</b> Search a place, zoom in and draw a box
+              around the area. Coordinates are an alternative if you have them.
+            </li>
+            <li>
+              <b>Read the soil report.</b> Choose “Assess selected region”.
+              Missing data means we do not know; it does not mean your land is
+              bad.
+            </li>
+            <li>
+              <b>Plan what comes next.</b> Compare crop plans below, read the
+              checks, and discuss your shortlist with a local agricultural
+              adviser.
+            </li>
+          </ol>
+          <a href="#rotation-guide">Go to crop rotation comparison</a>
+        </section>
         <div className="soil-layout">
           <section className="soil-map" aria-label="Global region selection">
             <div className="soil-map-toolbar">
@@ -487,6 +511,22 @@ export default function SoilExplorer() {
           </aside>
         </div>
         {report && <EvidenceGaps report={report} />}
+        {report ? (
+          <RotationGuide
+            key={`rotation-${JSON.stringify(report.region)}`}
+            region={report.region}
+            stale={dirty}
+          />
+        ) : (
+          <section id="rotation-guide" className="planting-guide">
+            <h2>Compare crops over two seasons</h2>
+            <p>
+              First select your land and choose “Assess selected region” above.
+              Then you can compare your usual crop sequence with two
+              alternatives.
+            </p>
+          </section>
+        )}
         <div id="planting-guide-start">
           {report ? (
             <PlantingGuide

@@ -208,7 +208,10 @@ test("crop guide explains seasonal evidence, missing values, future scenarios an
   );
   await page.goto("/");
   await page.getByRole("button", { name: "Assess selected region" }).click();
-  await page.getByLabel("Planting month").selectOption("6");
+  await page
+    .locator("#planting-guide")
+    .getByLabel("Planting month")
+    .selectOption("6");
   await page.getByLabel("Planning year").selectOption("2027");
   await page
     .getByRole("button", { name: "Explore crops and past seasons" })
@@ -232,7 +235,10 @@ test("crop guide explains seasonal evidence, missing values, future scenarios an
   await expect(
     page.getByText("partial — some data could not be used", { exact: true }),
   ).toBeVisible();
-  await page.getByLabel("What matters most?").selectOption("shorter_season");
+  await page
+    .locator("#planting-guide")
+    .getByLabel("What matters most?")
+    .selectOption("shorter_season");
   await expect(
     page.getByText("Planting options changed.", { exact: false }),
   ).toBeVisible();
@@ -300,4 +306,124 @@ test("manual place search locates a small starting box and map controls remain a
   await expect(
     page.getByRole("button", { name: "Satellite", exact: true }),
   ).toHaveAttribute("aria-pressed", "true");
+});
+
+test("guided rotations explain choices, download a plan and guard stale inputs", async ({
+  page,
+}) => {
+  await mockSoil(page);
+  let fail = false;
+  await page.route("**/api/rotations/assess", (route) => {
+    if (fail)
+      return route.fulfill({
+        status: 503,
+        json: { detail: "Weather provider unavailable." },
+      });
+    const input = route.request().postDataJSON();
+    const screens = [
+      input.first_crop,
+      input.next_crop,
+      ...input.alternatives,
+    ].map((id) => {
+      const ref = references.find((r: { id: string }) => r.id === id);
+      return {
+        ...ref,
+        reference: ref,
+        soil_ph: 5.4,
+        climate,
+        planting_reference: "2027-06-01",
+        indicative_harvest_window: ["2027-10-01", "2027-11-30"],
+      };
+    });
+    return route.fulfill({
+      json: {
+        request: input,
+        method: {
+          source: "https://www.fao.org/4/s2022e/s2022e07.htm",
+          water: "Not irrigation liters.",
+          climate: "Historical seasons are not a forecast.",
+          sequence: "Carry-over soil effects are not simulated.",
+        },
+        options: [input.next_crop, ...input.alternatives].map((id, i) => ({
+          id: `option-${i}`,
+          label: i === 0 ? "Your current plan" : `Alternative ${i}`,
+          baseline: i === 0,
+          sequence: `${screens[0].name} → ${screens[i + 1].name}`,
+          status: "Needs checking",
+          seasons: [screens[0], screens[i + 1]],
+          water_reference_mm: [1000, 1500],
+          water_note: "Ranges overlap; no clear reduction is established.",
+          soil_note: "Soil improvement is not predicted.",
+          diversity_note: "Discuss crop groups with an adviser.",
+          next_steps: ["Confirm seeds, buyers and water before planting."],
+        })),
+      },
+    });
+  });
+  await page.goto("/");
+  await expect(
+    page.getByRole("heading", { name: "New here? Follow these three steps" }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Assess selected region", exact: true })
+    .click();
+  const guide = page.locator("#rotation-guide");
+  await guide
+    .getByRole("button", { name: "Compare my three crop plans" })
+    .click();
+  await expect(
+    guide.getByRole("heading", { name: "Your three crop plans" }),
+  ).toBeVisible();
+  await expect(guide.locator("article")).toHaveCount(3);
+  const downloaded = page.waitForEvent("download");
+  await guide
+    .getByRole("button", { name: "Download comparison", exact: true })
+    .click();
+  expect((await downloaded).suggestedFilename()).toBe(
+    "terraproof-crop-plans.txt",
+  );
+  await guide
+    .getByLabel("Next crop planting month", { exact: true })
+    .selectOption("2");
+  await expect(
+    guide.getByRole("button", { name: "Download comparison", exact: true }),
+  ).toBeDisabled();
+  fail = true;
+  await guide
+    .getByRole("button", { name: "Compare my three crop plans" })
+    .click();
+  await expect(guide.getByRole("alert")).toContainText(
+    "Weather provider unavailable",
+  );
+  fail = false;
+  await guide
+    .getByRole("button", { name: "Compare my three crop plans" })
+    .click();
+  await expect(
+    guide.getByRole("button", { name: "Download comparison", exact: true }),
+  ).toBeEnabled();
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    await guide.scrollIntoViewIfNeeded();
+    await guide.screenshot({ path: `test-results/rotation-${width}.png` });
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth,
+      ),
+    ).toBeTruthy();
+  }
+  expect(
+    (
+      await new AxeBuilder({ page })
+        .include("#rotation-guide")
+        .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+        .analyze()
+    ).violations,
+  ).toEqual([]);
+  await guide
+    .getByLabel("Alternative next crop 1", { exact: true })
+    .selectOption("rice_indica");
+  await expect(
+    guide.getByRole("button", { name: "Compare my three crop plans" }),
+  ).toBeDisabled();
 });

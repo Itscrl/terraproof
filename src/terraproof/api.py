@@ -154,6 +154,12 @@ def create_app(db_path: Path | None = None, public_mode: bool | None = None) -> 
     def planting_assessment(request: PlantingRequest):
         return assess_planting(request)
 
+    from .rotations import RotationRequest, assess_rotations
+
+    @app.post("/api/rotations/assess")
+    def rotation_assessment(request: RotationRequest):
+        return assess_rotations(request)
+
     @app.post("/api/planting/future")
     def future_assessment(request: FutureRequest):
         try:
