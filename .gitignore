@@ -1,4 +1,5 @@
 .venv/
+datasets/
 # Local satellite inputs are large and must retain their original bytes.
 *.h5
 *.hdf5
