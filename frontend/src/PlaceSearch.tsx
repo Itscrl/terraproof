@@ -7,7 +7,7 @@ type Place = { label: string; latitude: number; longitude: number };
 export default function PlaceSearch({
   onLocate,
 }: {
-  onLocate: (bounds: Bounds) => void;
+  onLocate: (bounds: Bounds, label?: string) => void;
 }) {
   const [query, setQuery] = useState("");
   const [places, setPlaces] = useState<Place[]>();
@@ -18,12 +18,15 @@ export default function PlaceSearch({
     const halfLat = 0.0025;
     const halfLon =
       halfLat / Math.max(0.1, Math.cos((place.latitude * Math.PI) / 180));
-    onLocate({
-      west: Math.max(-180, place.longitude - halfLon),
-      east: Math.min(180, place.longitude + halfLon),
-      south: Math.max(-85, place.latitude - halfLat),
-      north: Math.min(85, place.latitude + halfLat),
-    });
+    onLocate(
+      {
+        west: Math.max(-180, place.longitude - halfLon),
+        east: Math.min(180, place.longitude + halfLon),
+        south: Math.max(-85, place.latitude - halfLat),
+        north: Math.min(85, place.latitude + halfLat),
+      },
+      place.label,
+    );
     setSelected(place.label);
     setPlaces(undefined);
   }
@@ -55,7 +58,7 @@ export default function PlaceSearch({
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => {
         locate({
-          label: `Near your location (device accuracy about ${Math.round(coords.accuracy)} m)`,
+          label: "Current Farm Location",
           latitude: coords.latitude,
           longitude: coords.longitude,
         });
