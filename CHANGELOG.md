@@ -93,5 +93,11 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Fixed
 
+- Startup scripts now install frozen dependencies and rebuild the ignored frontend
+  output before starting the server, preventing an old calculator build after a
+  pull. Added a Linux/macOS launcher and documented refresh/port troubleshooting.
+- Browser regression now checks that the legacy planning URL renders a globe
+  canvas and serves its packaged Cesium data without opting into live soil tests.
+
 - Close SQLite connections deterministically after each transaction to avoid relying
   on garbage collection during repeated save/export workflows.

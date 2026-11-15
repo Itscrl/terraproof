@@ -103,3 +103,14 @@ methods, submission brief and regression checks. The comparison is recomputed;
 it is not saved automatically to the farm notebook. Farmers should download the
 text plan or evidence JSON. A new deployment requires rebuilding the frontend and
 restarting the API process so `/api/rotations/assess` is available.
+
+## Updating another contributor's checkout
+
+`git pull` changes source but does not change ignored `frontend/dist/` output.
+Stop the running server, pull main, then use `scripts/dev.ps1` (Windows) or
+`sh scripts/dev.sh` (Linux/macOS). Each installs frozen dependencies, builds the
+current UI and starts the API only if those commands succeed. Direct uvicorn
+launches do not rebuild. Refresh the browser after the restart. A visible old
+calculator points to a stale build/server; a dark globe or WebGL message needs
+separate imagery/network/browser investigation. The standard browser suite now
+checks the globe canvas and packaged Cesium data on the old planning URL.
