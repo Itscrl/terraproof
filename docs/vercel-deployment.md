@@ -28,6 +28,11 @@ Public verification after `a8e5a89`: health, seven-profile catalog and real Lega
 place search all returned HTTP 200. This establishes startup and those requests,
 not full real-provider soil/season performance.
 
+Follow-up after `b5af427`: the real Albay soil request returned all eight mapped
+properties and NASA wetness, and the standard planting request returned available
+history and seven crop results (both HTTP 200). Cache state was uncontrolled;
+this verifies that sample retrieval, not global uptime or prediction accuracy.
+
 ## Why search returned 404
 
 The Vite interface sends requests to /api on the same domain. The earlier static

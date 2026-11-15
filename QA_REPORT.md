@@ -1,5 +1,22 @@
 # Local MVP verification
 
+## Deployed assessment verification — 15 November 2026
+
+Revision `b5af427` was deployed successfully. Real public calls for the generic
+Albay sample returned:
+
+- Soil assessment: HTTP 200, `available`, all eight SoilGrids properties present,
+  with available NASA wetness. Observed request duration was approximately 5.3 s.
+- Standard planting assessment: HTTP 200, available weather history, no history
+  retrieval failures and seven crop results. Observed request duration was 2.7 s.
+- Local regression for this revision: **54 Python tests passed**; lint and the
+  production frontend build passed. The existing Cesium bundle-size warning and
+  upstream TestClient deprecation warning remain.
+
+Cache state was not controlled, so these timings are observations, not cold-start
+benchmarks. A single sample does not demonstrate global provider availability,
+agronomic accuracy or a production service-level guarantee.
+
 ## Public runtime diagnosis — 15 November 2026
 
 GitHub Actions run 43712418170 for `f1f3665` passed its Python, production build and

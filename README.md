@@ -169,6 +169,12 @@ Public soil/standard planting requests have a shared 35-second provider budget s
 slow sources can return partial evidence and retry guidance before the hosting
 timeout; missing values remain unknown.
 
+Live checks after `b5af427` returned HTTP 200 for the Albay sample: all eight
+mapped soil properties, NASA wetness and the standard planting assessment with
+seven crop profiles and available weather history. Local regression: **54 Python
+tests passed**. These are retrieval/operation checks for one sample, not field
+accuracy or global uptime measurements; caches may affect response times.
+
 ## Run locally
 
 Requirements: Python 3.12+, [uv](https://docs.astral.sh/uv/), Node 24,
