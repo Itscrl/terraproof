@@ -395,3 +395,12 @@ Messages use a matching background/text color pair and wrap at narrow widths. Lo
 - **Don't** replace visible field labels with placeholder-only controls.
 - **Don't** add motion that ignores the existing reduced-motion preference.
 
+
+## Guided rotation extension
+
+Existing palette and typography are retained. The flow uses three ordered user
+steps, native labeled selectors with 46px controls and 16px explanatory text.
+Three sequence articles read vertically on mobile, with the current plan first;
+there is no computed winner or decorative score. Text explains every status and
+names checks before action. The primary download is readable text; technical JSON
+is secondary. Inputs changing invalidate downloads and visibly mark older results.

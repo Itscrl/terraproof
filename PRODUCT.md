@@ -54,7 +54,14 @@ Legazpi-area point 13.1391 N, 123.7438 E, not an Albay administrative boundary;
 economics are editable assumptions, not current price observations.
 2026 Field Shift challenge alignment is inferred pending an explicit challenge ID.
 
+## Guided rotation comparison
+Farmers compare their usual two-season sequence with two chosen alternative next
+crops. Plain-language statuses, calendar checks and text downloads support adviser
+discussion. Crops are screened independently; soil/water carry-over and predictive
+benefits remain unvalidated. Existing design tokens are preserved with larger
+explanatory copy, explicit form labels and three-step guidance.
+
 ## Delivery
-Verify locally before deployment. **Do not commit or push new changes until the user
-has checked them**, per the latest instruction. Keep source provenance, scientific
+Verify locally before deployment. The user authorized committing the guided rotation feature. A public remote push
+requires separate approval. Keep source provenance, scientific
 limits and test evidence. Global hosting remains the target after acceptance.

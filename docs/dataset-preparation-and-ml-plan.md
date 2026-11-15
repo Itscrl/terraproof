@@ -126,7 +126,9 @@ cultivar validation. Earlier assumptions above describe the initial planning sta
 Stage B has an offline CLI enforcing measured-label, consent, provenance, preplant
 feature, spatial/time holdout and baseline-evaluation gates. No observed yield labels
 were supplied; the empty template fails closed. Synthetic fixtures test wiring only.
-Stages C/D, soil-informed rotations and predictive recommendations remain future work.
+A preliminary soil/climate reference comparison of two-season sequences is now
+implemented; see [rotation methods](rotation-comparison.md). This does not complete
+Stages C/D: coupled rotation effects and predictive recommendations remain future work.
 
 See [data contracts](data-contracts.md), [training](training.md), [research/platforms](research-and-platforms.md)
 and [operations](operations.md) for decisions, citations and reproducible commands.

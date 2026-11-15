@@ -112,3 +112,13 @@ If an offer cannot be redeemed, continue with the same local Python/React applic
 - Local agronomic reviewers validate calendars, thresholds, irrigation context, and crop/rotation suitability before any recommendation claim.
 
 All links above were researched on 2026-11-14. Direct-access failures are stated explicitly; no authenticated subscription or offer eligibility was inspected.
+
+## Current Field Shift mapping — guided rotation extension
+
+The historical Stage A discussion above predates the new two-season comparison.
+TerraProof now compares a current sequence and two user-selected alternatives with
+soil acidity, crop characteristics, NASA historical conditions and farmer priorities.
+This is transparent reference screening, not a trained rotation optimizer, local
+suitability certification or coupled soil-health model. See [submission brief](submission-brief.md)
+for requirement mapping and consistent answers. The technical explanation in
+[rotation methods](rotation-comparison.md) is authoritative for implemented rules.

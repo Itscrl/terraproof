@@ -6,6 +6,13 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Added
 
+- Guided two-season crop-rotation comparisons with current practice and two chosen
+  alternatives, soil/NASA reference checks, timing conflicts, water-use explanations,
+  farmer onboarding, plain-language results and downloadable text plans.
+- Rotation API and browser regression coverage for missing evidence, overlap,
+  duplicate choices, stale results, downloads, retry and mobile accessibility.
+  This is preliminary screening, not a soil-change or irrigation-allocation model.
+
 - README progress handoff dated 15 November 2026: implemented features, NASA versus
   non-NASA sources, Field Shift alignment gaps, proposed water-allocation scope,
   next steps and current pre-push verification results.

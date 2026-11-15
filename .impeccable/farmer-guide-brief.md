@@ -2,8 +2,8 @@
 
 Mode: Operate/Read within the established globe-first surface. Extend the existing
 IBM Plex Sans, framed white sheet and quiet teal; no new brand direction is needed.
-User has authorised autonomous execution and durable system updates. No commits,
-push or deployment until the user has reviewed the local build.
+User has authorised implementation and committing the guided rotation comparison.
+Remote pushes and public deployment are outside this feature request.
 
 Audience: farmers and nontechnical advisers returning to the same fields across
 seasons. Their questions lead: where is my land, what do these soil numbers mean,

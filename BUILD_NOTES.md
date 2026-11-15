@@ -53,3 +53,14 @@ all 40 small scenario files in Albay after bounded retry. Browser notebooks pres
 plots and actual/user-provided records with export/import and removal undo.
 The interface explicitly distinguishes future climate from future soil health;
 no repeated-crop degradation, yield or rotation-impact model is claimed.
+
+## Guided rotation comparison — 15 November 2026
+
+The user authorized a feasible two-season proof of concept and farmer guidance.
+`rotations.py` composes the existing soil/NASA crop-screening methods into a
+baseline and two chosen alternatives. The result includes calendar overlap checks,
+published water ranges, crop-group explanations and explicit unresolved checks.
+`RotationGuide.tsx` adds labeled forms, three-step instructions, plain-language
+statuses, a text plan download and separate evidence export. It preserves the
+existing globe workflow and visual system. Soil/nutrient/water carry-over is not
+modeled. See `docs/rotation-comparison.md` and `docs/submission-brief.md`.
