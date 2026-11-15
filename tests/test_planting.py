@@ -31,6 +31,17 @@ def weather(first=2023, last=2024, temperature=26, rain=3):
     return rows
 
 
+def test_expired_public_budget_returns_unknown_crop_evidence(monkeypatch, tmp_path):
+    monkeypatch.setattr(planting, "public_request_deadline", lambda: 99)
+    monkeypatch.setattr(soil, "monotonic", lambda: 100)
+    result = planting.assess_planting(request(), cache=tmp_path)
+    assert result["status"] == "unavailable"
+    assert result["soil"]["median"] is None
+    assert len(result["history"]["failures"]) == 2
+    assert all("time limit" in failure["reason"] for failure in result["history"]["failures"])
+    assert all(crop["status"] == "needs_data" for crop in result["crops"])
+
+
 def test_crop_screen_unknowns_boundaries_and_no_yield_forecast():
     profile = planting.crop_catalog()["profiles"][0]
     history = {"rows": weather(), "first_year": 2023, "last_year": 2024}

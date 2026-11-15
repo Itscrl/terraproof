@@ -11,6 +11,7 @@ import os
 from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
+from time import monotonic
 from uuid import uuid4
 
 import httpx
@@ -67,7 +68,15 @@ class SoilRegion(Contract):
         return max(1, min(64, math.floor(width / 0.25))), max(1, min(64, math.floor(height / 0.25)))
 
 
-def acquire(client: httpx.Client, url: str, params: dict, cache: Path, *, allow_ncss_csv=False):
+def acquire(
+    client: httpx.Client,
+    url: str,
+    params: dict,
+    cache: Path,
+    *,
+    allow_ncss_csv=False,
+    deadline: float | None = None,
+):
     """Archive small responses only. Fixed requests reuse the same source snapshot."""
     key = hashlib.sha256(json.dumps([url, params], sort_keys=True).encode()).hexdigest()
     body_path, meta_path = cache / f"{key}.bin", cache / f"{key}.json"
@@ -83,10 +92,24 @@ def acquire(client: httpx.Client, url: str, params: dict, cache: Path, *, allow_
                     return body, meta
         except (OSError, ValueError, KeyError, TypeError):
             pass  # Reacquire a damaged cache; never serve it as a valid snapshot.
-    with client.stream("GET", url, params=params) as response:
+    request_options = {}
+    if deadline is not None:
+        remaining = deadline - monotonic()
+        if remaining <= 0:
+            raise ClimateError(
+                "Provider time limit reached. Retry the soil check for missing evidence."
+            )
+        request_options["timeout"] = httpx.Timeout(
+            min(8, remaining / 2), connect=min(3, remaining / 2)
+        )
+    with client.stream("GET", url, params=params, **request_options) as response:
         response.raise_for_status()
         chunks, size = [], 0
         for block in response.iter_bytes():
+            if deadline is not None and monotonic() >= deadline:
+                raise ClimateError(
+                    "Provider time limit reached. Retry the soil check for missing evidence."
+                )
             size += len(block)
             if size > 2 * 1024 * 1024:
                 raise ClimateError(
@@ -128,7 +151,7 @@ def weighted_quantile(values, weights, quantile):
     return float(values[order[min(index, len(order) - 1)]])
 
 
-def map_property(client, region, prop, cache):
+def map_property(client, region, prop, cache, *, deadline=None):
     label, unit, divisor = PROPERTIES[prop]
     width, height = region.grid()
     result = {"id": prop, "label": label, "unit": unit, "depth": region.depth}
@@ -149,6 +172,7 @@ def map_property(client, region, prop, cache):
                 "FORMAT": "GEOTIFF_INT16",
             },
             cache,
+            deadline=deadline,
         )
         with MemoryFile(body) as memory, memory.open() as source:
             if source.count != 1 or source.width != width or source.height != height:
@@ -182,11 +206,17 @@ def map_property(client, region, prop, cache):
                 provenance=provenance,
             )
     except (httpx.HTTPError, ValueError, OSError, RuntimeError) as exc:
-        result.update(status="unavailable", reason=str(exc), median=None, p10=None, p90=None)
+        result.update(
+            status="unavailable",
+            reason=str(exc) or "Provider request timed out. Retry the soil check.",
+            median=None,
+            p10=None,
+            p90=None,
+        )
     return result
 
 
-def wetness_context(client, region, cache):
+def wetness_context(client, region, cache, *, deadline=None):
     start = region.end_date - timedelta(days=13)
     lat, lon = (region.south + region.north) / 2, (region.west + region.east) / 2
     try:
@@ -204,6 +234,7 @@ def wetness_context(client, region, cache):
                 "time-standard": "LST",
             },
             cache,
+            deadline=deadline,
         )
         payload = json.loads(body)
         if payload["header"].get("time_standard") != "LST":
@@ -249,10 +280,13 @@ def wetness_context(client, region, cache):
             "spatial_support": "Centroid context only; 0.5° × 0.625° grid, not a regional average",
         }
     except (httpx.HTTPError, ValueError, KeyError, TypeError, OSError) as exc:
-        return {"status": "unavailable", "reason": str(exc)}
+        return {
+            "status": "unavailable",
+            "reason": str(exc) or "Provider request timed out. Retry the soil check.",
+        }
 
 
-def laboratory_reference(client, region, method, cache):
+def laboratory_reference(client, region, method, cache, *, deadline=None):
     """Return compatible historical point observations, never fill regional raster gaps.
 
     Only explicitly CC-BY-licensed records are returned. Provider coverage is sparse;
@@ -275,6 +309,7 @@ def laboratory_reference(client, region, method, cache):
                 "BBOX": f"{region.west},{region.south},{region.east},{region.north}",
             },
             cache,
+            deadline=deadline,
         )
         payload = json.loads(body)
         if payload.get("type") != "FeatureCollection" or not isinstance(
@@ -339,20 +374,33 @@ def laboratory_reference(client, region, method, cache):
             ),
         )
     except (httpx.HTTPError, ValueError, KeyError, TypeError, OSError) as exc:
-        result.update(status="unavailable", reason=str(exc))
+        result.update(
+            status="unavailable",
+            reason=str(exc) or "Provider request timed out. Retry the soil check.",
+        )
     return result
+
+
+def public_request_deadline():
+    # Public functions must finish before the hosting limit. Completed/cached
+    # evidence remains usable; unfinished provider evidence stays unavailable.
+    return monotonic() + 35 if os.getenv("TERRAPROOF_PUBLIC_MODE") == "1" else None
 
 
 def assess_region(region: SoilRegion, cache: Path | None = None):
     cache = cache or DATA / "cache" / "soil"
+    deadline = public_request_deadline()
     with httpx.Client(timeout=45, follow_redirects=True) as client:
         with ThreadPoolExecutor(max_workers=3) as executor:
             jobs = [
-                executor.submit(map_property, client, region, prop, cache) for prop in PROPERTIES
+                executor.submit(map_property, client, region, prop, cache, deadline=deadline)
+                for prop in PROPERTIES
             ]
-            moisture = executor.submit(wetness_context, client, region, cache)
+            moisture = executor.submit(wetness_context, client, region, cache, deadline=deadline)
             observations = [
-                executor.submit(laboratory_reference, client, region, method, cache)
+                executor.submit(
+                    laboratory_reference, client, region, method, cache, deadline=deadline
+                )
                 for method in OBSERVATIONS
             ]
             properties = [job.result() for job in jobs]

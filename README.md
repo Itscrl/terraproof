@@ -165,6 +165,9 @@ startup. Linux builds now bundle and preload that library; CI also checks the
 packaged API and a synthetic soil TIFF in a minimal Python runtime container.
 Public health, catalog and real place search passed after deployment `a8e5a89`.
 CI stages Expat from Amazon Linux for runtime compatibility when building on Ubuntu.
+Public soil/standard planting requests have a shared 35-second provider budget so
+slow sources can return partial evidence and retry guidance before the hosting
+timeout; missing values remain unknown.
 
 ## Run locally
 

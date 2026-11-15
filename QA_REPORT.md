@@ -18,6 +18,13 @@ HTTP 200. The first container CI run correctly rejected an Ubuntu-native Expat
 requiring GLIBC_2.36. CI now stages Expat from the target Amazon Linux 2023 image
 via an explicit build-path override before running the same minimal-runtime check.
 
+Run 43713500138 passed the minimal-runtime smoke test and the full Linux browser
+suite. A subsequent real Albay soil request returned Vercel 504, exposing the
+unbounded sequence of 45-second provider requests. Public soil and standard crop
+assessment now share a 35-second provider budget, including streamed response
+checks. New deterministic tests preserve cache reuse, missingness and absent crop
+evidence after expiry. This changes request scheduling, not the soil/crop model.
+
 ## Redesigned interface regression — 15 November 2026
 
 The supplied CI failures were caused by browser journeys targeting headings and

@@ -93,6 +93,10 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Fixed
 
+- Bound public soil and standard planting provider work before Vercel's function
+  timeout; retain fresh cached evidence and return explicit missing-data reasons.
+  Test expired budgets, interrupted streams, cache reuse and unknown crop results.
+
 - Bundle and preload Linux Expat for Rasterio in the Vercel Python function;
   missing `libexpat.so.1` crashed health, place search and soil routes on startup.
   Add a minimal-runtime CI check covering the packaged API and a synthetic TIFF.

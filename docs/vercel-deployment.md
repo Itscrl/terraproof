@@ -68,9 +68,15 @@ Public hostnames come from the Vercel deployment environment and explicit allowe
 hosts. Public comparison-record APIs are blocked. The research rainfall inference
 route is omitted because its training stack is not part of the web runtime.
 
-The 60-second function duration can constrain cold multi-source assessments and
-future-climate extraction; a successful search does not establish all workloads
-fit that limit. Upstream service access, geocoder policies and rate limits still
+The first real public soil request exceeded the 60-second function duration.
+Public soil and standard planting assessments now share a 35-second provider
+budget with shorter per-request timeouts and streamed-body deadline checks.
+Fresh cached sources remain usable after that budget expires; unfinished sources
+return unavailable/partial evidence with retry explanations, without invented
+values. Local-review requests retain their previous provider timeout settings.
+This is a cooperative I/O budget, not a hard real-time execution guarantee.
+Future-climate extraction can still exceed the hosting limit; that older explorer
+is not mounted in the current UI. Upstream service access, geocoder policies and rate limits still
 apply. Multiple instances do not share the local geocoder lock/cache; broader
 production use needs a managed geocoder/shared rate limiter and durable jobs/cache.
 

@@ -21,7 +21,7 @@ import httpx
 from pydantic import Field
 
 from .climate import DATA, ENDPOINT, ROOT, ClimateError
-from .soil import SoilRegion, acquire, map_property
+from .soil import SoilRegion, acquire, map_property, public_request_deadline
 
 CATALOG_PATH = ROOT / "data/reference/crop-requirements-v1.json"
 NEX = "https://ds.nccs.nasa.gov/thredds/ncss/grid/AMES/NEX/GDDP-CMIP6"
@@ -58,8 +58,9 @@ def finite_value(value, fill=-999, *, minimum=None, maximum=None):
     return number
 
 
-def power_history(client, region, cache):
+def power_history(client, region, cache, *, deadline=None):
     """Ten complete prior years, split into five-year requests; missing days stay missing."""
+    deadline = deadline if deadline is not None else public_request_deadline()
     last = datetime.now(UTC).year - 1
     first = last - 9
     rows, sources, failures = {}, [], []
@@ -80,6 +81,7 @@ def power_history(client, region, cache):
                     "time-standard": "LST",
                 },
                 cache,
+                deadline=deadline,
             )
             payload = json.loads(body)
             if payload["header"].get("time_standard") != "LST":
@@ -266,10 +268,13 @@ def crop_screen(profile, soil, history, request):
 
 def assess_planting(request: PlantingRequest, cache: Path | None = None):
     cache = cache or DATA / "cache" / "soil"
+    deadline = public_request_deadline()
     with httpx.Client(timeout=45, follow_redirects=True) as client:
         with ThreadPoolExecutor(max_workers=2) as executor:
-            soil_job = executor.submit(map_property, client, request, "phh2o", cache)
-            history_job = executor.submit(power_history, client, request, cache)
+            soil_job = executor.submit(
+                map_property, client, request, "phh2o", cache, deadline=deadline
+            )
+            history_job = executor.submit(power_history, client, request, cache, deadline=deadline)
             soil, history = soil_job.result(), history_job.result()
     catalog = crop_catalog()
     candidates = [crop_screen(profile, soil, history, request) for profile in catalog["profiles"]]

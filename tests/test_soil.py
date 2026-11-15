@@ -110,6 +110,57 @@ def test_source_response_size_is_limited(tmp_path):
         assert "2 MiB" in result["reason"]
 
 
+def test_expired_provider_budget_uses_cache_but_does_not_start_network(monkeypatch, tmp_path):
+    calls = []
+    monkeypatch.setattr(soil, "monotonic", lambda: 100)
+    with httpx.Client(
+        transport=httpx.MockTransport(
+            lambda request: calls.append(request) or httpx.Response(200, json={"ok": True})
+        )
+    ) as client:
+        url = "https://example.test/soil"
+        body, _ = soil.acquire(client, url, {}, tmp_path)
+        assert soil.acquire(client, url, {}, tmp_path, deadline=99)[0] == body
+        with pytest.raises(soil.ClimateError, match="time limit"):
+            soil.acquire(client, url, {"uncached": 1}, tmp_path, deadline=99)
+    assert len(calls) == 1
+
+
+def test_stream_crossing_provider_deadline_is_not_cached(monkeypatch, tmp_path):
+    clock = [100]
+    monkeypatch.setattr(soil, "monotonic", lambda: clock[0])
+
+    class SlowStream(httpx.SyncByteStream):
+        def __iter__(self):
+            yield b'{"ok":'
+            clock[0] = 126
+            yield b"true}"
+
+    with httpx.Client(
+        transport=httpx.MockTransport(lambda _: httpx.Response(200, stream=SlowStream()))
+    ) as client:
+        with pytest.raises(soil.ClimateError, match="time limit"):
+            soil.acquire(client, "https://example.test/slow", {}, tmp_path, deadline=125)
+    assert not list(tmp_path.glob("*.bin"))
+
+
+def test_public_assessment_shares_one_deadline_across_all_sources(monkeypatch, tmp_path):
+    deadlines = []
+    monkeypatch.setenv("TERRAPROOF_PUBLIC_MODE", "1")
+    monkeypatch.setattr(soil, "monotonic", lambda: 100)
+
+    def missing(*args, deadline=None):
+        deadlines.append(deadline)
+        return {"status": "unavailable", "median": None, "reason": "Synthetic outage"}
+
+    for name in ("map_property", "wetness_context", "laboratory_reference"):
+        monkeypatch.setattr(soil, name, missing)
+    result = soil.assess_region(region(), cache=tmp_path)
+    assert deadlines == [135] * 13
+    assert result["status"] == "unavailable"
+    assert result["assessment"]["overall_quality_score"] is None
+
+
 def test_nasa_missing_values_and_unit_contract(tmp_path):
     bounds = region(end_date=date(2025, 1, 20))
     payload = {
@@ -152,17 +203,17 @@ def test_api_partial_results_never_fabricate_score(monkeypatch, tmp_path):
     monkeypatch.setattr(
         soil,
         "map_property",
-        lambda client, region, prop, cache: {
+        lambda client, region, prop, cache, **kwargs: {
             "id": prop,
             "status": "available" if prop == "phh2o" else "unavailable",
             "median": 5.4 if prop == "phh2o" else None,
         },
     )
-    monkeypatch.setattr(soil, "wetness_context", lambda *args: {"status": "unavailable"})
+    monkeypatch.setattr(soil, "wetness_context", lambda *args, **kwargs: {"status": "unavailable"})
     monkeypatch.setattr(
         soil,
         "laboratory_reference",
-        lambda *args: {"status": "no_compatible_observations", "observations": []},
+        lambda *args, **kwargs: {"status": "no_compatible_observations", "observations": []},
     )
     with TestClient(create_app(tmp_path / "test.sqlite3")) as client:
         response = client.post("/api/soil/assess", json=region().model_dump(mode="json"))
@@ -180,17 +231,17 @@ def test_hosted_mode_origin_and_private_record_boundaries(monkeypatch, tmp_path)
     monkeypatch.setattr(
         soil,
         "map_property",
-        lambda client, region, prop, cache: {
+        lambda client, region, prop, cache, **kwargs: {
             "id": prop,
             "status": "unavailable",
             "median": None,
         },
     )
-    monkeypatch.setattr(soil, "wetness_context", lambda *args: {"status": "unavailable"})
+    monkeypatch.setattr(soil, "wetness_context", lambda *args, **kwargs: {"status": "unavailable"})
     monkeypatch.setattr(
         soil,
         "laboratory_reference",
-        lambda *args: {"status": "no_compatible_observations", "observations": []},
+        lambda *args, **kwargs: {"status": "no_compatible_observations", "observations": []},
     )
     with TestClient(create_app(tmp_path / "public.sqlite3", public_mode=True)) as client:
         assert client.get("/api/health").json()["public_mode"] is True
