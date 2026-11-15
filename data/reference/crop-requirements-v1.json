@@ -1,0 +1,293 @@
+{
+  "version": "fao-reference-screen-v1",
+  "scope": "Seven crop reference profiles, not a calibrated suitability or yield model",
+  "cycle_water_source": "https://www.fao.org/4/s2022e/s2022e07.htm",
+  "cycle_water_tables": [
+    6,
+    14
+  ],
+  "cycle_note": "Indicative durations, not cultivar-specific forecasts. Reference climate windows use the rounded midpoint, explicitly an implementation assumption.",
+  "water_note": "Indicative evapotranspiration, not rainfall requirements or irrigation adequacy; paddy extras excluded.",
+  "profiles": [
+    {
+      "id": "maize",
+      "ecocrop_id": 2175,
+      "species": "Zea mays",
+      "source": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=2175",
+      "sha256": "285c1b1cc3522c5e34ddc552ec46306a364a7c44897421e421e1657bb8194bb0",
+      "retrieved_at": "2026-11-15T01:49:30.342418+00:00",
+      "name": "Maize (grain)",
+      "family": "cereal",
+      "temperature_c": {
+        "optimal": [
+          18.0,
+          33.0
+        ],
+        "absolute": [
+          10.0,
+          47.0
+        ]
+      },
+      "indicative_days": [
+        125,
+        180
+      ],
+      "indicative_water_mm": [
+        500,
+        800
+      ],
+      "local_checks": "Drainage, cultivar and planting density need local review.",
+      "ph": {
+        "optimal": [
+          5.0,
+          7.0
+        ],
+        "absolute": [
+          4.5,
+          8.5
+        ]
+      },
+      "ph_method": "Ecocrop sheet does not specify the laboratory method; comparison to pH in water is approximate."
+    },
+    {
+      "id": "rice_indica",
+      "ecocrop_id": 8143,
+      "species": "Oryza sativa ssp. indica",
+      "source": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=8143",
+      "sha256": "ce35890b656486414ed7763f57d10071f68f3c3930e935233f86d6e777b328b0",
+      "retrieved_at": "2026-11-15T01:49:28.555806+00:00",
+      "name": "Rice (indica)",
+      "family": "cereal",
+      "temperature_c": {
+        "optimal": [
+          25.0,
+          35.0
+        ],
+        "absolute": [
+          16.0,
+          38.0
+        ]
+      },
+      "indicative_days": [
+        90,
+        150
+      ],
+      "indicative_water_mm": [
+        450,
+        700
+      ],
+      "local_checks": "Wetland indica reference; paddy land preparation, seepage and irrigation add water needs.",
+      "ph": {
+        "optimal": [
+          5.0,
+          8.0
+        ],
+        "absolute": [
+          3.5,
+          9.0
+        ]
+      },
+      "ph_method": "Ecocrop sheet does not specify the laboratory method; comparison to pH in water is approximate."
+    },
+    {
+      "id": "sorghum",
+      "ecocrop_id": 48747,
+      "species": "Sorghum bicolor",
+      "source": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=48747",
+      "sha256": "1e678358a049b1701fe5b685e646e5ee48e97ff064393905ea9b186e560a1fd9",
+      "retrieved_at": "2026-11-15T01:49:27.049974+00:00",
+      "name": "Sorghum",
+      "family": "cereal",
+      "temperature_c": {
+        "optimal": [
+          22.0,
+          35.0
+        ],
+        "absolute": [
+          8.0,
+          40.0
+        ]
+      },
+      "indicative_days": [
+        120,
+        130
+      ],
+      "indicative_water_mm": [
+        450,
+        650
+      ],
+      "local_checks": "Photoperiod and local cultivar affect maturity; drainage still matters.",
+      "ph": {
+        "optimal": [
+          5.5,
+          7.5
+        ],
+        "absolute": [
+          5.0,
+          8.0
+        ]
+      },
+      "ph_method": "Ecocrop sheet does not specify the laboratory method; comparison to pH in water is approximate."
+    },
+    {
+      "id": "soybean",
+      "ecocrop_id": 1150,
+      "species": "Glycine max",
+      "source": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=1150",
+      "sha256": "a78789773709a0c3ba7789365bd399b8b84027b54bce17479535257d97bf8094",
+      "retrieved_at": "2026-11-15T01:49:41.033362+00:00",
+      "name": "Soybean",
+      "family": "legume",
+      "temperature_c": {
+        "optimal": [
+          20.0,
+          33.0
+        ],
+        "absolute": [
+          10.0,
+          38.0
+        ]
+      },
+      "indicative_days": [
+        135,
+        150
+      ],
+      "indicative_water_mm": [
+        450,
+        700
+      ],
+      "local_checks": "Day length, cultivar, nodulation and drainage need local review.",
+      "ph": {
+        "optimal": [
+          5.5,
+          6.5
+        ],
+        "absolute": [
+          4.5,
+          8.4
+        ]
+      },
+      "ph_method": "Ecocrop sheet does not specify the laboratory method; comparison to pH in water is approximate."
+    },
+    {
+      "id": "potato",
+      "ecocrop_id": 1971,
+      "species": "Solanum tuberosum",
+      "source": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=1971",
+      "sha256": "e5d2eb4ea6489de8e88488ec39d2a0038db828309d3c2b7b3fc8f56f410580a0",
+      "retrieved_at": "2026-11-15T01:49:35.998600+00:00",
+      "name": "Potato",
+      "family": "tuber",
+      "temperature_c": {
+        "optimal": [
+          15.0,
+          25.0
+        ],
+        "absolute": [
+          7.0,
+          30.0
+        ]
+      },
+      "indicative_days": [
+        105,
+        145
+      ],
+      "indicative_water_mm": [
+        500,
+        700
+      ],
+      "local_checks": "Tuber formation, seed health, drainage and cultivar need local review.",
+      "ph": {
+        "optimal": [
+          5.0,
+          6.2
+        ],
+        "absolute": [
+          4.2,
+          8.5
+        ]
+      },
+      "ph_method": "Ecocrop sheet does not specify the laboratory method; comparison to pH in water is approximate."
+    },
+    {
+      "id": "wheat",
+      "ecocrop_id": 2114,
+      "species": "Triticum aestivum",
+      "source": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=2114",
+      "sha256": "2a7d69d1d996d24dd6ba8dd702ffbe5e91e297281979fffa8d39e643b9ef4b1f",
+      "retrieved_at": "2026-11-15T01:49:38.462489+00:00",
+      "name": "Wheat",
+      "family": "cereal",
+      "temperature_c": {
+        "optimal": [
+          15.0,
+          23.0
+        ],
+        "absolute": [
+          5.0,
+          27.0
+        ]
+      },
+      "indicative_days": [
+        120,
+        150
+      ],
+      "indicative_water_mm": [
+        450,
+        650
+      ],
+      "local_checks": "Spring/winter cultivar, vernalisation and frost need separate checks.",
+      "ph": {
+        "optimal": [
+          6.0,
+          7.0
+        ],
+        "absolute": [
+          5.5,
+          8.5
+        ]
+      },
+      "ph_method": "Ecocrop sheet does not specify the laboratory method; comparison to pH in water is approximate."
+    },
+    {
+      "id": "groundnut",
+      "ecocrop_id": 2199,
+      "species": "Arachis hypogaea",
+      "source": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=2199",
+      "sha256": "fc99ce99d40be5ef2b89d5c391e740fde7501ef68ae0ed3e14e54da782e07956",
+      "retrieved_at": "2026-11-15T01:49:38.729545+00:00",
+      "name": "Groundnut / peanut",
+      "family": "legume",
+      "temperature_c": {
+        "optimal": [
+          22.0,
+          32.0
+        ],
+        "absolute": [
+          10.0,
+          45.0
+        ]
+      },
+      "indicative_days": [
+        130,
+        140
+      ],
+      "indicative_water_mm": [
+        500,
+        700
+      ],
+      "local_checks": "Soil structure, drainage, calcium and safe drying/storage need local review.",
+      "ph": {
+        "optimal": [
+          5.5,
+          6.5
+        ],
+        "absolute": [
+          4.5,
+          8.5
+        ]
+      },
+      "ph_method": "Ecocrop sheet does not specify the laboratory method; comparison to pH in water is approximate."
+    }
+  ]
+}
