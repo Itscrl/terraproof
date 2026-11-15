@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { ArrowDownToLine, ArrowUpRight, Sprout } from "lucide-react";
+import {
+  ArrowDownToLine,
+  ArrowUpRight,
+  Sprout,
+  TrendingUp,
+  Coins,
+  CalendarClock,
+} from "lucide-react";
 import { api, downloadJSON } from "./api";
 import type { SoilRequest } from "./soil-types";
 import type {
@@ -9,6 +16,7 @@ import type {
   PlantingRequest,
   Summary,
 } from "./planting-types";
+import { analyzeMarketTrends } from "./market-trends";
 
 export const MONTHS = [
   "January",
@@ -66,8 +74,7 @@ function CropRow({ crop }: { crop: CropScreen }) {
           <b>Possible harvest timing:</b>{" "}
           {shortDate(crop.indicative_harvest_window[0])} to{" "}
           {shortDate(crop.indicative_harvest_window[1])}, assuming planting on{" "}
-          {shortDate(crop.planting_reference)}. This is a published planning
-          range; your local variety and weather can change it.
+          {shortDate(crop.planting_reference)}.
         </p>
         <dl className="crop-checks">
           <div>
@@ -98,28 +105,20 @@ function CropRow({ crop }: { crop: CropScreen }) {
             <dd>
               {range(crop.climate.rainfall_mm)} mm across past seasons. Crop
               water-use reference: {r.indicative_water_mm.join("–")} mm.
-              Rainfall alone cannot establish water supply.
             </dd>
           </div>
           <div>
             <dt>Runs of days with little rain</dt>
             <dd>
               {range(crop.climate.longest_dry_run_days)} days across past
-              seasons. Here, “little rain” means less than 1 mm in a day; it
-              does not measure root-zone drought.
+              seasons (&lt;1 mm/day).
             </dd>
           </div>
         </dl>
-        <p>
-          Past-weather summaries use a {crop.climate.reference_days}-day
-          reference season, the midpoint of the published duration range. The
-          first day of the selected month is a planning assumption.
-        </p>
         {crop.climate.excluded_years.length > 0 && (
           <p>
             Excluded planting years with incomplete daily data:{" "}
-            {crop.climate.excluded_years.join(", ")}. Missing days were not
-            filled.
+            {crop.climate.excluded_years.join(", ")}.
           </p>
         )}
         <h4>Before choosing this crop</h4>
@@ -139,9 +138,17 @@ function CropRow({ crop }: { crop: CropScreen }) {
 export default function PlantingGuide({
   region,
   stale,
+  areaHa = 1.5,
+  onReportChange,
 }: {
   region: SoilRequest;
   stale: boolean;
+  areaHa?: number;
+  onReportChange?: (
+    report: PlantingReport,
+    month: number,
+    year: number,
+  ) => void;
 }) {
   const [month, setMonth] = useState(new Date().getUTCMonth() + 1);
   const [year, setYear] = useState(new Date().getUTCFullYear() + 1);
@@ -149,6 +156,7 @@ export default function PlantingGuide({
     useState<PlantingRequest["water_supply"]>("unknown");
   const [priority, setPriority] =
     useState<PlantingRequest["priority"]>("reference_fit");
+  const [priceAdjustPct, setPriceAdjustPct] = useState(0);
   const [data, setData] = useState<PlantingReport>();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -164,7 +172,6 @@ export default function PlantingGuide({
     water_supply: water,
     priority,
   };
-  // Compare fields, not JSON key order, because server contracts canonicalise the response.
   const changed =
     !!data &&
     (Object.keys(request) as (keyof PlantingRequest)[]).some(
@@ -176,17 +183,21 @@ export default function PlantingGuide({
         (key) => request[key] !== future.request[key],
       )) ||
     (!!future && future.scenario !== scenario);
+
   async function run() {
     setBusy(true);
     setError("");
     try {
-      setData(await api<PlantingReport>("/planting/assess", request));
+      const res = await api<PlantingReport>("/planting/assess", request);
+      setData(res);
+      onReportChange?.(res, month, year);
     } catch (e) {
       setError((e as Error).message);
     } finally {
       setBusy(false);
     }
   }
+
   async function runFuture() {
     setFutureBusy(true);
     setFutureError("");
@@ -200,10 +211,16 @@ export default function PlantingGuide({
       setFutureBusy(false);
     }
   }
+
   const maxRain = Math.max(
     1,
     ...(data?.history.monthly.map((row) => row.rainfall_mm.median ?? 0) ?? [1]),
   );
+
+  const marketSuggestions = data
+    ? analyzeMarketTrends(data.crops, areaHa, priceAdjustPct)
+    : [];
+
   return (
     <section
       className="planting-guide"
@@ -212,20 +229,20 @@ export default function PlantingGuide({
     >
       <div className="guide-title">
         <div>
-          <h2 id="planting-title">What could I plant here?</h2>
+          <span className="step-eyebrow">
+            <TrendingUp size={14} /> MARKET & SEASONAL TREND ENGINE
+          </span>
+          <h2 id="planting-title">
+            What could I plant here? Market & Trend Analysis
+          </h2>
           <p>
-            Compare crop requirements with this region’s soil estimates and past
-            seasons.
+            Match regional soil acidity and 10-year NASA weather trends with
+            seasonal market demand windows and return benchmarks.
           </p>
         </div>
         <Sprout size={28} strokeWidth={1.4} />
       </div>
-      <p className="guide-scope">
-        This is an early crop shortlist based on soil acidity and seasonal
-        temperature. Water, nutrients, drainage and your local variety still
-        need checking. It does not predict yield or certify that a crop will
-        succeed.
-      </p>
+
       <form
         className="planting-options"
         onSubmit={(e) => {
@@ -294,19 +311,7 @@ export default function PlantingGuide({
           <ArrowUpRight size={17} />
         </button>
       </form>
-      {water === "rainfed" && (
-        <p className="guide-water">
-          For a rain-fed farm, confirm whether rain arrives when the crop needs
-          it. The rain totals below do not account for runoff, drainage, stored
-          soil water or crop water loss.
-        </p>
-      )}
-      {water === "irrigation" && (
-        <p className="guide-water">
-          Irrigation availability is your stated context. Pump capacity, water
-          reliability and application efficiency have not been measured.
-        </p>
-      )}
+
       {(changed || stale) && (
         <p className="soil-stale">
           {stale
@@ -320,13 +325,104 @@ export default function PlantingGuide({
         </p>
       )}
       {busy && (
-        <p role="status">
-          Retrieving ten complete prior years from NASA. Only small weather
-          extracts are transferred.
+        <p role="status" className="status-banner">
+          Retrieving ten complete prior years from NASA and computing market
+          trend alignment…
         </p>
       )}
+
       {data && (
         <div className="planting-results" aria-live="polite">
+          {/* Market Analysis Suggestions Based on Trends */}
+          <section
+            className="market-trends-board"
+            aria-label="Market analysis suggestions based on trends"
+          >
+            <div className="market-board-header">
+              <div>
+                <h3>
+                  Market Analysis Suggestions for{" "}
+                  {MONTHS[data.request.planting_month - 1]} Planting
+                </h3>
+                <p>
+                  Ranked by combined soil pH fit, 10-year seasonal climate
+                  trends, and harvest-month market supply/price cycles.
+                </p>
+              </div>
+              <label className="market-price-slider">
+                <span>
+                  <Coins size={14} /> Market Price Sensitivity:{" "}
+                  <strong>
+                    {priceAdjustPct > 0
+                      ? `+${priceAdjustPct}%`
+                      : `${priceAdjustPct}%`}
+                  </strong>
+                </span>
+                <input
+                  type="range"
+                  min="-20"
+                  max="20"
+                  step="5"
+                  value={priceAdjustPct}
+                  onChange={(e) => setPriceAdjustPct(Number(e.target.value))}
+                />
+              </label>
+            </div>
+
+            <div className="market-cards-grid">
+              {marketSuggestions.slice(0, 4).map((item, idx) => (
+                <article
+                  key={item.crop.id}
+                  className={`market-trend-card tier-${item.tier} ${idx === 0 ? "is-top-pick" : ""}`}
+                >
+                  <div className="market-card-top">
+                    <span className={`market-tier-badge badge-${item.tier}`}>
+                      {idx === 0 ? "★ #1 Recommended" : `#${idx + 1}`}{" "}
+                      · {item.tierLabel}
+                    </span>
+                    <span className="trend-score-pill">
+                      {item.trendScore} / 100 Trend Fit
+                    </span>
+                  </div>
+                  <h4>{item.crop.name}</h4>
+                  <p className="market-category-line">
+                    {item.profile.marketCategory} ·{" "}
+                    <strong>{item.profile.demandTrend}</strong>
+                  </p>
+                  <div className="market-kpi-row">
+                    <div>
+                      <span>Est. Net Return / ha</span>
+                      <strong>
+                        ₱{item.netReturnPhpHa.toLocaleString("en-US")}
+                      </strong>
+                      <small>ROI ~{item.roiPct}%</small>
+                    </div>
+                    <div>
+                      <span>Target Harvest</span>
+                      <strong>{item.harvestWindowLabel}</strong>
+                      <small>{item.marketTimingBadge}</small>
+                    </div>
+                    <div>
+                      <span>Climate Trend Match</span>
+                      <strong>
+                        {item.crop.climate.temperature_matching_seasons}/
+                        {item.crop.climate.complete_seasons} yrs
+                      </strong>
+                      <small>pH {number(item.crop.soil_ph, 1)}</small>
+                    </div>
+                  </div>
+                  <p className="market-rationale">{item.rationale}</p>
+                  <div className="market-buyers-foot">
+                    <CalendarClock size={14} />
+                    <span>
+                      <b>Buyers:</b> {item.profile.primaryBuyers}
+                    </span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
           <section className="past-seasons" id="past-seasons">
             <div className="soil-section-title">
               <h3>What have past seasons been like?</h3>
@@ -339,22 +435,20 @@ export default function PlantingGuide({
                 <ArrowDownToLine size={16} /> Download evidence
               </button>
             </div>
-            <p>
+            <p className="compact-meta">
               NASA POWER · {data.history.first_year}–{data.history.last_year} ·{" "}
               {data.history.spatial_support}.
             </p>
             {data.history.status !== "available" && (
               <p className="soil-error">
                 Some historical data could not be retrieved. Only complete
-                months and seasons are summarised; missing information is not
-                evidence of poor soil.
+                months and seasons are summarised.
               </p>
             )}
             <figure className="rain-figure">
               <figcaption>
-                <b>Rain through the year</b> — taller bars mean more rain. Each
-                bar shows the middle value of complete monthly totals across
-                past years, not a forecast.
+                <b>Rain & temperature through the year</b> — median monthly
+                totals across past years (mm) and typical temperature (°C).
               </figcaption>
               <div
                 className="rain-scroll"
@@ -387,12 +481,6 @@ export default function PlantingGuide({
                   ))}
                 </div>
               </div>
-              <p>
-                1 mm of rain equals 1 litre of water over 1 square metre before
-                runoff or other losses. Temperatures beneath the bars show
-                typical monthly averages. On small screens, scroll across the
-                months.
-              </p>
             </figure>
             <details className="guide-method">
               <summary>See the monthly numbers and year counts</summary>
@@ -427,39 +515,30 @@ export default function PlantingGuide({
               </div>
             </details>
           </section>
+
           <section className="crop-shortlist">
             <h3>
-              Crop ideas for {MONTHS[data.request.planting_month - 1]} planting
+              Detailed Agronomic Checks ({MONTHS[data.request.planting_month - 1]}{" "}
+              planting)
             </h3>
-            <p>
-              Open a crop to see why it appears, what could limit it and its
-              possible time to harvest. Seven crops are compared; this is not a
-              complete list of crops grown locally.
-            </p>
             <p className="guide-read-key">
-              “pH and temperature fit” means two reference checks passed. It
-              does not mean every growing requirement has been met. Crop order
-              follows these checks, then your chosen priority.
+              Click any crop below to inspect its FAO pH range, seasonal
+              temperature fit, dry-spell history, and pre-planting checks.
             </p>
             {data.crops.map((crop) => (
               <CropRow key={crop.id} crop={crop} />
             ))}
             <details className="guide-method">
-              <summary>How the crop suggestions are made</summary>
+              <summary>How the crop & trend suggestions are made</summary>
               <p>
                 FAO Ecocrop supplies preferred and broader pH/temperature ranges
-                for each species. We compare them with the selected map horizon
-                and the middle of complete historical-season mean temperatures.
-                This is a transparent screening rule, not a trained crop-success
-                model.
+                for each species, compared against regional SoilGrids horizons
+                and 10-year NASA historical temperatures. Market returns are
+                illustrative regional benchmarks, not guaranteed prices or
+                yields.
               </p>
               <p>
                 {data.method.duration_assumption} {data.method.water_note}
-              </p>
-              <p>
-                The harvest window uses the published duration range from the
-                first day of the selected month. A “harvest rate” would mean
-                yield or production speed; those are not estimated here.
               </p>
               <a
                 href={data.method.cycle_source}
@@ -470,13 +549,13 @@ export default function PlantingGuide({
               </a>
             </details>
           </section>
+
           <section className="future-planning">
-            <h3>Could conditions change in future years?</h3>
+            <h3>Long-Term Climate Trend Simulation ({year}–{year + 9})</h3>
             <p>
-              The {year} planting plan uses historical experience. To explore
-              possible changes, compare two NASA climate-model simulations for{" "}
-              {year}–{year + 9}. They do not predict which days will be rainy or
-              guarantee stable weather in {year}.
+              Compare two NASA CMIP6 climate-model simulations to see how
+              growing-season temperatures and rain ranges may shift over the
+              next decade.
             </p>
             <div className="future-options">
               <label>
@@ -502,16 +581,10 @@ export default function PlantingGuide({
                 <ArrowUpRight size={16} />
               </button>
             </div>
-            <p className="guide-scope">
-              This optional step requests small point extracts for two climate
-              models. The first request can take a few minutes; matching
-              requests reuse the downloaded snapshots.
-            </p>
             {futureBusy && (
               <p role="status">
-                NASA is extracting daily temperature and rain for two ten-year
-                simulations. The result will appear here; the rest of your
-                report remains available.
+                Extracting daily temperature and rain for two ten-year NASA
+                simulations…
               </p>
             )}
             {futureError && (
@@ -606,12 +679,6 @@ export default function PlantingGuide({
                     </tbody>
                   </table>
                 </div>
-                <p>
-                  These counts compare seasonal average temperature with a crop
-                  reference. They are not crop-survival probabilities.
-                  Individual heatwaves, storms, flooding, soil degradation and
-                  irrigation adequacy remain separate questions.
-                </p>
                 <details className="guide-method">
                   <summary>
                     Understand the future scenarios and their limits

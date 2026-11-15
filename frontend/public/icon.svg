@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <clipPath id="inner-circle">
+      <circle cx="100" cy="100" r="72" />
+    </clipPath>
+    <linearGradient id="day-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#87CEEB" />
+      <stop offset="100%" stop-color="#E0F6FF" />
+    </linearGradient>
+    <linearGradient id="night-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0B132B" />
+      <stop offset="100%" stop-color="#1C2541" />
+    </linearGradient>
+    <style>
+      .sky-bg { fill: url(#day-sky); transition: fill 0.4s ease; }
+      .sun { opacity: 1; transition: opacity 0.4s ease, transform 0.4s ease; }
+      .moon, .stars { opacity: 0; transition: opacity 0.4s ease; }
+      .horizon-line { stroke: #8ED3AC; }
+      .orbit-ring { stroke: #9CB6A9; }
+      @media (prefers-color-scheme: dark) {
+        .sky-bg { fill: url(#night-sky); }
+        .sun { opacity: 0; }
+        .moon, .stars { opacity: 1; }
+        .horizon-line { stroke: #3A6B54; }
+        .orbit-ring { stroke: #567365; }
+      }
+    </style>
+  </defs>
+  <circle class="orbit-ring" cx="100" cy="100" r="86" fill="none" stroke-width="3.5" stroke-dasharray="9 8" stroke-linecap="round" />
+  <circle cx="161" cy="39" r="6.5" fill="#2A6247" />
+  <g clip-path="url(#inner-circle)">
+    <rect class="sky-bg" x="20" y="20" width="160" height="160" />
+    <g class="sun">
+      <circle cx="60" cy="54" r="14" fill="#FFD166" opacity="0.35" />
+      <circle cx="60" cy="54" r="9.5" fill="#FFC300" />
+    </g>
+    <g class="stars" fill="#FFFFFF">
+      <circle cx="52" cy="48" r="1.4" opacity="0.9" />
+      <circle cx="72" cy="40" r="1" opacity="0.7" />
+      <circle cx="88" cy="52" r="1.2" opacity="0.8" />
+      <circle cx="138" cy="62" r="1.3" opacity="0.85" />
+      <circle cx="45" cy="70" r="1" opacity="0.6" />
+    </g>
+    <g class="moon">
+      <path d="M 56 44 A 9 9 0 1 0 68 56 A 7.2 7.2 0 1 1 56 44 Z" fill="#F4F1DE" />
+    </g>
+    <path class="horizon-line" d="M 25 84 Q 100 77 175 84" fill="none" stroke-width="3.2" stroke-linecap="round" />
+    <path d="M 20 107 Q 100 100 180 107 L 180 180 L 20 180 Z" fill="#4E6E66" />
+    <path d="M 20 131 Q 100 126 180 131 L 180 180 L 20 180 Z" fill="#825331" />
+    <path d="M 20 154 Q 100 151 180 154 L 180 180 L 20 180 Z" fill="#47311E" />
+    <line x1="100" y1="103" x2="100" y2="65" stroke="#1A3C2B" stroke-width="5.5" stroke-linecap="round" />
+    <path d="M 100 78 C 84 79 73 70 72 56 C 86 56 97 64 100 78 Z" fill="#38805C" />
+    <path d="M 100 71 C 103 55 114 47 128 47 C 127 62 116 71 100 71 Z" fill="#2A6247" />
+  </g>
+  <circle cx="100" cy="100" r="72" fill="none" stroke="#1A3C2B" stroke-width="6.5" />
+</svg>

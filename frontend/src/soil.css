@@ -1679,3 +1679,1444 @@
     font-size: 19px;
   }
 }
+
+
+/* ==========================================================================
+   WEB-APP GUIDED REDESIGN: HERO, 3-STEP WORKFLOW, MARKET TRENDS & PRINT STUDIO
+   ========================================================================== */
+
+.soil-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(241, 245, 242, 0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #dde5e0;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.webapp-step-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px !important;
+  background: #e4ece7;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.webapp-step-nav a {
+  padding: 8px 14px !important;
+  border-radius: 7px;
+  font-weight: 500;
+  font-size: 13px;
+  color: #36453e !important;
+  border-bottom: 0 !important;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.webapp-step-nav a:hover {
+  background: rgba(255, 255, 255, 0.65);
+  color: #18221e !important;
+}
+
+.webapp-step-nav a[aria-current="page"] {
+  background: #ffffff;
+  color: #18221e !important;
+  border-bottom: 0 !important;
+  box-shadow: 0 1px 2px rgba(24, 34, 30, 0.08);
+}
+
+.header-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-print-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 7px 14px;
+  border-radius: 7px;
+  border: 1px solid #18221e;
+  background: #18221e;
+  color: #ffffff;
+  font: 500 13px "IBM Plex Sans", sans-serif;
+}
+
+.header-print-cta:hover {
+  background: #246c61;
+  border-color: #246c61;
+}
+
+/* HERO SECTION */
+.webapp-hero {
+  background: linear-gradient(180deg, #f6faf8 0%, #ffffff 100%);
+  border: 1px solid #d8e3dc;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 28px;
+}
+
+.hero-top-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.hero-eyebrow,
+.step-eyebrow,
+.stage-badge,
+.workflow-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1d594e;
+  background: #e3f0ec;
+  padding: 5px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.hero-slogan {
+  font-size: clamp(28px, 3.2vw, 40px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: #18221e;
+  margin: 0 0 10px;
+}
+
+.hero-left-copy h1 {
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 500;
+  color: #246c61;
+  margin: 0 0 12px;
+  letter-spacing: -0.015em;
+}
+
+.hero-lead {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #46544d;
+  margin: 0 0 22px;
+  max-width: 60ch;
+}
+
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.hero-btn-primary,
+.hero-btn-secondary,
+.hero-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font: 500 14px "IBM Plex Sans", sans-serif;
+}
+
+.hero-btn-primary {
+  background: #18221e;
+  color: #ffffff;
+  border: 1px solid #18221e;
+}
+
+.hero-btn-primary:hover {
+  background: #246c61;
+  border-color: #246c61;
+}
+
+.hero-btn-secondary {
+  background: #246c61;
+  color: #ffffff;
+  border: 1px solid #246c61;
+}
+
+.hero-btn-secondary:hover {
+  background: #1b544b;
+}
+
+.hero-btn-ghost {
+  background: #ffffff;
+  color: #18221e;
+  border: 1px solid #c3d0c8;
+}
+
+.hero-btn-ghost:hover {
+  background: #edf3f0;
+}
+
+.hero-trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  font-size: 12px;
+  color: #46544d;
+  padding-top: 14px;
+  border-top: 1px solid #e2ebe5;
+}
+
+.hero-trust-strip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.hero-trust-strip svg {
+  color: #1d594e;
+}
+
+.hero-right-visual {
+  min-width: 0;
+}
+
+.hero-photo-frame {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #cdd9d1;
+  background: #18221e;
+}
+
+.hero-farmer-img {
+  display: block;
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  object-position: center 25%;
+}
+
+.hero-photo-badge {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #18221e;
+  color: #f2f7f4;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.hero-photo-badge svg {
+  color: #65cbb4;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.hero-photo-badge strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.hero-photo-badge span {
+  color: #cedbd3;
+}
+
+/* BOTTOM OF HERO: HOW IT WORKS & WORKFLOW */
+.hero-workflow-bar {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #d8e3dc;
+}
+
+.workflow-bar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.workflow-bar-head h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #18221e;
+}
+
+.workflow-jump-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1d594e;
+}
+
+.workflow-steps-grid {
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.workflow-step-card {
+  margin: 0 !important;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #d4dfd8;
+  background: #ffffff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.workflow-step-card:hover {
+  border-color: #246c61;
+  background: #f8fbf9;
+}
+
+.workflow-step-card.is-active {
+  border-color: #246c61;
+  background: #f2f8f5;
+}
+
+.workflow-step-num {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #1d594e;
+}
+
+.workflow-step-card strong {
+  font-size: 16px;
+  font-weight: 600;
+  color: #18221e;
+}
+
+.workflow-step-card p {
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+  color: #4c5b53;
+  margin: 0;
+}
+
+.workflow-step-status {
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1d594e;
+}
+
+/* STAGE CARDS */
+.webapp-stage-card {
+  background: #ffffff;
+  border: 1px solid #d8e3dc;
+  border-radius: 16px;
+  padding: 26px;
+  margin-bottom: 28px;
+  scroll-margin-top: 88px;
+}
+
+.stage-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid #e4ece7;
+  flex-wrap: wrap;
+}
+
+.stage-card-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+  color: #18221e;
+}
+
+.stage-card-header p {
+  margin: 0;
+  font-size: 14px;
+  color: #4c5b53;
+  max-width: 75ch;
+}
+
+.stage-quick-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #18221e;
+  color: #ffffff;
+  border: 0;
+  font: 500 14px "IBM Plex Sans", sans-serif;
+}
+
+.location-utility-bar {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 20px;
+  padding: 16px;
+  background: #f7faf8;
+  border: 1px solid #e1eae4;
+  border-radius: 12px;
+}
+
+.location-utility-bar .place-search {
+  margin: 0;
+}
+
+.location-utility-bar .farm-notebook {
+  margin: 0;
+  border: 1px solid #d4dfd8;
+  border-radius: 8px;
+  padding: 0 14px;
+  background: #ffffff;
+}
+
+.compact-disclosure {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #4c5b53;
+}
+
+.compact-disclosure summary {
+  cursor: pointer;
+  color: #1d594e;
+  font-weight: 500;
+  padding: 4px 0;
+}
+
+.compact-lab-drawer {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid #dfe7e2;
+  border-radius: 10px;
+  background: #f9fbfa;
+}
+
+.compact-lab-drawer > summary {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  color: #18221e;
+}
+
+.compact-lab-drawer .soil-labs {
+  margin-top: 14px;
+  padding-top: 14px;
+}
+
+.stage-footer-bar {
+  margin-top: 24px;
+  padding: 16px 20px;
+  background: #f3f8f5;
+  border: 1px solid #d6e3dc;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #36453e;
+}
+
+.stage-next-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 9px 16px;
+  background: #1d594e;
+  color: #ffffff;
+  border: 0;
+  border-radius: 7px;
+  font: 500 13px "IBM Plex Sans", sans-serif;
+}
+
+.stage-next-btn:hover {
+  background: #144239;
+}
+
+/* STEP 2: MARKET & TREND SUGGESTIONS BOARD */
+.market-trends-board {
+  background: #f6faf8;
+  border: 1px solid #d5e2db;
+  border-radius: 12px;
+  padding: 22px;
+  margin-top: 20px !important;
+}
+
+.market-board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.market-board-header h3 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.market-board-header p {
+  margin: 0;
+  font-size: 13px;
+  color: #4c5b53;
+}
+
+.market-price-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: #36453e;
+  background: #ffffff;
+  padding: 10px 14px;
+  border: 1px solid #cdd9d1;
+  border-radius: 8px;
+  min-width: 230px;
+}
+
+.market-price-slider span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.market-price-slider input[type="range"] {
+  height: 24px;
+  padding: 0;
+  border: 0;
+  accent-color: #246c61;
+}
+
+.market-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.market-trend-card {
+  background: #ffffff;
+  border: 1px solid #d5e0d9;
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.market-trend-card.is-top-pick {
+  border: 2px solid #246c61;
+  background: #fcfffe;
+}
+
+.market-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.market-tier-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #e3f0ec;
+  color: #164f45;
+}
+
+.market-tier-badge.badge-strong_option {
+  background: #eef3f0;
+  color: #33453c;
+}
+
+.market-tier-badge.badge-caution {
+  background: #fff0ec;
+  color: #802e24;
+}
+
+.trend-score-pill {
+  font-size: 11px;
+  font-weight: 600;
+  color: #46544d;
+  font-variant-numeric: tabular-nums;
+}
+
+.market-trend-card h4 {
+  font-size: 19px;
+  font-weight: 600;
+  margin: 0;
+  color: #18221e;
+}
+
+.market-category-line {
+  margin: 0 !important;
+  font-size: 12px !important;
+  color: #4c5b53;
+}
+
+.market-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 12px;
+  background: #f6f9f7;
+  border-radius: 8px;
+  border: 1px solid #e3ebe6;
+}
+
+.market-kpi-row > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.market-kpi-row span {
+  font-size: 11px;
+  color: #54635b;
+}
+
+.market-kpi-row strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: #18221e;
+  font-variant-numeric: tabular-nums;
+}
+
+.market-kpi-row small {
+  font-size: 11px;
+  color: #1d594e;
+}
+
+.market-rationale {
+  margin: 0 !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+  color: #36453e;
+}
+
+.market-buyers-foot {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #e8efeb;
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 12px;
+  color: #46544d;
+}
+
+.market-buyers-foot svg {
+  color: #246c61;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.rotation-options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.rotation-options-grid .rotation-option {
+  border: 1px solid #d5e0d9;
+  border-radius: 10px;
+  padding: 18px;
+  background: #fbfdfc;
+}
+
+/* STEP 3: CUSTOM PRINT STUDIO & LIVE PRINTABLE REPORT */
+.print-studio-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.print-studio-controls {
+  background: #f6faf8;
+  border: 1px solid #d5e2db;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.studio-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.studio-header-row h3 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.studio-header-row p {
+  margin: 0;
+  font-size: 13px;
+  color: #46544d;
+  max-width: 68ch;
+}
+
+.studio-primary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.studio-btn-print,
+.studio-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 9px 15px;
+  border-radius: 7px;
+  font: 500 13px "IBM Plex Sans", sans-serif;
+}
+
+.studio-btn-print {
+  background: #18221e;
+  color: #ffffff;
+  border: 1px solid #18221e;
+}
+
+.studio-btn-print:hover {
+  background: #246c61;
+  border-color: #246c61;
+}
+
+.studio-btn-secondary {
+  background: #ffffff;
+  color: #18221e;
+  border: 1px solid #c6d3cb;
+}
+
+.studio-btn-secondary:hover {
+  background: #edf3f0;
+}
+
+.design-template-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.design-card {
+  text-align: left;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #cdd9d1;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font: inherit;
+  color: #18221e;
+}
+
+.design-card:hover {
+  border-color: #246c61;
+}
+
+.design-card.is-selected {
+  border: 2px solid #1d594e;
+  background: #f1f8f5;
+}
+
+.design-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.design-icon {
+  color: #1d594e;
+  display: inline-flex;
+}
+
+.design-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1d594e;
+  background: #e1efe9;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.design-card strong {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.design-card > span {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #4c5b53;
+}
+
+.studio-customization-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr 1.3fr;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid #dce6e0;
+  align-items: end;
+}
+
+.studio-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #36453e;
+}
+
+.studio-field > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.theme-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.theme-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid #c8d4cc;
+  background: #ffffff;
+  color: #18221e;
+  font: 500 12px "IBM Plex Sans", sans-serif;
+}
+
+.theme-pill.active {
+  border-color: #18221e;
+  background: #e8efeb;
+  font-weight: 600;
+}
+
+.theme-pill i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.toggle-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 38px;
+  align-items: center;
+}
+
+.toggle-chips label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.toggle-chips input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  min-height: 16px;
+  margin: 0;
+  accent-color: #1d594e;
+}
+
+/* PRINTABLE SHEET PREVIEW & CUSTOM DESIGNS */
+.printable-sheet {
+  --print-accent: #1f5e4b;
+  --print-accent-soft: #eaf4f0;
+  --print-border: #cdd9d1;
+  background: #ffffff;
+  border: 1px solid var(--print-border);
+  border-radius: 12px;
+  padding: 32px;
+  color: #18221e;
+}
+
+.printable-sheet.theme-forest {
+  --print-accent: #1f5e4b;
+  --print-accent-soft: #eaf4f0;
+}
+
+.printable-sheet.theme-harvest {
+  --print-accent: #8c4f0e;
+  --print-accent-soft: #fdf4e7;
+}
+
+.printable-sheet.theme-ocean {
+  --print-accent: #125b70;
+  --print-accent-soft: #eaf3f6;
+}
+
+.printable-sheet.theme-ink {
+  --print-accent: #18221e;
+  --print-accent-soft: #f1f4f2;
+}
+
+/* Design Variant 2: Farmer Field Poster */
+.printable-sheet.design-field_poster {
+  border-width: 3px;
+  border-color: var(--print-accent);
+  background: #fffefb;
+}
+
+.printable-sheet.design-field_poster .print-sheet-header {
+  background: var(--print-accent);
+  color: #ffffff;
+  padding: 20px 24px;
+  border-radius: 8px;
+  border-bottom: 0;
+}
+
+.printable-sheet.design-field_poster .print-doc-type,
+.printable-sheet.design-field_poster .print-prepared-for,
+.printable-sheet.design-field_poster .print-meta-box span,
+.printable-sheet.design-field_poster .print-meta-box strong {
+  color: #ffffff !important;
+}
+
+.printable-sheet.design-field_poster .print-meta-box {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* Design Variant 3: Agronomy & Market Certificate Ledger */
+.printable-sheet.design-certificate {
+  border: 4px double var(--print-accent);
+  border-radius: 4px;
+  padding: 36px;
+}
+
+.printable-sheet.design-certificate .print-sheet-header {
+  border-bottom: 2px solid var(--print-accent);
+}
+
+.print-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding-bottom: 20px;
+  margin-bottom: 22px;
+  border-bottom: 2px solid var(--print-accent);
+  flex-wrap: wrap;
+}
+
+.print-doc-type {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--print-accent);
+  margin-bottom: 6px;
+}
+
+.print-brand-block h2 {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.print-prepared-for {
+  margin: 0;
+  font-size: 13px;
+  color: #46544d;
+}
+
+.print-meta-box {
+  display: grid;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--print-accent-soft);
+  border: 1px solid var(--print-border);
+  border-radius: 8px;
+  font-size: 12px;
+  min-width: 280px;
+}
+
+.print-meta-box > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.print-meta-box span {
+  font-size: 11px;
+  color: #4c5b53;
+}
+
+.print-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.print-kpi-card {
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid #d5e0d9;
+  background: #fbfdfc;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.print-kpi-card.highlight {
+  background: var(--print-accent-soft);
+  border-color: var(--print-accent);
+}
+
+.print-kpi-card span {
+  font-size: 11px;
+  color: #4c5b53;
+  font-weight: 500;
+}
+
+.print-kpi-card strong {
+  font-size: 19px;
+  font-weight: 600;
+  color: #18221e;
+  font-variant-numeric: tabular-nums;
+}
+
+.print-kpi-card small {
+  font-size: 11px;
+  color: var(--print-accent);
+}
+
+.print-body-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.print-section {
+  border: 1px solid #dde6e0;
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.print-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6eee9;
+  flex-wrap: wrap;
+}
+
+.print-section-head h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--print-accent);
+}
+
+.print-section-head span {
+  font-size: 12px;
+  color: #4c5b53;
+}
+
+.print-crop-table-wrap {
+  overflow-x: auto;
+}
+
+.print-table {
+  width: 100%;
+  min-width: 580px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.print-table th,
+.print-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5ede8;
+  vertical-align: top;
+}
+
+.print-table thead th {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #46544d;
+  background: #f6f9f7;
+}
+
+.print-table td strong {
+  display: block;
+  font-weight: 600;
+  color: #18221e;
+}
+
+.print-table td small {
+  display: block;
+  font-size: 11px;
+  color: #4c5b53;
+  margin-top: 2px;
+}
+
+.print-table tr.row-featured {
+  background: var(--print-accent-soft);
+}
+
+.print-pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #e1efe9;
+  color: #164f45;
+}
+
+.print-buyer-callout {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #f6f9f7;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #36453e;
+}
+
+.print-soil-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.print-soil-cell {
+  padding: 10px 12px;
+  border: 1px solid #e2ebe5;
+  border-radius: 7px;
+  background: #fbfdfc;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.print-soil-cell span {
+  font-size: 11px;
+  color: #4c5b53;
+}
+
+.print-soil-cell strong {
+  font-size: 17px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.print-soil-cell small {
+  font-size: 11px;
+  color: #54635b;
+}
+
+.print-rain-strip {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 6px;
+  padding-top: 8px;
+}
+
+.print-rain-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 2px;
+  border-radius: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.print-rain-col.is-planting-month {
+  background: var(--print-accent-soft);
+  outline: 1px solid var(--print-accent);
+}
+
+.print-rain-val {
+  font-size: 10px;
+  color: #46544d;
+}
+
+.print-rain-bar-track {
+  width: 100%;
+  max-width: 24px;
+  height: 64px;
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid #cdd9d1;
+}
+
+.print-rain-bar-fill {
+  width: 100%;
+  background: var(--print-accent);
+  border-radius: 2px 2px 0 0;
+}
+
+.print-rain-col strong {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.print-rain-col small {
+  font-size: 10px;
+  color: #4c5b53;
+}
+
+.print-checklist-columns {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 20px;
+}
+
+.print-checklist-items {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #2c3a34;
+}
+
+.print-notes-box {
+  border: 1px dashed #9eb0a5;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #fcfefd;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.print-notes-box > span {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #46544d;
+}
+
+.print-ruled-lines {
+  display: grid;
+  gap: 18px;
+  padding: 6px 0;
+}
+
+.print-ruled-lines > div {
+  border-bottom: 1px solid #cdd9d1;
+}
+
+.print-signoff-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #b8c7be;
+  font-size: 11px;
+  color: #46544d;
+}
+
+.print-sheet-footer {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid #dce6e0;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: #4c5b53;
+}
+
+/* RESPONSIVE BREAKPOINTS */
+@media (max-width: 1100px) {
+  .hero-top-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-farmer-img {
+    height: 280px;
+  }
+  .workflow-steps-grid,
+  .rotation-options-grid,
+  .design-template-grid {
+    grid-template-columns: 1fr;
+  }
+  .location-utility-bar {
+    grid-template-columns: 1fr;
+  }
+  .studio-customization-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+  .print-kpi-strip,
+  .print-soil-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .print-checklist-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .market-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .studio-customization-bar {
+    grid-template-columns: 1fr;
+  }
+  .webapp-hero,
+  .webapp-stage-card,
+  .printable-sheet {
+    padding: 18px;
+  }
+  .print-rain-strip {
+    overflow-x: auto;
+    display: flex;
+  }
+  .print-rain-col {
+    min-width: 42px;
+  }
+}
+
+@media (max-width: 540px) {
+  .webapp-step-nav {
+    width: 100%;
+    overflow-x: auto;
+  }
+  .webapp-step-nav a {
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 7px 10px !important;
+  }
+  .header-right-actions {
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 10px;
+  }
+  .webapp-hero,
+  .webapp-stage-card,
+  .printable-sheet {
+    padding: 14px;
+  }
+  .hero-farmer-img {
+    height: 210px;
+  }
+  .market-kpi-row,
+  .print-kpi-strip,
+  .print-soil-grid {
+    grid-template-columns: 1fr;
+  }
+  .print-meta-box {
+    min-width: 0;
+    width: 100%;
+  }
+  .market-price-slider {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* DEDICATED PRINT STYLESHEET */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+  .no-print,
+  .skip-link,
+  .soil-header,
+  .webapp-hero,
+  #step-pinpoint,
+  #step-market,
+  .soil-methods,
+  .soil-footer {
+    display: none !important;
+  }
+  body,
+  .soil-app,
+  .soil-workspace,
+  #step-results,
+  .print-studio-wrap {
+    background: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+  .printable-sheet {
+    border-radius: 0 !important;
+    padding: 16px !important;
+    box-shadow: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .print-kpi-strip {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+  .print-soil-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}

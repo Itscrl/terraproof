@@ -167,27 +167,28 @@ export default function RotationGuide({
       className="planting-guide rotation-guide"
       aria-labelledby="rotation-title"
     >
-      <h2 id="rotation-title">What could I grow after this crop?</h2>
+      <h2 id="rotation-title">Two-Season Crop Rotation & Sequence Planner</h2>
       <p>
-        A crop rotation means growing one crop, then another on the same land.
-        Compare your usual plan with two ideas before discussing them with your
-        local agricultural adviser.
+        Compare your usual two-season sequence against two alternative next crops
+        for soil, timing, and water fit.
       </p>
-      <ol className="rotation-instructions">
-        <li>
-          <b>Tell us your usual plan.</b> Choose the first crop and what
-          normally follows it.
-        </li>
-        <li>
-          <b>Choose two ideas to compare.</b> Use crops you can get seeds for
-          and sell or use at home. The starting choices are examples, not local
-          recommendations.
-        </li>
-        <li>
-          <b>Read each plan and its checks.</b> Download the comparison and ask
-          an adviser about the unresolved questions.
-        </li>
-      </ol>
+      <details className="guide-method">
+        <summary>How to use the rotation planner</summary>
+        <ol className="rotation-instructions">
+          <li>
+            <b>Tell us your usual plan.</b> Choose the first crop and what
+            normally follows it.
+          </li>
+          <li>
+            <b>Choose two ideas to compare.</b> Use crops you can get seeds for
+            and sell or use at home.
+          </li>
+          <li>
+            <b>Read each plan and its checks.</b> Download the comparison and
+            discuss unresolved questions locally.
+          </li>
+        </ol>
+      </details>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -311,6 +312,7 @@ export default function RotationGuide({
                 ? "Look first at the crop-group and soil explanations. A different crop is not automatically better."
                 : "Keep your usual plan as the starting point. Compare the extra seeds, work, equipment and buyers each change would require."}
           </p>
+          <div className="rotation-options-grid">
           {report.options.map((option) => (
             <article className="rotation-option" key={option.id}>
               <h4>
@@ -326,16 +328,14 @@ export default function RotationGuide({
                       {i === 0 ? "Grow first" : "Grow next"}: {crop.name}
                     </b>
                     <p>
-                      Planting reference: {crop.planting_reference}. Possible
-                      harvest: {crop.indicative_harvest_window.join(" to ")}.
-                      Local varieties may differ.
+                      Planting: {crop.planting_reference} · Harvest:{" "}
+                      {crop.indicative_harvest_window.join(" to ")}
                     </p>
                     <p>
-                      Soil acidity estimate: {show(crop.soil_ph)} pH; preferred
-                      crop range: {crop.reference.ph.optimal.join("–")}. Typical
-                      historical growing temperature:{" "}
-                      {show(crop.climate.temperature_c.median)} °C, using{" "}
-                      {crop.climate.complete_seasons} complete past seasons.
+                      Soil pH: {show(crop.soil_ph)} (opt{" "}
+                      {crop.reference.ph.optimal.join("–")}) · Temp:{" "}
+                      {show(crop.climate.temperature_c.median)} °C (
+                      {crop.climate.complete_seasons} seasons)
                     </p>
                   </li>
                 ))}
@@ -344,19 +344,19 @@ export default function RotationGuide({
                 <b>Water:</b> {option.water_note}
               </p>
               <p>
-                <b>Crop diversity:</b> {option.diversity_note}
+                <b>Diversity:</b> {option.diversity_note}
               </p>
               <p>
                 <b>Soil:</b> {option.soil_note}
               </p>
-              <h5>Before choosing this plan</h5>
-              <ul>
-                {option.next_steps.map((step) => (
-                  <li key={step}>{step}</li>
-                ))}
-              </ul>
               <details>
-                <summary>Show water reference and published sources</summary>
+                <summary>Pre-planting checks & published sources</summary>
+                <h5>Before choosing this plan</h5>
+                <ul>
+                  {option.next_steps.map((step) => (
+                    <li key={step}>{step}</li>
+                  ))}
+                </ul>
                 <p>
                   Both crops together: {option.water_reference_mm.join("–")} mm
                   of published crop water use. {report.method.water}
@@ -378,6 +378,7 @@ export default function RotationGuide({
               </details>
             </article>
           ))}
+          </div>
           <details className="guide-method">
             <summary>What this comparison can and cannot tell you</summary>
             <p>{report.method.climate}</p>
