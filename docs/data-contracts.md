@@ -101,3 +101,14 @@ Grid IDs must reflect verified geography, not arbitrary farm names. Shared grid 
 across training/test fail. Incorrect IDs can still conceal leakage; correlated nearby
 events require buffered splits and domain review. Soil/management inputs remain
 unavailable, not assumed to be zero or inferred from the demonstration coordinate.
+
+## Rotation reference comparison — rotation-screen-v1
+
+`RotationRequest` extends the validated soil/planting request with a first crop,
+usual next crop, exactly two distinct alternatives, next month and stated goal.
+Only seven catalog IDs are accepted. The next season rolls into the following
+year when its planting month is no later than the first month. Published duration
+bounds flag possible calendar overlap. Results retain the request, crop reference
+sources, catalog version, soil provenance, historical weather provenance and
+per-crop complete-season counts. No missing values become zeros. This is separate
+from the archived rice comparison schema; see [rotation rules](rotation-comparison.md).

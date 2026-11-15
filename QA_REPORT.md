@@ -167,3 +167,19 @@ representative measured labels and independent scientific/agronomic review. Soil
 crop rotations, field water balance and additional NASA products are documented
 extensions, not claimed completed integrations. See `docs/operations.md` for rollback,
 backup, deployment gates and source-refresh procedures.
+
+## Guided rotation regression — 15 November 2026
+
+- Python suite: **49 passed**, including crop-choice validation, missing evidence,
+  calendar overlap, year rollover, source retention and rotation API coverage.
+- Ruff lint and formatting: passed (22 source/test files formatted).
+- Production TypeScript/Vite build: passed; the existing Cesium chunk-size warning remains.
+- Browser suite: **5 passed, 1 skipped** on port 8016. The live-soil opt-in test was
+  skipped. The new journey covers three-plan comparison, readable text download,
+  changed-input guards, provider error/retry, duplicate selections, desktop/mobile
+  overflow checks and axe WCAG A/AA checks for the rotation section.
+- Mobile rendered output inspected at 390px; desktop and mobile captures are in
+  ignored `frontend/test-results/rotation-1440.png` and `rotation-390.png`.
+- Synthetic fixtures establish interaction/calculation behavior, not agricultural
+  accuracy. Live providers were not revalidated in this regression. No user trial,
+  yield improvement, water saving or soil-health benefit is established.

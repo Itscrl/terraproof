@@ -15,6 +15,30 @@ No farm-level accuracy percentage, laboratory diagnosis or universal health scor
 See [global sources and pipeline](docs/global-soil-assessment.md) and
 [current status and accuracy](docs/status-and-accuracy.md).
 
+## Guided rotation comparison — 15 November 2026
+
+After assessing your land, open **What could I grow after this crop?** Choose your
+first crop and planting month/year, your usual next crop and its planting month,
+and two alternative next crops. The starting choices are examples, not local
+recommendations; select crops you can obtain and sell or use at home.
+
+TerraProof compares three two-season sequences using soil acidity and past NASA
+seasonal temperatures. It explains approximate harvest windows, possible date
+overlaps, published water-use tendencies, crop diversity and potential legume
+contributions. Results say **Worth exploring**, **Needs checking** or **Potential
+conflict**, with an explanation and checklist for a local adviser. New three-step
+instructions guide farmers through land selection, soil assessment and crop plans.
+A readable text download can be shared or printed; JSON preserves detailed evidence.
+Changed choices flag old results and disable downloads until recalculation.
+
+This is a deterministic proof of concept, not a validated agronomic rotation model.
+Crops are screened separately; carry-over soil water, nutrient cycles, pest effects,
+yield, income and soil-health changes are not simulated. Published water-use ranges
+are not irrigation liters or proven savings. Priorities guide which trade-offs to
+read, without declaring a winner. Seven FAO profiles are available; local suitability,
+seeds, buyers, drainage and water capacity still need checking. The API endpoint is
+`POST /api/rotations/assess`. See [rotation methods](docs/rotation-comparison.md).
+
 ## Progress snapshot — 15 November 2026
 
 This README is the progress handoff for the current review build. Source control
@@ -65,8 +89,8 @@ This is a research direction, not a completed calculator or validated service.
 Next work, subject to local agronomic evidence and product prioritization:
 
 1. Compare actual multi-season crop sequences, including the current practice,
-   with explicit soil, crop, water, labor and market constraints. The current
-   crop shortlist and historical planting-date replay are not rotation analysis.
+   with explicit soil, crop, water, labor and market constraints. A preliminary two-season comparison is implemented; coupled soil/water effects
+   and independent agronomic validation remain future work.
 2. Prototype a water budget using bed areas, crop stages, root-zone water storage,
    recent irrigation, delivery losses, available volume and next-refill timing.
    Compare weather scenarios and explain shortages; do not invent exact liters
@@ -234,8 +258,8 @@ runners may need permission to spawn browser processes and access test temp fold
 
 The inferred challenge is **2026 Field Shift: Adapting Farms with NASA Data**. This
 soil/season guide supplies part of its evidence foundation, with crop profiles and
-farmer preferences. Rotation-impact comparisons and validated recommendations
-remain future work. NASA's 2026 offer names
+farmer preferences. Preliminary rotation screening is implemented; rotation-impact simulation and
+validated recommendations remain future work. NASA's 2026 offer names
 Azure and Planetary Computer; credits,
 eligibility and quotas need verification. No cloud resources have been deployed.
 
@@ -259,3 +283,12 @@ Update `CHANGELOG.md` under `Unreleased`, distinguish completed work from plans,
 retain provenance, and use descriptive commits such as `feat: add historical replay`.
 No project software license has been assigned; dependency/data terms remain their
 owners' terms. NASA data access does not confer a blanket project license.
+
+## Submission and requirements handoff
+
+Use [the submission brief](docs/submission-brief.md) for a consistent project
+summary, challenge requirement mapping, NASA-source description, user workflow,
+validation status and limits. [Rotation methods](docs/rotation-comparison.md)
+define the implemented rules. Current verification: **49 Python tests passed**,
+**5 browser tests passed / 1 live-data test skipped**, lint/format and production
+build passed. Earlier progress snapshots retain their original dates and scope.

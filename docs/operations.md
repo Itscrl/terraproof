@@ -108,3 +108,13 @@ Optional sources are not claimed as integrated.
 - UI defaults to two plans; API supports two to four. This is not a rotation optimizer.
 - Self-hosted fonts remove external asset requests during normal use.
 - Native test success does not establish container/cloud/field validation; see QA report.
+
+## Current rotation API
+
+`POST /api/rotations/assess` accepts the selected soil region, first/next crop,
+two distinct alternative next crops, two planting months, planning year, water
+context and goal. It returns three sequences with separate crop screens, source
+metadata and calendar conflicts. Duplicate or unknown crop choices return 422.
+This is a reference comparison, not a trained optimizer. The archived two-to-four
+rice-calendar API described above is separate. Rebuild the frontend and restart
+uvicorn after updating Python routes. Provider calls reuse the soil-source cache.

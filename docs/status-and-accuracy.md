@@ -115,14 +115,16 @@ conditional, not confirmation of registration or NASA acceptance.
 | Indicative time to harvest | Published ranges, not cultivar-specific maturity or yield prediction |
 | Repeated use / field history | Browser plot notebook, actual season notes and user-provided laboratory pH records; export/import |
 | Future soil health under repeated crops | Not simulated; no carbon/nutrient/rotation-impact model integrated |
-| Crop-rotation strategy comparison | Not implemented; earlier planting-date comparison is not rotation analysis |
+| Crop-rotation strategy comparison | Preliminary two-season reference screen: current sequence plus two chosen alternatives, independent crop checks and timing warnings; no coupled rotation-impact model |
 | Demonstrated improvement in soil health or farm decisions | Not evaluated |
 | Public global deployment and production operations | Prepared host/public-mode configuration; not deployed or load-tested |
 
 **Conclusion:** the working soil explorer addresses the user's clarified regional
 soil-information goal and is more relevant than a calculator-first workflow. It
-remains a partial solution to Field Shift. A globe and credible datasets alone do
-not fulfill that challenge's crop-rotation decision-support requirements.
+now provides preliminary two-season rotation decision support for Field Shift.
+The baseline and two alternatives make the comparison concrete; coupled soil and
+water effects, local agronomic validation and demonstrated benefits remain gaps.
+This is challenge alignment, not a claim of NASA acceptance or complete validation.
 
 ## What would establish stronger reliability
 

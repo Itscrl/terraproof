@@ -151,3 +151,13 @@ The present guide adds crop traits, seasons and farmer preferences to the prior
 soil explorer. It is still **partial** alignment with Field Shift: no validated
 multi-year rotation strategy comparison or demonstrated soil-health benefit exists.
 See [delivery/accuracy status](status-and-accuracy.md) and [maintenance](maintenance.md).
+
+## Guided two-season comparison — current extension
+
+The app now compares the usual crop sequence with two farmer-chosen next-crop
+alternatives. Plain-language onboarding and a text-plan download guide discussion
+with an adviser. Each crop is checked independently against soil pH and historical
+seasonal temperature; possible planting/harvest overlap is exposed. Water-use ranges
+and legume contributions are reference explanations, not simulations of irrigation
+need, nitrogen credits or improved soil health. See [rotation methods](rotation-comparison.md)
+and [submission wording](submission-brief.md) for the current supported scope.

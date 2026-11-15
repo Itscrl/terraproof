@@ -94,3 +94,12 @@ one per API process and four upstream workers. Cold retrieval can take minutes.
 Azure Container Apps plus workers/queues and Blob storage are possible next steps;
 see [the platform roadmap](research-and-platforms.md). No Azure entitlement, account,
 deployment or spending is assumed. Field evaluation is a separate release gate.
+
+## Rotation comparison maintenance
+
+Keep crop IDs and names synchronized between the reference catalog, API Literal
+and farmer form. Any rule change requires updating `rotation-screen-v1` and its
+methods, submission brief and regression checks. The comparison is recomputed;
+it is not saved automatically to the farm notebook. Farmers should download the
+text plan or evidence JSON. A new deployment requires rebuilding the frontend and
+restarting the API process so `/api/rotations/assess` is available.
