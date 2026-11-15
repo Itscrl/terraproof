@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-14T15:07:03.597Z",
+  "generatedAt": "2026-11-15T01:02:46.913Z",
   "title": "Design System: TerraProof",
   "extensions": {
     "colorMeta": {
@@ -409,6 +409,90 @@
           "oklch(87% 0.029 155)",
           "oklch(95% 0.013 155)"
         ]
+      },
+      "globe-ground": {
+        "role": "neutral",
+        "displayName": "Globe Ground",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "globe-base": {
+        "role": "neutral",
+        "displayName": "Unloaded Globe Base",
+        "tonalRamp": [
+          "oklch(15% 0.014 175)",
+          "oklch(27% 0.026 175)",
+          "oklch(39% 0.034 175)",
+          "oklch(51% 0.040 175)",
+          "oklch(63% 0.040 175)",
+          "oklch(75% 0.032 175)",
+          "oklch(87% 0.018 175)",
+          "oklch(95% 0.008 175)"
+        ]
+      },
+      "selection": {
+        "role": "secondary",
+        "displayName": "Region Mint",
+        "tonalRamp": [
+          "oklch(15% 0.035 175)",
+          "oklch(27% 0.065 175)",
+          "oklch(39% 0.085 175)",
+          "oklch(51% 0.100 175)",
+          "oklch(63% 0.100 175)",
+          "oklch(75% 0.080 175)",
+          "oklch(87% 0.045 175)",
+          "oklch(95% 0.020 175)"
+        ]
+      },
+      "map-control": {
+        "role": "neutral",
+        "displayName": "Map Control",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "map-control-border": {
+        "role": "neutral",
+        "displayName": "Map Control Border",
+        "tonalRamp": [
+          "oklch(15% 0.009 155)",
+          "oklch(27% 0.016 155)",
+          "oklch(39% 0.021 155)",
+          "oklch(51% 0.025 155)",
+          "oklch(63% 0.025 155)",
+          "oklch(75% 0.020 155)",
+          "oklch(87% 0.011 155)",
+          "oklch(95% 0.005 155)"
+        ]
+      },
+      "map-credit": {
+        "role": "neutral",
+        "displayName": "Map Credit",
+        "tonalRamp": [
+          "oklch(15% 0.005 155)",
+          "oklch(27% 0.010 155)",
+          "oklch(39% 0.013 155)",
+          "oklch(51% 0.015 155)",
+          "oklch(63% 0.015 155)",
+          "oklch(75% 0.012 155)",
+          "oklch(87% 0.007 155)",
+          "oklch(95% 0.003 155)"
+        ]
       }
     },
     "typographyMeta": {
@@ -423,6 +507,14 @@
       "amount": {
         "displayName": "Economic amount",
         "purpose": "Visible independent economic subtotal; 28px on mobile."
+      },
+      "property-value": {
+        "displayName": "Regional property median",
+        "purpose": "20px medium value with smaller unit in expandable soil evidence rows."
+      },
+      "soil-action": {
+        "displayName": "Soil assessment action",
+        "purpose": "14px medium action label in a full-width 44px minimum-height control."
       }
     },
     "shadows": [],
@@ -431,119 +523,155 @@
         "name": "loading-pulse",
         "value": "pulse 1.3s ease-in-out infinite",
         "purpose": "Loading dot reaches opacity 0.3 at 50%; disabled under prefers-reduced-motion: reduce."
+      },
+      {
+        "name": "globe-focus",
+        "value": "1s; 0s with prefers-reduced-motion: reduce",
+        "purpose": "Explicit View selection or Albay example camera focus only; coordinate edits do not move the camera. Globe view resets immediately."
       }
     ],
     "breakpoints": [
       {
-        "name": "wide-min",
+        "name": "soil-wide-min",
+        "value": "1550px"
+      },
+      {
+        "name": "soil-narrow-desktop-max",
+        "value": "1100px"
+      },
+      {
+        "name": "soil-stack-max",
+        "value": "800px"
+      },
+      {
+        "name": "soil-mobile-max",
+        "value": "540px"
+      },
+      {
+        "name": "planning-wide-min",
         "value": "1600px"
       },
       {
-        "name": "results-stack-max",
+        "name": "planning-results-stack-max",
         "value": "1200px"
       },
       {
-        "name": "editors-stack-max",
+        "name": "planning-editors-stack-max",
         "value": "900px"
       },
       {
-        "name": "mobile-max",
+        "name": "planning-mobile-max",
         "value": "680px"
       }
     ]
   },
   "components": [
     {
-      "name": "Primary button",
+      "name": "Regional assessment action",
+      "kind": "button",
+      "refersTo": "soil-assess",
+      "description": "Primary action; disabled during retrieval or invalid bounds.",
+      "html": "<button class=\"ds-assess\">Assess selected region<span aria-hidden=\"true\">↗</span></button>",
+      "css": ".ds-assess{font-family:\"IBM Plex Sans\",sans-serif;display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:12px 14px;min-height:44px;background:var(--ink,#18221e);color:var(--surface,#fff);border:0;border-radius:6px;font-size:14px;font-weight:500;cursor:pointer}.ds-assess:hover:not(:disabled){background:#32453a}.ds-assess:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:3px}.ds-assess:disabled{opacity:.55;cursor:not-allowed}"
+    },
+    {
+      "name": "Soil coordinate field",
+      "kind": "input",
+      "refersTo": "soil-input",
+      "description": "Visible label and native keyboard coordinate editing.",
+      "html": "<label class=\"ds-coordinate\">West<input type=\"number\" step=\"0.001\" value=\"123.7\"></label>",
+      "css": ".ds-coordinate{font-family:\"IBM Plex Sans\",sans-serif;display:grid;gap:6px;font-size:12px;color:var(--muted,#59665f)}.ds-coordinate input{font-family:\"IBM Plex Sans\",sans-serif;min-width:0;width:100%;height:40px;padding:7px 9px;background:var(--surface,#fff);border:1px solid #cdd6d0;border-radius:6px;color:var(--ink,#18221e);font-size:13px;caret-color:var(--accent,#246c61)}.ds-coordinate input:hover{border-color:#8b9e91}.ds-coordinate input:focus{outline:2px solid var(--focus,#126a82);outline-offset:2px}@media(max-width:540px){.ds-coordinate input{min-height:44px;font-size:14px}}"
+    },
+    {
+      "name": "Global navigation",
+      "kind": "nav",
+      "description": "Default soil view with an underlined current state; planning link is host-dependent.",
+      "html": "<nav class=\"ds-soil-nav\" aria-label=\"Workspace\"><span aria-current=\"page\">Soil explorer</span><a href=\"?workspace=planning\">Climate &amp; economics ↗</a></nav>",
+      "css": ".ds-soil-nav{font-family:\"IBM Plex Sans\",sans-serif;display:flex;align-items:center;gap:28px;font-size:14px}.ds-soil-nav span,.ds-soil-nav a{display:flex;align-items:center;gap:8px;padding:12px 0;text-decoration:none;color:var(--muted,#59665f)}.ds-soil-nav [aria-current]{color:var(--ink,#18221e);border-bottom:2px solid var(--accent,#246c61)}.ds-soil-nav a:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:3px}@media(max-width:540px){.ds-soil-nav{gap:20px;font-size:12px}}"
+    },
+    {
+      "name": "Active region selection",
+      "kind": "button",
+      "refersTo": "region-action-selected",
+      "description": "Pressed selection state; live app toggles to cancel and clears the preview.",
+      "html": "<button class=\"ds-region\" aria-pressed=\"true\">Cancel selection</button>",
+      "css": ".ds-region{font-family:\"IBM Plex Sans\",sans-serif;display:flex;gap:8px;align-items:center;min-height:40px;padding:9px 12px;border:1px solid var(--accent,#246c61);border-radius:6px;background:var(--accent,#246c61);color:var(--surface,#fff);font-size:13px;cursor:pointer}.ds-region:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:3px}@media(max-width:540px){.ds-region{min-height:44px;padding:9px;font-size:12px}}"
+    },
+    {
+      "name": "Soil property disclosure",
+      "kind": "custom",
+      "refersTo": "soil-property",
+      "description": "A report row preserves unavailable data; native disclosure remains operable.",
+      "html": "<details class=\"ds-property\"><summary><span>Soil pH in water</span><strong>— <small>unavailable</small></strong></summary><p>Source unavailable. Regional map estimates are separate from laboratory measurements.</p></details>",
+      "css": ".ds-property{font-family:\"IBM Plex Sans\",sans-serif;border-bottom:1px solid var(--line,#e4e9e6);padding:12px 0;color:var(--ink,#18221e)}.ds-property summary{display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:12px;font-size:13px;list-style:none}.ds-property summary::-webkit-details-marker{display:none}.ds-property summary>span{max-width:58%}.ds-property summary>span::after{content:\" +\";color:var(--muted,#59665f)}.ds-property[open] summary>span::after{content:\" −\"}.ds-property strong{font-size:20px;font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums}.ds-property small{font-size:11px;font-weight:400;color:var(--muted,#59665f)}.ds-property p{font-size:12px;line-height:1.7;color:var(--muted,#59665f)}.ds-property summary:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:3px}@media(max-width:540px){.ds-property summary{font-size:14px;min-height:30px}.ds-property p{font-size:13px}.ds-property small{font-size:12px}}"
+    },
+    {
+      "name": "Wetness legend",
+      "kind": "custom",
+      "description": "Surface, root-zone and explicit missing-value encodings.",
+      "html": "<div class=\"ds-wetness-key\"><span>Surface</span><span>Root zone</span><span class=\"ds-missing\">Missing</span></div>",
+      "css": ".ds-wetness-key{font-family:\"IBM Plex Sans\",sans-serif;display:flex;gap:20px;font-size:12px;color:var(--muted,#59665f)}.ds-wetness-key span::before{content:\"\";display:inline-block;width:10px;height:10px;background:var(--accent,#246c61);margin-right:6px}.ds-wetness-key span+span::before{background:#bdc9c0}.ds-wetness-key .ds-missing::before{background:transparent;border:1px dashed #8b9e91}"
+    },
+    {
+      "name": "Historical measurement method",
+      "kind": "custom",
+      "description": "Native disclosure keeps extraction methods and empty observations explicit.",
+      "html": "<details class=\"ds-lab\"><summary><span>Extractable phosphorus — Olsen</span><strong>0 compatible records</strong></summary><p>No compatible CC-BY observations were returned for this region and depth. This is a data gap, not a zero concentration.</p></details>",
+      "css": ".ds-lab{font-family:\"IBM Plex Sans\",sans-serif;padding:14px 0;border-bottom:1px solid var(--line,#e4e9e6);color:var(--ink,#18221e)}.ds-lab summary{display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:20px;font-size:14px}.ds-lab summary>strong{font-size:12px;font-weight:400;color:var(--muted,#59665f)}.ds-lab p{color:var(--muted,#59665f);font-size:13px;line-height:1.7}.ds-lab summary:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:3px}@media(max-width:540px){.ds-lab summary{align-items:start;flex-direction:column;gap:6px}}"
+    },
+    {
+      "name": "Planning: Primary button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Filled replay action.",
+      "description": "Retained ?workspace=planning only. Filled replay action.",
       "html": "<button class=\"ds-primary\">Replay seasons</button>",
       "css": ".ds-primary{font-family:\"IBM Plex Sans\",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #cdd6d0;border-radius:6px;padding:9px 13px;min-height:38px;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;white-space:nowrap;background:var(--ink,#18221e);border-color:var(--ink,#18221e);color:var(--surface,#fff)}.ds-primary:hover{background:#32453a}.ds-primary:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:4px}.ds-primary:disabled{opacity:.5;cursor:wait}"
     },
     {
-      "name": "Secondary button",
-      "kind": "button",
-      "refersTo": "button-secondary",
-      "description": "Export and save actions.",
-      "html": "<button class=\"ds-secondary\">Save comparison</button>",
-      "css": ".ds-secondary{font-family:\"IBM Plex Sans\",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #cdd6d0;border-radius:6px;padding:9px 13px;min-height:38px;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;white-space:nowrap;background:var(--surface,#fff);color:var(--ink,#18221e)}.ds-secondary:hover{background:#edf2ef}.ds-secondary:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:4px}.ds-secondary:disabled{opacity:.5;cursor:wait}"
-    },
-    {
-      "name": "Text action",
-      "kind": "button",
-      "refersTo": "button-text",
-      "description": "Underlined source or disclosure-related action.",
-      "html": "<button class=\"ds-text\">Sources &amp; limits</button>",
-      "css": ".ds-text{font-family:\"IBM Plex Sans\",sans-serif;display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:500;padding:4px 0;border:0;background:none;color:var(--ink,#18221e);text-decoration:underline;text-underline-offset:4px;cursor:pointer}.ds-text:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:4px}"
-    },
-    {
-      "name": "Labeled input",
-      "kind": "input",
-      "refersTo": "input",
-      "description": "Explicit label above a native editable field.",
-      "html": "<label class=\"ds-field\"><span>Sowing day</span><input class=\"ds-input\" type=\"number\" min=\"1\" max=\"31\" value=\"1\"></label>",
-      "css": ".ds-field{font-family:\"IBM Plex Sans\",sans-serif;display:flex;flex-direction:column;gap:7px;font-size:12px;color:#48594d;min-width:0}.ds-input{font-family:\"IBM Plex Sans\",sans-serif;font-size:14px;min-width:0;width:100%;height:39px;border:1px solid #cdd6d0;border-radius:6px;padding:8px 10px;background:var(--surface,#fff);color:var(--ink,#18221e);caret-color:var(--accent,#246c61)}.ds-input:hover{border-color:#8b9e91}.ds-input:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:4px}.ds-input:disabled{background:#edf1ef}"
-    },
-    {
-      "name": "Workspace navigation",
-      "kind": "nav",
-      "refersTo": "navigation-active",
-      "description": "Selected workspace view with a quiet neutral fill.",
-      "html": "<nav class=\"ds-nav\" aria-label=\"Workspace\"><button class=\"ds-nav-active\" aria-current=\"page\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M8 2v4m8-4v4M3 10h18\"/><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"/></svg>Planting comparison</button><button>Farm economics</button></nav>",
-      "css": ".ds-nav{display:grid;gap:6px;max-width:228px}.ds-nav button{font-family:\"IBM Plex Sans\",sans-serif;display:flex;align-items:center;gap:10px;text-align:left;padding:12px 10px;font-size:13px;border:0;border-radius:6px;background:none;color:#526159;cursor:pointer}.ds-nav button:hover{background:#e8eeea}.ds-nav .ds-nav-active{background:#e0e7e2;color:var(--ink,#18221e);font-weight:500}.ds-nav button:focus-visible{outline:2px solid var(--focus,#126a82);outline-offset:4px}"
-    },
-    {
-      "name": "Plan badge",
-      "kind": "chip",
-      "refersTo": "plan-badge",
-      "description": "A textual plan identifier, not an interactive filter.",
-      "html": "<span class=\"ds-badge\" aria-label=\"Plan A\">A</span>",
-      "css": ".ds-badge{font-family:\"IBM Plex Sans\",sans-serif;display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;border-radius:4px;border:1px solid #b9cdc4;font-size:12px;color:var(--accent,#246c61);vertical-align:middle;margin-right:2px}"
-    },
-    {
-      "name": "Plan panel",
+      "name": "Planning: Plan panel",
       "kind": "card",
       "refersTo": "plan-panel",
-      "description": "Flat grouping surface for editable calendar information.",
+      "description": "Retained ?workspace=planning only. Flat grouping surface for editable calendar information.",
       "html": "<fieldset class=\"ds-panel\"><legend class=\"ds-panel-title\">June planting</legend><p class=\"ds-panel-copy\">Starts at sowing. Default 55 / 30 / 30 days is illustrative; use locally reviewed stages.</p></fieldset>",
       "css": ".ds-panel{font-family:\"IBM Plex Sans\",sans-serif;min-width:0;border:0;background:var(--raised,#f6f8f7);padding:17px 20px 14px;border-radius:8px;margin:0;color:var(--ink,#18221e)}.ds-panel-title{float:left;width:100%;font-size:16px;font-weight:500;margin-bottom:16px;padding:0}.ds-panel-copy{clear:both;font-size:12px;line-height:1.6;color:var(--muted,#59665f);margin:0}"
     },
     {
-      "name": "Proportional calendar strip",
+      "name": "Planning: Proportional calendar strip",
       "kind": "custom",
       "refersTo": "calendar-strip",
-      "description": "Three crop stages weighted by duration with explicit labels.",
+      "description": "Retained ?workspace=planning only. Three crop stages weighted by duration with explicit labels.",
       "html": "<div class=\"ds-calendar\" aria-label=\"Vegetative 55 days, Reproductive 30 days, Ripening 30 days\"><span class=\"ds-stage-a\">55d</span><span class=\"ds-stage-b\">30d</span><span class=\"ds-stage-c\">30d</span></div><div class=\"ds-stage-legend\"><span>Vegetative</span><span>Reproductive</span><span>Ripening</span></div>",
       "css": ".ds-calendar{font-family:\"IBM Plex Sans\",sans-serif;display:flex;gap:3px;height:25px;border-radius:3px;overflow:hidden}.ds-calendar span{display:flex;align-items:center;justify-content:center;font-size:11px;color:#193d32}.ds-stage-a{flex:55;background:#d4e3db}.ds-stage-b{flex:30;background:#89b3a1}.ds-stage-c{flex:30;background:#e3e9df}.ds-stage-legend{font-family:\"IBM Plex Sans\",sans-serif;display:flex;justify-content:space-between;color:var(--muted,#59665f);font-size:11px;margin:5px 0 13px}"
-    },
-    {
-      "name": "Scrollable stage evidence",
-      "kind": "custom",
-      "description": "Mobile discovery cue and keyboard-accessible wide table.",
-      "html": "<p class=\"ds-scroll-hint\">Scroll horizontally to see all stage indicators.</p><div class=\"ds-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Scrollable evidence table\"><table class=\"ds-table\"><thead><tr><th>Crop stage</th><th>Dates</th><th>Heat days</th><th>Rain ≥20 mm days</th><th>Longest dry spell</th></tr></thead><tbody><tr><th scope=\"row\">Vegetative</th><td>2024-06-01<br><small>to 2024-07-25</small></td><td>0</td><td>5</td><td>2 days</td></tr></tbody></table></div>",
-      "css": ".ds-scroll-hint{font-family:\"IBM Plex Sans\",sans-serif;display:none;color:var(--muted,#59665f);font-size:12px;margin:0 0 8px;line-height:1.6}.ds-table-wrap{max-width:100%;overflow:auto;scrollbar-color:#aab8af var(--raised,#f6f8f7);scrollbar-width:thin}.ds-table-wrap:focus-visible{outline:2px solid var(--focus,#126a82)}.ds-table{font-family:\"IBM Plex Sans\",sans-serif;width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums;color:var(--ink,#18221e)}.ds-table th,.ds-table td{padding:11px 8px;border-bottom:1px solid #edf1ee;text-align:right;vertical-align:middle}.ds-table th:first-child,.ds-table td:first-child{text-align:left;padding-left:0}.ds-table th:last-child,.ds-table td:last-child{padding-right:0}.ds-table thead th{font-size:11px;font-weight:400;color:var(--muted,#59665f);line-height:1.5}.ds-table tbody th{font-weight:400}.ds-table small{font-size:12px;color:var(--muted,#59665f)}@media(max-width:680px){.ds-scroll-hint{display:block}.ds-table{min-width:470px}}"
     }
   ],
   "narrative": {
-    "northStar": "The Field Planning Sheet",
-    "overview": "A green-grey workspace frames a white working sheet. Quiet ink, restrained teal marks and compact IBM Plex Sans typography keep the interface practical for farmers and extension advisers working through historical evidence.\n\nThe recurring visual signature is a pair of crop calendars with proportional stage strips, followed by shared-year comparisons. Color identifies plans and stages; labels, units and tables carry the meaning. The visual system keeps historical exposure and independent economic assumptions legible without presenting either as a validated crop prediction.",
+    "northStar": "The Regional Evidence Sheet",
+    "overview": "A green-grey workspace frames a white evidence sheet. Quiet ink, restrained teal and self-hosted IBM Plex Sans preserve TerraProof's working character while natural Earth imagery gives geographic context. The default entry is a globe beside region controls and a soil report, with the selected rectangle as the working object.\n\nThe journey is global globe → region → evidence-backed soil profile. Regional SoilGrids predictions, NASA wetness at the centroid and historical WoSIS point observations remain visually separate. Values carry their units, source scale, coverage and limits; the interface offers neither pinpoint diagnosis nor a universal soil-quality grade. The earlier paired-calendar interface remains a secondary workspace at `?workspace=planning`, available only when the host allows private planning.",
     "keyCharacteristics": [
-      "Green-grey frame and white working sheet.",
-      "Flat, softly rounded groups with fine separators.",
-      "Compact labels, tabular numbers and explicit units.",
-      "Teal climate marks paired with muted comparison colors.",
-      "Responsive stacking with discoverable, keyboard-accessible evidence tables."
+      "Green-grey frame and white evidence sheet.",
+      "Interactive Earth with a restrained teal region overlay.",
+      "Flat report rows, fine separators and explicit units.",
+      "Regional predictions, centroid context and historical measurements presented separately.",
+      "Globe-first mobile stacking and keyboard coordinate entry.",
+      "Retained calendar planning patterns scoped to the secondary workspace."
     ],
     "rules": [
       {
         "name": "The Evidence Label Rule",
-        "body": "Keep plan names, stage labels and units alongside color; color alone does not explain a result.",
+        "body": "Keep property units, series names, region bounds and source scale alongside color; color alone does not explain a result.",
         "section": "colors"
+      },
+      {
+        "name": "The Regional Evidence Rule",
+        "body": "Spatial P10–P90 describes variation across sampled map predictions, not confidence intervals or field accuracy. Do not present regional medians as pinpoint soil diagnoses. Total nitrogen is not plant-available nitrogen; carbon concentration is not organic matter percentage; CEC is not available N/P/K.",
+        "section": "components"
       }
     ],
     "dos": [
-      "Do preserve the green-grey frame, white sheet and flat pale panels.",
+      "Do preserve the green-grey frame, white sheet, IBM Plex Sans and quiet teal across both workspaces.",
+      "Do lead the default entry with the globe and selected-region report; scope the sidebar and calendars to planning.",
+      "Do keep regional map predictions, NASA centroid wetness and historical WoSIS observations separate.",
+      "Do retain source scale, sampled coverage, missing values, assessed bounds and stale-result notices.",
       "Do use self-hosted IBM Plex Sans and tabular numbers for the working interface.",
       "Do retain plan names, units and exact-value tables alongside chart colors.",
       "Do keep keyboard focus visible and scrollable evidence regions named and focusable.",
@@ -551,6 +679,8 @@
       "Do keep source limits and the distinction between exposure and economics visible."
     ],
     "donts": [
+      "Don't claim field accuracy percentages, confidence intervals from spatial P10–P90, pinpoint diagnoses or a universal soil-quality score.",
+      "Don't imply the Blue Marble reference imagery is live or that historical WoSIS samples validate current regional predictions.",
       "Don't add shadows or decorative gradients to the existing panel hierarchy.",
       "Don't encode a winning plan or predicted crop damage through the comparison palette.",
       "Don't shrink wide evidence tables until their units and dates become unreadable.",

@@ -1,18 +1,20 @@
 {
  "version": 1,
  "kind": "app",
- "at": "2026-11-14T14:38:06.833Z",
- "seed": 234310446,
+ "at": "2026-11-15T00:03:43.952Z",
+ "seed": 489223903,
  "input": {
   "kind": "analytics",
-  "brief": "TerraProof rice planting calendars historical climate exposure in Albay",
-  "theme": "light",
+  "brief": "TerraProof global soil assessment globe with rectangle selection and an evidence report",
+  "theme": null,
   "screens": [
-   "analytics",
-   "settings",
+   "overview",
    "report"
   ],
-  "keep": [],
+  "keep": [
+   "palette",
+   "type"
+  ],
   "style": "framed-sheet"
  },
  "style": {
@@ -142,45 +144,20 @@
  },
  "screens": [
   {
-   "name": "analytics",
+   "name": "overview",
    "pattern": {
-    "id": "insights-share-tables",
-    "name": "Insights with share tables",
-    "screen": "analytics",
+    "id": "kpi-strip-chart-rail",
+    "name": "KPI strip, main chart and a side rail",
+    "screen": "overview",
     "kinds": [
-     "analytics",
-     "devtools",
-     "builder"
-    ],
-    "basis": "a per-agent insights page",
-    "blueprint": "No cards: sections are carried by whitespace and a 16/500 heading with one 14px grey sentence under it saying what the section shows. A row of up to 6 KPIs on a fixed pitch (12px grey label over a 30px tabular value, no boxes, no dividers), then one full-width time chart (about 218px plot, 5 hairline gridlines, 11-12px grey ticks, a dot legend under the title, a 'Compare to previous period' text button on the right). Then a 2 x 2 grid of small tables with a 24px gutter whose rows align across the two columns. Each table: a header of 12px grey labels with no fill and no rule, 44px rows with 2px gaps whose rounded fill (#f5f7f9, radius 8) is the data bar, its width the row's share divided by the largest share; Share in 12px grey and Count in 14px ink, both right-aligned. An empty table keeps its header and shows one dashed 1px box about 38px tall with one sentence ('No Slack channel usage in this range.').",
-    "phone": "KPIs become a 2 x 3 grid; the chart is full width; the share tables stack in one column and keep their row bars."
-   }
-  },
-  {
-   "name": "settings",
-   "pattern": {
-    "id": "settings-two-column",
-    "name": "Settings in two columns",
-    "screen": "settings",
-    "kinds": [
-     "devtools",
-     "smb-admin",
-     "support",
-     "workspace",
-     "commerce",
-     "analytics",
-     "finance",
-     "wallet",
      "creator",
+     "smb-admin",
      "community",
-     "builder",
-     "markets",
-     "report"
+     "analytics"
     ],
-    "basis": "one settings page; stacking from a narrow rail card. The basis is thin.",
-    "blueprint": "A centred column of about 1152px. Each section is one row: a label column of about 450px (16/500 title, 14px grey description; the title's cap top 6-8px below the panel top, level with the panel's first line) beside a panel of about 700px with a #fafafa fill, 16px radius, 16px padding, no border and no shadow. Sections are split by a full-width 1px rule with 32px above and below. Inside a panel: field labels 14/500 above 40px white inputs (1px #e8e8e8, radius 10), 8px from label to field, 16px between fields, 24px from the description to the first label, 16px to the Save button; switch rows with a 14/500 title, a 20px status badge 8px after it, a 14px grey description and a 28x16 toggle 16px from the right edge, centred on the title line. A plan-gated feature shows a 48px tinted strip with a 32px button directly above its panel, and the panel stays readable. When a panel runs much taller than its label, put the section's help or a summary of the current values in the label column rather than 250px of nothing.",
-    "phone": "Each section stacks: title and description, then the panel at full width. Inside, label, 8-10px, field, 16-26px to the next pair; toggles stay on the right of their title."
+    "basis": "a newsletter home; a community overview",
+    "blueprint": "Title row: a 24px noun or the product's name at 600-700, an optional 14-16px grey line under it, and the one primary action on the right, bottom-aligned with that line. 16-24px below, the scope row: section tabs and the date range in one row of 32-36px controls, or a 48px segmented track with the range select inside its right end. Then a grid of 1fr and a fixed 384px rail with a 24px gap. Main column: one KPI container split by 1px dividers into 3-5 equal cells (14px grey label, 24px value at 400-600, a 12px caption naming the baseline and window), then the main chart card, which is the largest thing on the screen, then the next card, all 16px apart. Rail: 16px headings outside their cards, 8px above each and 16px after the previous card; a recent-items list of 3-5 rows on a 45px pitch with 1px rules, closed by a 30px outlined 'View all' button instead of pagination. The rail starts level with the first card, not with the title.",
+    "phone": "The rail moves below the main column; the KPI container becomes a 2-column grid; tabs scroll inside their own row."
    }
   },
   {

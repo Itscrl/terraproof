@@ -175,6 +175,7 @@ export default function App() {
           </div>
         </div>
         <nav aria-label="Workspace">
+          <a href="/">Global soil explorer</a>
           {tabs.map((tab) => (
             <button
               key={tab.id}
