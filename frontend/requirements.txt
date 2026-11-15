@@ -1,0 +1,1 @@
+# Vercel place search uses only the Python standard library.
