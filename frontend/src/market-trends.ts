@@ -42,9 +42,9 @@ export const MARKET_PROFILES: Record<string, MarketCropProfile> = {
     },
     leanMonths: [7, 8, 9],
     peakHarvestMonths: [3, 4, 10, 11],
-    primaryBuyers: "Local Palay Traders, Commercial Rice Mills & NFA Procurement",
+    primaryBuyers: "Local Rice Mills & Palay Traders",
     marketInsight:
-      "Strongest liquidity in local markets; harvesting during July–September lean months often commands a farmgate price premium.",
+      "Easy to sell locally year-round, with higher buyer prices during July–September.",
   },
   maize: {
     id: "maize",
@@ -64,9 +64,9 @@ export const MARKET_PROFILES: Record<string, MarketCropProfile> = {
     },
     leanMonths: [1, 2, 6, 7],
     peakHarvestMonths: [3, 4, 8, 9],
-    primaryBuyers: "Regional Feed Mills, Livestock Integrators & Grain Consolidators",
+    primaryBuyers: "Regional Feed Mills & Grain Buyers",
     marketInsight:
-      "Consistent commercial absorption from feed processors; lower water requirement than paddy rice makes it a resilient dry-transition cash crop.",
+      "Steady demand from poultry and feed mills; needs less water than paddy rice.",
   },
   soybean: {
     id: "soybean",
@@ -86,9 +86,9 @@ export const MARKET_PROFILES: Record<string, MarketCropProfile> = {
     },
     leanMonths: [5, 6, 7, 8, 9, 10],
     peakHarvestMonths: [1, 2, 3],
-    primaryBuyers: "Soy Food Processors (Tofu/Taho/Soymilk), Feed Mills & Seed Multipliers",
+    primaryBuyers: "Soy Food Makers (Taho/Tofu) & Feed Mills",
     marketInsight:
-      "High price per kg and lower nitrogen fertilizer cost due to root nodulation; ideal rotation partner after rice or maize.",
+      "Great selling price and naturally enriches soil fertility after rice or corn.",
   },
   sorghum: {
     id: "sorghum",
@@ -108,9 +108,9 @@ export const MARKET_PROFILES: Record<string, MarketCropProfile> = {
     },
     leanMonths: [6, 7, 8, 11],
     peakHarvestMonths: [2, 3, 4],
-    primaryBuyers: "Specialty Feed Compounders, Artisan Grain Buyers & Bio-Energy Aggregators",
+    primaryBuyers: "Feed Compounders & Grain Buyers",
     marketInsight:
-      "Low input cost and strong tolerance to dry spells; confirm local feed-mill contract buyers before planting at scale.",
+      "Handles dry weather well with low farming costs; line up a local feed buyer first.",
   },
   potato: {
     id: "potato",
@@ -130,9 +130,9 @@ export const MARKET_PROFILES: Record<string, MarketCropProfile> = {
     },
     leanMonths: [8, 9, 10, 11],
     peakHarvestMonths: [1, 2, 3, 4],
-    primaryBuyers: "Wholesale Vegetable Trading Posts, Supermarkets & Fast-Food Processors",
+    primaryBuyers: "Vegetable Markets & Food Processors",
     marketInsight:
-      "Highest gross revenue potential per hectare, but strictly requires cooler highland temperatures (15–25 °C) and clean seed tubers.",
+      "High market value, but needs cool highland air and well-drained soil.",
   },
   wheat: {
     id: "wheat",
@@ -150,11 +150,11 @@ export const MARKET_PROFILES: Record<string, MarketCropProfile> = {
       irrigation: 3000,
       other: 2500,
     },
+    primaryBuyers: "Specialty Flour Mills & Trial Programs",
     leanMonths: [6, 7, 8, 9],
     peakHarvestMonths: [2, 3, 4],
-    primaryBuyers: "Specialty Flour Mills & Regional Agronomy Trial Programs",
     marketInsight:
-      "Requires cool seasonal windows (15–23 °C); generally outside tropical lowland temperature ranges unless grown in cool elevated zones.",
+      "Needs cool, dry mountain weather; too warm for most tropical lowlands.",
   },
   groundnut: {
     id: "groundnut",
@@ -174,9 +174,9 @@ export const MARKET_PROFILES: Record<string, MarketCropProfile> = {
     },
     leanMonths: [7, 8, 9, 10],
     peakHarvestMonths: [2, 3, 4],
-    primaryBuyers: "Local Public Markets, Peanut Butter/Snack Processors & Seed Traders",
+    primaryBuyers: "Public Markets & Peanut Snack Makers",
     marketInsight:
-      "Commands high farmgate prices with modest fertilizer needs; thrives in well-drained sandy-loam soils and warm seasons.",
+      "Fetches strong prices in local markets and thrives in loose, well-drained soil.",
   },
 };
 
@@ -221,10 +221,10 @@ export function analyzeMarketTrends(
 
     const marketTimingMultiplier = isLean ? 1.12 : isPeak ? 0.96 : 1.02;
     const marketTimingBadge = isLean
-      ? "Lean Supply Window (+12% Price Trend)"
+      ? "Low Supply · Higher Buyer Price"
       : isPeak
-        ? "Peak Harvest Window (High Volume)"
-        : "Balanced Market Window";
+        ? "Main Harvest · Fast Local Sales"
+        : "Steady Buyer Demand";
 
     const adjustedPricePhpKg = Number(
       (
@@ -280,21 +280,21 @@ export function analyzeMarketTrends(
 
     const tierLabel =
       tier === "top_pick"
-        ? "Top Market & Climate Pick"
+        ? "Best Soil & Market Match"
         : tier === "strong_option"
-          ? "Viable Market Alternative"
+          ? "Strong Cash Alternative"
           : tier === "conditional"
-            ? "Needs Local Soil/Weather Check"
-            : "Outside Regional Climate Range";
+            ? "Check Local Water First"
+            : "Better for Cooler Highlands";
 
     const harvestWindowLabel = `${MONTHS[harvestMonth - 1]?.slice(0, 3) ?? "—"}–${MONTHS[harvestEndMonth - 1]?.slice(0, 3) ?? "—"}`;
 
     const rationale =
       tier === "top_pick"
-        ? `${crop.name} aligns with regional soil pH (${crop.soil_ph?.toFixed(1) ?? "—"}) and ${matching}/${crop.climate.complete_seasons} past NASA seasons, targeting a ${marketTimingBadge.toLowerCase()} with ~₱${netReturnPhpHa.toLocaleString("en-US")}/ha estimated net return.`
+        ? `${crop.name} fits your soil balance and typical seasonal weather, harvesting in ${harvestWindowLabel} when buyer demand is strong.`
         : tier === "strong_option"
-          ? `${crop.name} offers ${profile.demandTrend.toLowerCase()} (~₱${netReturnPhpHa.toLocaleString("en-US")}/ha net), though local variety and water management should be reviewed.`
-          : `${crop.name} has strong market value (₱${adjustedPricePhpKg}/kg), but regional temperature or soil pH falls outside its primary reference window.`;
+          ? `${crop.name} has steady local buyers and good profit potential if water is managed well.`
+          : `${crop.name} sells well locally, but prefers cooler weather than typical lowland seasons.`;
 
     return {
       crop,
@@ -320,4 +320,117 @@ export function analyzeMarketTrends(
   });
 
   return suggestions.sort((a, b) => b.trendScore - a.trendScore);
+}
+
+export type MonthlyPricePoint = {
+  month: number;
+  monthShort: string;
+  pricePhpKg: number;
+  supplyState: "lean" | "peak" | "balanced";
+};
+
+export function getMonthlyMarketPriceCurve(
+  profile: MarketCropProfile,
+  priceAdjustPct = 0,
+): MonthlyPricePoint[] {
+  return MONTHS.map((name, idx) => {
+    const month = idx + 1;
+    const isLean = profile.leanMonths.includes(month);
+    const isPeak = profile.peakHarvestMonths.includes(month);
+    const wave = Math.sin(((month - 1) / 12) * Math.PI * 2) * 0.03;
+    const mult = (isLean ? 1.13 : isPeak ? 0.94 : 1.01) + wave;
+    const pricePhpKg = Number(
+      (profile.defaultPricePhpKg * mult * (1 + priceAdjustPct / 100)).toFixed(2),
+    );
+    return {
+      month,
+      monthShort: name.slice(0, 3),
+      pricePhpKg,
+      supplyState: isLean ? "lean" : isPeak ? "peak" : "balanced",
+    };
+  });
+}
+
+const CROP_NAMES: Record<string, string> = {
+  rice_indica: "Rice (indica)",
+  maize: "Maize (grain)",
+  soybean: "Soybean",
+  groundnut: "Groundnut (peanut)",
+  sorghum: "Sorghum",
+  potato: "Potato",
+  wheat: "Wheat",
+};
+
+export function buildBaselineMarketTrends(
+  areaHa = 1.5,
+  plantingMonth = 11,
+  planningYear = 2027,
+  priceAdjustPct = 0,
+  soilPh = 5.6,
+): MarketTrendSuggestion[] {
+  const keys = [
+    "rice_indica",
+    "maize",
+    "soybean",
+    "groundnut",
+    "sorghum",
+    "potato",
+    "wheat",
+  ];
+  const syntheticCrops: CropScreen[] = keys.map((id, idx) => {
+    const profile = MARKET_PROFILES[id];
+    const startMonth = ((plantingMonth + 2) % 12) + 1;
+    const endMonth = ((plantingMonth + 3) % 12) + 1;
+    const fitSeasons = idx < 3 ? 9 : idx < 5 ? 8 : 3;
+    return {
+      id,
+      name: CROP_NAMES[id] ?? id,
+      species: "",
+      family: profile.marketCategory,
+      status:
+        idx < 3
+          ? "reference_match"
+          : idx < 5
+            ? "local_review"
+            : "outside_reference",
+      checks: {
+        ph: idx < 5 ? "within_reference" : "review",
+        temperature: idx < 4 ? "within_reference" : "review",
+      },
+      soil_ph: soilPh,
+      ph_spatial_range: [Number((soilPh - 0.3).toFixed(1)), Number((soilPh + 0.4).toFixed(1))],
+      reference: {
+        id,
+        name: CROP_NAMES[id] ?? id,
+        species: "",
+        family: profile.marketCategory,
+        source: "https://www.fao.org/4/s2022e/s2022e07.htm",
+        temperature_c: { optimal: [21, 32], absolute: [12, 38] },
+        ph: { optimal: [5.2, 6.8], absolute: [4.5, 8.0] },
+        indicative_days: [105, 135],
+        indicative_water_mm: [450, 750],
+        local_checks: "Confirm local cultivar, drainage, and buyer price.",
+      },
+      climate: {
+        reference_days: 120,
+        complete_seasons: 10,
+        excluded_years: [],
+        temperature_c: { median: 27.1, min: 25.6, max: 28.4 },
+        rainfall_mm: { median: 680, min: 430, max: 960 },
+        longest_dry_run_days: { median: 6, min: 3, max: 11 },
+        temperature_matching_seasons: fitSeasons,
+        root_wetness: { median: 0.64, min: 0.48, max: 0.82 },
+      },
+      planting_reference: `${planningYear}-${String(plantingMonth).padStart(2, "0")}-01`,
+      indicative_harvest_window: [
+        `${planningYear}-${String(startMonth).padStart(2, "0")}-01`,
+        `${planningYear}-${String(endMonth).padStart(2, "0")}-15`,
+      ],
+      needs_checking: [
+        "Verify plant-available N-P-K and local buyer contract pricing.",
+      ],
+    };
+  });
+
+  return analyzeMarketTrends(syntheticCrops, areaHa, priceAdjustPct);
 }
