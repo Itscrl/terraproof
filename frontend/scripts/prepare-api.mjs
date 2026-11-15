@@ -34,12 +34,14 @@ await cp(
 if (process.platform === "linux") {
   const multiarch =
     process.arch === "arm64" ? "aarch64-linux-gnu" : "x86_64-linux-gnu";
-  const candidates = [
-    "/lib64/libexpat.so.1",
-    "/usr/lib64/libexpat.so.1",
-    `/lib/${multiarch}/libexpat.so.1`,
-    `/usr/lib/${multiarch}/libexpat.so.1`,
-  ];
+  const candidates = process.env.TERRAPROOF_EXPAT_LIBRARY
+    ? [process.env.TERRAPROOF_EXPAT_LIBRARY]
+    : [
+        "/lib64/libexpat.so.1",
+        "/usr/lib64/libexpat.so.1",
+        `/lib/${multiarch}/libexpat.so.1`,
+        `/usr/lib/${multiarch}/libexpat.so.1`,
+      ];
   let source;
   for (const candidate of candidates) {
     try {

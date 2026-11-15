@@ -13,6 +13,11 @@ The added AWS Python 3.12 container smoke test exercises native TIFF handling an
 packaged public routes. Docker was not running locally, so that check must execute
 in CI; deployment success must be verified against the public endpoints.
 
+After deployment `a8e5a89`, health, crop catalog and real Legazpi search all returned
+HTTP 200. The first container CI run correctly rejected an Ubuntu-native Expat
+requiring GLIBC_2.36. CI now stages Expat from the target Amazon Linux 2023 image
+via an explicit build-path override before running the same minimal-runtime check.
+
 ## Redesigned interface regression — 15 November 2026
 
 The supplied CI failures were caused by browser journeys targeting headings and

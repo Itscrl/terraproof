@@ -18,6 +18,16 @@ minimal runtime image and checks the packaged API plus a synthetic georeferenced
 TIFF. This checks native-loader compatibility beyond Ubuntu/Windows unit tests;
 it does not replace public deployment and real-provider checks below.
 
+The Ubuntu CI runner first acquires Expat from an official Amazon Linux 2023
+container and supplies its path through `TERRAPROOF_EXPAT_LIBRARY` during staging.
+Copying Ubuntu's own library into Lambda fails because it needs GLIBC_2.36.
+Vercel's Amazon Linux builder uses its system library by default. The override
+supports other Linux build environments; the library must match the target ABI.
+
+Public verification after `a8e5a89`: health, seven-profile catalog and real Legazpi
+place search all returned HTTP 200. This establishes startup and those requests,
+not full real-provider soil/season performance.
+
 ## Why search returned 404
 
 The Vite interface sends requests to /api on the same domain. The earlier static

@@ -163,6 +163,8 @@ local. A successful frontend build alone is not confirmation of working API rout
 The subsequent runtime log identified missing `libexpat.so.1` during Rasterio
 startup. Linux builds now bundle and preload that library; CI also checks the
 packaged API and a synthetic soil TIFF in a minimal Python runtime container.
+Public health, catalog and real place search passed after deployment `a8e5a89`.
+CI stages Expat from Amazon Linux for runtime compatibility when building on Ubuntu.
 
 ## Run locally
 
