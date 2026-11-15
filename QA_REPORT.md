@@ -183,3 +183,19 @@ backup, deployment gates and source-refresh procedures.
 - Synthetic fixtures establish interaction/calculation behavior, not agricultural
   accuracy. Live providers were not revalidated in this regression. No user trial,
   yield improvement, water saving or soil-health benefit is established.
+
+## Contributor startup fix — 15 November 2026
+
+- Reproduced the stale-build condition structurally: the previous launcher reused
+  an existing ignored `frontend/dist/index.html`; Git pulls cannot update it.
+- Updated Windows launcher exercised on isolated port 8017: frozen uv/pnpm setup,
+  TypeScript/Vite rebuild with Cesium runtime assets, then successful API startup.
+- Browser regression on port 8018: **5 passed, 1 live-provider test skipped**.
+  The legacy planning URL now explicitly asserts a visible globe canvas and valid
+  packaged Cesium asset JSON, outside the opt-in live-source test.
+- Linux/macOS launcher supplied with the same fail-fast sequence; not executed on
+  this Windows host. No new live-source or agricultural accuracy claim.
+- Tracked-data inventory confirms all five reference files, schemas and input
+  templates are in Git. Generated builds, caches and private local records remain
+  excluded. Current backend suite evidence remains the prior 49-test pass; no
+  Python application logic changed in this startup fix.

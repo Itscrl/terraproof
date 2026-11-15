@@ -68,6 +68,14 @@ test("saved plots, season records, laboratory notes and portable backups survive
       name: "Understand the soil beneath a region.",
     }),
   ).toBeVisible();
+  // The legacy calculator URL must load the globe and its packaged runtime,
+  // independently of the optional live soil-provider test.
+  await expect(page.locator(".cesium-widget canvas")).toBeVisible();
+  const globeAssets = await page.request.get(
+    "/cesium/Assets/approximateTerrainHeights.json",
+  );
+  expect(globeAssets.ok()).toBeTruthy();
+  expect(await globeAssets.json()).toBeTruthy();
   await expect(
     page.getByRole("button", { name: "Recalculate assumptions" }),
   ).toHaveCount(0);

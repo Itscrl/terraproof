@@ -136,6 +136,31 @@ and pnpm 11.25.0. All Python and JavaScript dependency resolutions are locked.
 The archived rice-pilot dataset needs no network connection. The global soil,
 planting and navigation features require access to their public data services.
 
+### Recommended start after cloning or pulling
+
+Stop the previous server with Ctrl+C, then run from the repository root:
+
+```powershell
+git pull --ff-only origin main
+.\scripts\dev.ps1
+```
+
+On Linux/macOS, run `sh scripts/dev.sh` after pulling. These launchers install
+locked dependencies and **rebuild the frontend before every start**. They stop
+if setup or compilation fails. Windows accepts `-Port 8001`; Linux/macOS accepts
+`PORT=8001 sh scripts/dev.sh` when the default port is occupied.
+
+**Still seeing the old calculator?** `frontend/dist/` is generated and ignored by
+Git, so a pull alone cannot replace an older local build. Stop the old server,
+run the launcher above, open `http://127.0.0.1:8000/`, and refresh with Ctrl+F5
+(Cmd+Shift+R on macOS). Confirm that you are running the checkout you just pulled.
+Starting uvicorn directly serves whatever frontend build is already on disk.
+The globe needs a browser with WebGL and network access for imagery; coordinate
+entry remains available when 3D rendering cannot start. This is different from
+seeing the old calculator, which indicates an older app build or server.
+
+### Manual setup
+
 From this repository in PowerShell:
 
 ```powershell
@@ -150,7 +175,8 @@ uv run uvicorn terraproof.api:app --host 127.0.0.1 --port 8000
 Open **[http://127.0.0.1:8000](http://127.0.0.1:8000)** for the globe. Port 8000 is
 the default local launch address; earlier review checks also used port 8001.
 Public hosting is the product target; this preview address is for acceptance testing.
-Subsequent starts can use `./scripts/dev.ps1`. On Linux/macOS use `cd` instead of
+Use `./scripts/dev.ps1` or `sh scripts/dev.sh` for subsequent starts so source
+changes are rebuilt. In the manual commands on Linux/macOS, use `cd` instead of
 `Set-Location`. Run from this checkout; reference data and frontend build are shipped
 alongside the Python source, rather than packaged into a standalone wheel.
 
@@ -292,3 +318,19 @@ validation status and limits. [Rotation methods](docs/rotation-comparison.md)
 define the implemented rules. Current verification: **49 Python tests passed**,
 **5 browser tests passed / 1 live-data test skipped**, lint/format and production
 build passed. Earlier progress snapshots retain their original dates and scope.
+
+## Contributor handoff: what Git includes
+
+The repository includes the current globe, soil assessment, crop guide, two-season
+rotation comparison, farm-notebook code, all dependency locks, tests, methods and
+submission documents. `data/reference/` includes the archived NASA POWER pilot,
+quality report, FAO crop profiles and research rainfall model/model card. Schemas
+and empty input templates are also tracked. Live regional SoilGrids, WoSIS, POWER
+and NEX responses are retrieved as needed and cached locally; a contributor needs
+network access for those workflows, not another person's cache or login records.
+
+Generated `frontend/dist/`, dependencies, test captures, source caches and local
+SQLite/browser farm records are not shared through Git. The launchers regenerate
+the frontend with its Cesium assets. Local supplied HDF5 files remain excluded:
+they failed integrity checks and are not inputs to the implemented application.
+These exclusions do not remove a working feature or its bundled reference data.
