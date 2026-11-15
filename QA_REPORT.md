@@ -210,3 +210,20 @@ backup, deployment gates and source-refresh procedures.
   templates are in Git. Generated builds, caches and private local records remain
   excluded. Current backend suite evidence remains the prior 49-test pass; no
   Python application logic changed in this startup fix.
+
+## Vercel API wiring — 15 November 2026
+
+Public checks before the fix returned 404 from both `/api/health` and place search.
+Added `frontend/api/index.py`, explicit same-origin rewrites, a web-runtime
+requirements file and Python 3.12 selection. Build staging includes source and
+public references only; caches and private data are excluded. Public storage goes
+to the system temporary directory; local/private comparison APIs remain blocked.
+Research inference is excluded from the lightweight function and remains local.
+
+- Python suite: **50 passed**, including an isolated staged-function process with
+  health, mocked search provider, real bundled crop catalog, host/public-mode and
+  missing-route checks. This does not establish public upstream availability.
+- Frontend production build: passed; 342 Cesium runtime files copied. Existing
+  Cesium bundle-size warning remains. No UI code changed in this deployment fix.
+- Live Vercel routing and provider responses require post-deployment verification.
+  Root Directory must be frontend and outside-root build sources must be included.

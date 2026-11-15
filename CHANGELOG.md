@@ -93,6 +93,12 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Fixed
 
+- Add the missing Vercel FastAPI entrypoint and API rewrites for the frontend-root
+  project, with packaged public reference data, Python 3.12/web dependencies,
+  temporary writable cache storage and public-mode private-record isolation.
+- Add an isolated deployment-package regression test covering health/search routing,
+  catalog access and disabled private/research endpoints; document Vercel settings.
+
 - Restore the production TypeScript build after the interface update: remove unused
   imports/state setter and forward optional crop-illustration styling classes to
   the SVG while preserving its existing classes. Strict compiler checks remain enabled.

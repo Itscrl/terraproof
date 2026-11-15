@@ -129,6 +129,17 @@ The pilot is an illustrative rice calendar near Legazpi, Albay, Philippines
 2015–2025 NASA dataset. The planning workflow does **not** forecast weather, predict crop damage,
 recommend a winning plan, or validate a particular rice variety.
 
+## Vercel backend deployment
+
+The public frontend was deployed, but `/api/health` and place search returned 404.
+The repository now supplies a Python function and same-origin API routing in the
+`frontend` Vercel project. See [Vercel setup and verification](docs/vercel-deployment.md).
+Use Root Directory **frontend**, Framework **Vite**, and enable inclusion of source
+files outside the root directory during the build. The build copies the Python
+source and public references into an ignored deployment bundle. Python 3.12 and
+web dependencies are declared alongside that project; training dependencies remain
+local. A successful frontend build alone is not confirmation of working API routes.
+
 ## Run locally
 
 Requirements: Python 3.12+, [uv](https://docs.astral.sh/uv/), Node 24,
