@@ -1581,3 +1581,101 @@
     flex-basis: 100%;
   }
 }
+.rotation-guide fieldset {
+  border: 1px solid #cdd6d0;
+  border-radius: 8px;
+  padding: 18px;
+  margin: 20px 0;
+  min-width: 0;
+}
+.rotation-guide legend {
+  font-size: 17px;
+  font-weight: 500;
+  padding: 0 6px;
+}
+.rotation-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.rotation-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 15px;
+}
+.rotation-fields select,
+.rotation-fields input {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px;
+  border: 1px solid #cdd6d0;
+  border-radius: 6px;
+  background: #fff;
+  color: #18221e;
+  font: inherit;
+}
+.rotation-instructions,
+.farmer-start ol {
+  padding-left: 24px;
+}
+.rotation-instructions li,
+.farmer-start li {
+  margin: 10px 0;
+}
+.rotation-guide p,
+.rotation-guide li,
+.farmer-start li {
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 75ch;
+}
+.rotation-option {
+  border-top: 1px solid #cdd6d0;
+  padding: 24px 0;
+}
+.rotation-option h4 {
+  font-size: 21px;
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+.rotation-option h5 {
+  font-size: 17px;
+  margin: 18px 0 8px;
+}
+.rotation-status {
+  color: #246c61;
+}
+.rotation-seasons {
+  padding-left: 24px;
+}
+.rotation-guide button,
+.rotation-guide summary,
+.farmer-start a {
+  min-height: 44px;
+}
+.rotation-guide summary {
+  cursor: pointer;
+  padding: 10px 0;
+}
+.rotation-guide a,
+.farmer-start a {
+  color: #246c61;
+  text-underline-offset: 3px;
+}
+.rotation-guide :focus-visible,
+.farmer-start a:focus-visible {
+  outline: 3px solid #126a82;
+  outline-offset: 3px;
+}
+@media (max-width: 700px) {
+  .rotation-fields {
+    grid-template-columns: 1fr;
+  }
+  .rotation-guide fieldset {
+    padding: 14px;
+  }
+  .rotation-option h4 {
+    font-size: 19px;
+  }
+}
