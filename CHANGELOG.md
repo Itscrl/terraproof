@@ -4,6 +4,11 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ## [Unreleased]
 
+### Fixed
+
+- Added a standalone Vercel place-search function for frontend deployments,
+  with cached country/town/address lookups and deployment instructions.
+
 ### Added
 
 - Guided two-season crop-rotation comparisons with current practice and two chosen
