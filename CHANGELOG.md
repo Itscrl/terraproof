@@ -93,6 +93,10 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Fixed
 
+- Restore the production TypeScript build after the interface update: remove unused
+  imports/state setter and forward optional crop-illustration styling classes to
+  the SVG while preserving its existing classes. Strict compiler checks remain enabled.
+
 - Startup scripts now install frozen dependencies and rebuild the ignored frontend
   output before starting the server, preventing an old calculator build after a
   pull. Added a Linux/macOS launcher and documented refresh/port troubleshooting.

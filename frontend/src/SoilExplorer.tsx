@@ -37,7 +37,6 @@ import PrintableReport from "./PrintableReport";
 import {
   BrandIcon,
   ClimateMarketGraphic,
-  CropShowcaseStrip,
   PrintableBriefGraphic,
   SatelliteSoilGraphic,
   SoilHorizonIllustration,
@@ -261,8 +260,6 @@ export default function SoilExplorer() {
 
   const daily = report?.wetness.daily;
   const last = daily?.at(-1);
-  const available =
-    report?.properties.filter((p) => p.status === "available").length ?? 0;
   const soilPhMedian =
     report?.properties.find((p) => p.id === "phh2o")?.median ?? 5.6;
 

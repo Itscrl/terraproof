@@ -1,5 +1,16 @@
 # Local MVP verification
 
+## Production TypeScript build repair — 15 November 2026
+
+Pulled interface revision `2d305c6` and reproduced its production build errors.
+Removed unused React/showcase imports, an unused property-count variable and an
+unused price-adjustment state setter (the adjustment remains zero). Added an
+optional crop-illustration `className` prop that preserves the base SVG classes.
+`pnpm build` now passes TypeScript and Vite with strict unused-symbol checks intact;
+342 Cesium runtime assets are copied. The existing large Cesium chunk warning is
+non-blocking. This verifies the local build command used in the supplied Vercel
+log, not a completed Vercel deployment or renewed full UI regression.
+
 ## Pre-push regression — 15 November 2026
 
 - Python lint and formatting: passed (`ruff check src tests` and

@@ -150,7 +150,7 @@ export default function PrintableReport({
   const [audience, setAudience] = useState<AudienceMode>("standard");
   const [farmName, setFarmName] = useState("Albay Family Farm Guide");
   const [activeCropIdx, setActiveCropIdx] = useState(0);
-  const [priceAdjustPct, setPriceAdjustPct] = useState(0);
+  const priceAdjustPct = 0;
   const [showCostBreakdown, setShowCostBreakdown] = useState(false);
   const [showTrendChart, setShowTrendChart] = useState(false);
   const [rotationCropId, setRotationCropId] =

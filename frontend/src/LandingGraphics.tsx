@@ -1,4 +1,3 @@
-import React from "react";
 import type { MonthlyPricePoint } from "./market-trends";
 
 /**
@@ -179,9 +178,11 @@ export function BrandIcon({ size = 34 }: { size?: number }) {
 export function CropIllustration({
   cropId,
   size = 56,
+  className,
 }: {
   cropId: string;
   size?: number;
+  className?: string;
 }) {
   const id = cropId.toLowerCase();
 
@@ -190,7 +191,9 @@ export function CropIllustration({
       viewBox="0 0 80 80"
       width={size}
       height={size}
-      className={`crop-pic-svg crop-pic-${id}`}
+      className={["crop-pic-svg", `crop-pic-${id}`, className]
+        .filter(Boolean)
+        .join(" ")}
       role="img"
       aria-label={`${cropId} illustration`}
     >
