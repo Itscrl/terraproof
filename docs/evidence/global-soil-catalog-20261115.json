@@ -1,0 +1,871 @@
+{
+  "retrieved_at": "2026-11-15T00:45:18.410920+00:00",
+  "scope": "Public discovery only; assets not downloaded, decoded or validated",
+  "collections": {
+    "soil_baseline_hwsd": {
+      "query": {
+        "doi": "10.3334/ORNLDAAC/1247"
+      },
+      "url": "https://cmr.earthdata.nasa.gov/search/collections.json?doi=10.3334%2FORNLDAAC%2F1247&page_size=20",
+      "http_status": 200,
+      "sha256": "cd8f1a90db95b125b05f261865fee3271120622803b966ea6127ff0f13425c9d",
+      "hits": "1",
+      "candidates": [
+        {
+          "id": "C2216863856-ORNL_CLOUD",
+          "short_name": "HWSD_1247",
+          "version_id": "1",
+          "dataset_id": "Regridded Harmonized World Soil Database v1.2",
+          "links": [
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://search.earthdata.nasa.gov/search/granules?p=C2216863856-ORNL_CLOUD"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+              "hreflang": "en-US",
+              "href": "https://doi.org/10.3334/ORNLDAAC/1247"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+              "hreflang": "en-US",
+              "href": "https://opendap.earthdata.nasa.gov/"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://data.ornldaac.earthdata.nasa.gov/protected/bundle/HWSD_1247.zip"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+              "hreflang": "en-US",
+              "href": "https://daac.ornl.gov/graphics/browse/sdat-tds/1247_1_fit.png"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://data.ornldaac.earthdata.nasa.gov/public/global_soil/HWSD/comp/HWSD.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://data.ornldaac.earthdata.nasa.gov/public/global_soil/HWSD/comp/HWSD.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://data.ornldaac.earthdata.nasa.gov/public/global_soil/HWSD/comp/HWSD1.2_documentation.pdf"
+            }
+          ]
+        }
+      ],
+      "status": "review_candidates"
+    },
+    "historical_microbial_cnp": {
+      "query": {
+        "doi": "10.3334/ORNLDAAC/1264"
+      },
+      "url": "https://cmr.earthdata.nasa.gov/search/collections.json?doi=10.3334%2FORNLDAAC%2F1264&page_size=20",
+      "http_status": 200,
+      "sha256": "ce09b64fc402399207fb228e6b5b49f42bb6b85855945b5de8f233550cc6d0e3",
+      "hits": "1",
+      "candidates": [
+        {
+          "id": "C2216863966-ORNL_CLOUD",
+          "short_name": "Global_Microbial_Biomass_C_N_P_1264",
+          "version_id": "1",
+          "dataset_id": "A Compilation of Global Soil Microbial Biomass Carbon, Nitrogen, and Phosphorus Data",
+          "links": [
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://search.earthdata.nasa.gov/search/granules?p=C2216863966-ORNL_CLOUD"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+              "hreflang": "en-US",
+              "href": "https://doi.org/10.3334/ORNLDAAC/1264"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://data.ornldaac.earthdata.nasa.gov/protected/bundle/Global_Microbial_Biomass_C_N_P_1264.zip"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+              "hreflang": "en-US",
+              "href": "https://daac.ornl.gov/SOILS/guides/fig_1_global_biomass.png"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://data.ornldaac.earthdata.nasa.gov/public/global_soil/Global_Microbial_Biomass_C_N_P/comp/XuXF2013_GEB.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://data.ornldaac.earthdata.nasa.gov/public/global_soil/Global_Microbial_Biomass_C_N_P/comp/XuXF2013_GEB.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://data.ornldaac.earthdata.nasa.gov/public/global_soil/Global_Microbial_Biomass_C_N_P/comp/Global_Microbial_Biomass_C_N_P.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://data.ornldaac.earthdata.nasa.gov/public/global_soil/Global_Microbial_Biomass_C_N_P/comp/Soil_Microbial_Biomass_C_N_P_references.csv"
+            }
+          ]
+        }
+      ],
+      "status": "review_candidates"
+    },
+    "moisture_smap": {
+      "query": {
+        "short_name": "SPL4SMGP",
+        "version": "008"
+      },
+      "url": "https://cmr.earthdata.nasa.gov/search/collections.json?short_name=SPL4SMGP&version=008&page_size=20",
+      "http_status": 200,
+      "sha256": "9aa1fa0587915fde692ade1f49ecb378276076110c3927d7f69543ab9ebc756c",
+      "hits": "1",
+      "candidates": [
+        {
+          "id": "C3480440870-NSIDC_CPRD",
+          "short_name": "SPL4SMGP",
+          "version_id": "008",
+          "dataset_id": "SMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data V008",
+          "links": [
+            {
+              "length": "0.0KB",
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://search.earthdata.nasa.gov/search/granules?p=C3480440870-NSIDC_CPRD"
+            },
+            {
+              "length": "0.0KB",
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://cmr.earthdata.nasa.gov/virtual-directory/collections/C3480440870-NSIDC_CPRD"
+            },
+            {
+              "length": "0.0KB",
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://nsidc.org/data/data-access-tool/SPL4SMGP/versions/8/"
+            },
+            {
+              "length": "0.0KB",
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://appeears.earthdatacloud.nasa.gov/"
+            },
+            {
+              "length": "0.0KB",
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://earthaccess.readthedocs.io/en/stable/"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+              "hreflang": "en-US",
+              "href": "https://worldview.earthdata.nasa.gov/?v=-203.53279034494884,2.987241956863528,1.560533905732342,102.54974195686353&l=SMAP_L4_Snow_Mass,Coastlines_15m,MODIS_Terra_CorrectedReflectance_TrueColor&lg=true&t=2025-09-03-T19%3A07%3A19Z"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+              "hreflang": "en-US",
+              "href": "https://doi.org/10.5067/T5RUATAQREF8"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://doi.org/10.5067/T5RUATAQREF8"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://nsidc.org/sites/default/files/documents/user-guide/multi_spl4smau-v008-userguide.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://nsidc.org/sites/default/files/documents/technical-reference/smap_l4_sm_psd_v17_for_l4sm_version_8.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://nsidc.org/sites/default/files/272_l4_sm_reva_web_0.pdf"
+            }
+          ]
+        }
+      ],
+      "status": "review_candidates"
+    },
+    "reflectance_hls_landsat": {
+      "query": {
+        "short_name": "HLSL30",
+        "version": "2.0"
+      },
+      "url": "https://cmr.earthdata.nasa.gov/search/collections.json?short_name=HLSL30&version=2.0&page_size=20",
+      "http_status": 200,
+      "sha256": "b0033667716acb6392722d0a9930a6a9ab5c7d7e26fdfdb5a15a36dbad726305",
+      "hits": "1",
+      "candidates": [
+        {
+          "id": "C2021957657-LPCLOUD",
+          "short_name": "HLSL30",
+          "version_id": "2.0",
+          "dataset_id": "HLS Landsat Operational Land Imager Surface Reflectance and TOA Brightness Daily Global 30m v2.0",
+          "links": [
+            {
+              "length": "20MB",
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://search.earthdata.nasa.gov/search/granules?p=C2021957657-LPCLOUD"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+              "hreflang": "en-US",
+              "href": "https://doi.org/10.5067/HLS/HLSL30.002"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+              "hreflang": "en-US",
+              "href": "https://www.earthdata.nasa.gov/centers/lp-daac"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://lpdaac.usgs.gov/documents/1698/HLS_User_Guide_V2.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://lpdaac.usgs.gov/documents/769/HLS_ATBD_V15_provisional.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://lpdaac.usgs.gov/documents/1117/HLS_Quick_Guide_v02.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://github.com/nasa/HLS-Data-Resources/blob/main/python/tutorials/HLS_Tutorial.ipynb"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://github.com/nasa/HLS-Data-Resources/tree/main/python/scripts/HLS_SuPER"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+              "hreflang": "en-US",
+              "href": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-public/HLSL30.020/HLS.L30.T03WXN.2024206T221402.v2.0/HLS.L30.T03WXN.2024206T221402.v2.0.jpg"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://github.com/nasa/HLS-Data-Resources/tree/main/bash/hls-bulk-download"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://github.com/nasa/HLS-Data-Resources/blob/main/r/HLS_Tutorial.Rmd"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://appeears.earthdatacloud.nasa.gov/"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+              "hreflang": "en-US",
+              "href": "https://worldview.earthdata.nasa.gov/images/layers/previews/geographic/HLS_L30_Nadir_BRDF_Adjusted_Reflectance.jpg"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://lpdaac.usgs.gov/documents/2434/HLS_v2.0_L30_known_issues_April2026.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://database.eohandbook.com/database/instrumentsummary.aspx?instrumentID=897"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://database.eohandbook.com/database/instrumentsummary.aspx?instrumentID=1769"
+            }
+          ]
+        }
+      ],
+      "status": "review_candidates"
+    },
+    "reflectance_hls_sentinel": {
+      "query": {
+        "short_name": "HLSS30",
+        "version": "2.0"
+      },
+      "url": "https://cmr.earthdata.nasa.gov/search/collections.json?short_name=HLSS30&version=2.0&page_size=20",
+      "http_status": 200,
+      "sha256": "df56008aa75de53ea18e8d9cffb35e96baba7f6f21d91e79b567aa32c0bfc772",
+      "hits": "1",
+      "candidates": [
+        {
+          "id": "C2021957295-LPCLOUD",
+          "short_name": "HLSS30",
+          "version_id": "2.0",
+          "dataset_id": "HLS Sentinel-2 Multi-spectral Instrument Surface Reflectance Daily Global 30m v2.0",
+          "links": [
+            {
+              "length": "20MB",
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://search.earthdata.nasa.gov/search/granules?p=C2021957295-LPCLOUD"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+              "hreflang": "en-US",
+              "href": "https://doi.org/10.5067/HLS/HLSS30.002"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+              "hreflang": "en-US",
+              "href": "https://www.earthdata.nasa.gov/centers/lp-daac"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://lpdaac.usgs.gov/documents/1698/HLS_User_Guide_V2.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://lpdaac.usgs.gov/documents/769/HLS_ATBD_V15_provisional.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://lpdaac.usgs.gov/documents/1117/HLS_Quick_Guide_v02.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://github.com/nasa/HLS-Data-Resources/blob/main/python/tutorials/HLS_Tutorial.ipynb"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://github.com/nasa/HLS-Data-Resources/tree/main/python/scripts/HLS_SuPER"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+              "hreflang": "en-US",
+              "href": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-public/HLSS30.020/HLS.S30.T12WXS.2024206T183919.v2.0/HLS.S30.T12WXS.2024206T183919.v2.0.jpg"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://github.com/nasa/HLS-Data-Resources/tree/main/bash/hls-bulk-download"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://github.com/nasa/HLS-Data-Resources/blob/main/r/HLS_Tutorial.Rmd"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://appeears.earthdatacloud.nasa.gov/"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+              "hreflang": "en-US",
+              "href": "https://worldview.earthdata.nasa.gov/images/layers/previews/geographic/HLS_S30_Nadir_BRDF_Adjusted_Reflectance.jpg"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://lpdaac.usgs.gov/documents/2435/HLS_v2.0_S30_known_issues_April2026.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://database.eohandbook.com/database/instrumentsummary.aspx?instrumentID=940"
+            }
+          ]
+        }
+      ],
+      "status": "review_candidates"
+    },
+    "precipitation_imerg": {
+      "query": {
+        "short_name": "GPM_3IMERGHH",
+        "version": "07"
+      },
+      "url": "https://cmr.earthdata.nasa.gov/search/collections.json?short_name=GPM_3IMERGHH&version=07&page_size=20",
+      "http_status": 200,
+      "sha256": "2cb08c0f6abddca88b1c6505240f28a799da4db7755712e053604811a5633dff",
+      "hits": "1",
+      "candidates": [
+        {
+          "id": "C2723754847-GES_DISC",
+          "short_name": "GPM_3IMERGHH",
+          "version_id": "07",
+          "dataset_id": "GPM IMERG Final Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V07 (GPM_3IMERGHH)",
+          "links": [
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+              "hreflang": "en-US",
+              "href": "https://docserver.gesdisc.eosdis.nasa.gov/public/project/GPM/browse/GPM_3IMERGHH_07.png"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+              "hreflang": "en-US",
+              "href": "https://www.earthdata.nasa.gov/data/catalog/ges-disc-m2t3npqdt-5.12.4"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://cmr.earthdata.nasa.gov/virtual-directory/collections/C2723754847-GES_DISC/temporal"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+              "hreflang": "en-US",
+              "href": "https://giovanni.gsfc.nasa.gov/#dataKeyword=IMERGHH"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+              "hreflang": "en-US",
+              "href": "https://cmr.earthdata.nasa.gov/virtual-directory/collections/C2723754847-GES_DISC/temporal"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://search.earthdata.nasa.gov/search/granules?p=C2723754847-GES_DISC"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://arthurhou.pps.eosdis.nasa.gov/Documents/IMERG_V07_ATBD_final.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://arthurhou.pps.eosdis.nasa.gov/Documents/IMERG_TechnicalDocumentation_final.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://docserver.gesdisc.eosdis.nasa.gov/public/project/GPM/IMERGV06_QI.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://docserver.gesdisc.eosdis.nasa.gov/public/project/GPM/IMERGV06_TRMMera-caveats.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/doc/README.GPM.pdf"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://gpm.nasa.gov/resources/documents/imerg-v07-release-notes"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://gpmweb2https.pps.eosdis.nasa.gov/tsdis/AB/docs/gpm_anomalous.html"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+              "hreflang": "en-US",
+              "href": "https://gpm.nasa.gov"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://disc.gsfc.nasa.gov/information/tools?title=Hydrology%20Time%20Series"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+              "hreflang": "en-US",
+              "href": "https://worldview.earthdata.nasa.gov/?z=4&ics=true&ici=5&icd=30&l=Reference_Labels_15m(hidden),Reference_Features_15m(hidden),Coastlines_15m,IMERG_Precipitation_Rate,IMERG_Precipitation_Rate_30min,OCI_PACE_True_Color(hidden),VIIRS_NOAA21_CorrectedReflectance_TrueColor(hidden),VIIRS_NOAA20_CorrectedReflectance_TrueColor(hidden),VIIRS_SNPP_CorrectedReflectance_TrueColor(hidden),MODIS_Aqua_CorrectedReflectance_TrueColor(hidden),MODIS_Terra_CorrectedReflectance_TrueColor&lg=true&t=2026-03-16-T17%3A17%3A59Z"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://journals.ametsoc.org/view/journals/apme/aop/JAMC-D-20-0253.1/JAMC-D-20-0253.1.xml"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://journals.ametsoc.org/doi/full/10.1175/JAM2173.1"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "http://journals.ametsoc.org/doi/10.1175/JHM-D-11-022.1"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "ftp://gpmweb2.pps.eosdis.nasa.gov/pub/GPMfilespec/filespec.GPM.pdf"
+            }
+          ]
+        }
+      ],
+      "status": "review_candidates"
+    },
+    "radar_nisar": {
+      "query": {
+        "short_name": "NISAR_L2_GCOV_V1"
+      },
+      "url": "https://cmr.earthdata.nasa.gov/search/collections.json?short_name=NISAR_L2_GCOV_V1&page_size=20",
+      "http_status": 200,
+      "sha256": "a7cab78a33544ee194fd5ba9a9da34dc67bcac76a6aeed317eda20e9b9434186",
+      "hits": "1",
+      "candidates": [
+        {
+          "id": "C3622241360-ASF",
+          "short_name": "NISAR_L2_GCOV_V1",
+          "version_id": "1",
+          "dataset_id": "NISAR Validated Geocoded Polarimetric Covariance Product (Version 1)",
+          "links": [
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://search.asf.alaska.edu/"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://search.earthdata.nasa.gov/search/granules?p=C3622241360-ASF"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+              "hreflang": "en-US",
+              "href": "https://nisar.jpl.nasa.gov/"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://nisar-docs.asf.alaska.edu/gcov/"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://cumulus.asf.earthdatacloud.nasa.gov/PUBLIC/DATA/NISAR/NISAR_D-102274_RevF_NASA_SDS_Product_Specification_L2_GCOV_w-esigs.pdf"
+            }
+          ]
+        }
+      ],
+      "status": "review_candidates"
+    },
+    "moisture_nisar": {
+      "query": {
+        "short_name": "NISAR_L3_SME2_PROVISIONAL_V1"
+      },
+      "url": "https://cmr.earthdata.nasa.gov/search/collections.json?short_name=NISAR_L3_SME2_PROVISIONAL_V1&page_size=20",
+      "http_status": 200,
+      "sha256": "e7a28336965748bcfe28e3df283bba1768df6a2c7f8c2587a2706a7692211d75",
+      "hits": "1",
+      "candidates": [
+        {
+          "id": "C2854344945-ASF",
+          "short_name": "NISAR_L3_SME2_PROVISIONAL_V1",
+          "version_id": "1",
+          "dataset_id": "NISAR Provisional Soil Moisture (Version 1)",
+          "links": [
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://search.asf.alaska.edu/"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+              "hreflang": "en-US",
+              "href": "https://search.earthdata.nasa.gov/search/granules?p=C2854344945-ASF"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+              "hreflang": "en-US",
+              "href": "https://nisar.jpl.nasa.gov/"
+            },
+            {
+              "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+              "hreflang": "en-US",
+              "href": "https://nisar-docs.asf.alaska.edu/sme2/"
+            }
+          ]
+        }
+      ],
+      "status": "review_candidates"
+    }
+  },
+  "appeears": {
+    "url": "https://appeears.earthdatacloud.nasa.gov/api/product",
+    "http_status": 200,
+    "sha256": "c0244fcd0a3e3cd00d026c393b39899b0a44d3375051160b4994bf69a1e4ff45",
+    "matching_products": [
+      {
+        "Product": "SPL3SMP_E",
+        "Platform": "SMAP",
+        "Description": "Enhanced L3 Radiometer Soil Moisture",
+        "RasterType": "Tile",
+        "Resolution": "9000m",
+        "TemporalGranularity": "Daily",
+        "Version": "006",
+        "Available": true,
+        "DocLink": "https://doi.org/10.5067/M20OXIZHY3RJ",
+        "Source": "NSIDC DAAC",
+        "TemporalExtentStart": "2015-03-31",
+        "TemporalExtentEnd": "Present",
+        "Deleted": false,
+        "DOI": "10.5067/M20OXIZHY3RJ",
+        "Info": {
+          "provider_id": "nsidc_cumulus_prod",
+          "collection_concept_id": "C2938664763-NSIDC_CPRD"
+        },
+        "ProductAndVersion": "SPL3SMP_E.006"
+      },
+      {
+        "Product": "SPL3SMP",
+        "Platform": "SMAP",
+        "Description": "Soil Moisture",
+        "RasterType": "Tile",
+        "Resolution": "36000m",
+        "TemporalGranularity": "Daily",
+        "Version": "009",
+        "Available": true,
+        "DocLink": "https://doi.org/10.5067/4XXOGX0OOW1S",
+        "Source": "NSIDC DAAC",
+        "TemporalExtentStart": "2015-03-31",
+        "TemporalExtentEnd": "Present",
+        "Deleted": false,
+        "DOI": "10.5067/4XXOGX0OOW1S",
+        "Info": {
+          "provider_id": "nsidc_cumulus_prod",
+          "collection_concept_id": "C2938664585-NSIDC_CPRD"
+        },
+        "ProductAndVersion": "SPL3SMP.009"
+      },
+      {
+        "Product": "SPL4SMGP",
+        "Platform": "SMAP",
+        "Description": "Surface and Root Zone Soil Moisture",
+        "RasterType": "Tile",
+        "Resolution": "9000m",
+        "TemporalGranularity": "Daily",
+        "Version": "008",
+        "Available": true,
+        "DocLink": "https://doi.org/10.5067/T5RUATAQREF8",
+        "Source": "NSIDC DAAC",
+        "TemporalExtentStart": "2015-03-31",
+        "TemporalExtentEnd": "Present",
+        "Deleted": false,
+        "DOI": "10.5067/T5RUATAQREF8",
+        "Info": {
+          "provider_id": "nsidc_cumulus_prod",
+          "collection_concept_id": "C3480440870-NSIDC_CPRD",
+          "cmr_date_parse": "datetime"
+        },
+        "ProductAndVersion": "SPL4SMGP.008"
+      },
+      {
+        "Product": "HLSS30",
+        "Platform": "Harmonized Landsat and Sentinel-2",
+        "Description": "Land Surface Reflectance",
+        "RasterType": "Tile",
+        "Resolution": "30m",
+        "TemporalGranularity": "Daily",
+        "Version": "020",
+        "Available": true,
+        "DocLink": "https://doi.org/10.5067/HLS/HLSS30.002",
+        "Source": "LP DAAC",
+        "TemporalExtentStart": "2015-11-28",
+        "TemporalExtentEnd": "Present",
+        "Deleted": false,
+        "DOI": "10.5067/HLS/HLSS30.002",
+        "Info": {
+          "provider_id": "lp_prod",
+          "is_utm_zonal": true,
+          "extension": "tif",
+          "cmr_date_parse": "date"
+        },
+        "ProductAndVersion": "HLSS30.020"
+      },
+      {
+        "Product": "HLSS30_VI",
+        "Platform": "Harmonized Landsat and Sentinel-2",
+        "Description": "Vegetation Indices",
+        "RasterType": "Tile",
+        "Resolution": "30m",
+        "TemporalGranularity": "Daily",
+        "Version": "020",
+        "Available": true,
+        "DocLink": "https://dx.doi.org/10.5067/HLS/HLSS30_VI.002",
+        "Source": "LP DAAC",
+        "TemporalExtentStart": "2015-11-28",
+        "TemporalExtentEnd": "Present",
+        "Deleted": false,
+        "DOI": "10.5067/HLS/HLSS30_VI.002",
+        "Info": {
+          "provider_id": "lp_prod",
+          "is_utm_zonal": true,
+          "extension": "tif",
+          "cmr_date_parse": "date"
+        },
+        "ProductAndVersion": "HLSS30_VI.020"
+      },
+      {
+        "Product": "HLSL30",
+        "Platform": "Harmonized Landsat and Sentinel-2",
+        "Description": "Land Surface Reflectance",
+        "RasterType": "Tile",
+        "Resolution": "30m",
+        "TemporalGranularity": "Daily",
+        "Version": "020",
+        "Available": true,
+        "DocLink": "https://doi.org/10.5067/HLS/HLSL30.002",
+        "Source": "LP DAAC",
+        "TemporalExtentStart": "2013-04-11",
+        "TemporalExtentEnd": "Present",
+        "Deleted": false,
+        "DOI": "10.5067/HLS/HLSL30.002",
+        "Info": {
+          "provider_id": "lp_prod",
+          "is_utm_zonal": true,
+          "extension": "tif",
+          "cmr_date_parse": "date"
+        },
+        "ProductAndVersion": "HLSL30.020"
+      },
+      {
+        "Product": "HLSL30_VI",
+        "Platform": "Harmonized Landsat and Sentinel-2",
+        "Description": "Vegetation Indices",
+        "RasterType": "Tile",
+        "Resolution": "30m",
+        "TemporalGranularity": "Daily",
+        "Version": "020",
+        "Available": true,
+        "DocLink": "https://dx.doi.org/10.5067/HLS/HLSL30_VI.002",
+        "Source": "LP DAAC",
+        "TemporalExtentStart": "2013-04-11",
+        "TemporalExtentEnd": "Present",
+        "Deleted": false,
+        "DOI": "10.5067/HLS/HLSL30_VI.002",
+        "Info": {
+          "provider_id": "lp_prod",
+          "is_utm_zonal": true,
+          "extension": "tif",
+          "cmr_date_parse": "date"
+        },
+        "ProductAndVersion": "HLSL30_VI.020"
+      }
+    ],
+    "limits": "A product listing does not verify any layer or authenticated extraction",
+    "layers": {
+      "SPL4SMGP.008": {
+        "sha256": "2ebbcf46cd368d447b756dc4ada99896c41f97a7d572ef35fb29f0a83864f3d3",
+        "layer_names": [
+          "Geophysical_Data_baseflow_flux",
+          "Geophysical_Data_depth_to_water_table_from_surface",
+          "Geophysical_Data_free_surface_water_on_peat_flux",
+          "Geophysical_Data_heat_flux_ground",
+          "Geophysical_Data_heat_flux_latent",
+          "Geophysical_Data_heat_flux_sensible",
+          "Geophysical_Data_height_lowatmmodlay",
+          "Geophysical_Data_land_evapotranspiration_flux",
+          "Geophysical_Data_land_fraction_saturated",
+          "Geophysical_Data_land_fraction_snow_covered",
+          "Geophysical_Data_land_fraction_unsaturated",
+          "Geophysical_Data_land_fraction_wilting",
+          "Geophysical_Data_leaf_area_index",
+          "Geophysical_Data_mwrtm_vegopacity",
+          "Geophysical_Data_net_downward_longwave_flux",
+          "Geophysical_Data_net_downward_shortwave_flux",
+          "Geophysical_Data_overland_runoff_flux",
+          "Geophysical_Data_precipitation_total_surface_flux",
+          "Geophysical_Data_radiation_longwave_absorbed_flux",
+          "Geophysical_Data_radiation_shortwave_downward_flux",
+          "Geophysical_Data_sm_profile",
+          "Geophysical_Data_sm_profile_pctl",
+          "Geophysical_Data_sm_profile_wetness",
+          "Geophysical_Data_sm_rootzone",
+          "Geophysical_Data_sm_rootzone_pctl",
+          "Geophysical_Data_sm_rootzone_wetness",
+          "Geophysical_Data_sm_surface",
+          "Geophysical_Data_sm_surface_wetness",
+          "Geophysical_Data_snow_depth",
+          "Geophysical_Data_snow_mass",
+          "Geophysical_Data_snow_melt_flux",
+          "Geophysical_Data_snowfall_surface_flux",
+          "Geophysical_Data_soil_temp_layer1",
+          "Geophysical_Data_soil_temp_layer2",
+          "Geophysical_Data_soil_temp_layer3",
+          "Geophysical_Data_soil_temp_layer4",
+          "Geophysical_Data_soil_temp_layer5",
+          "Geophysical_Data_soil_temp_layer6",
+          "Geophysical_Data_soil_water_infiltration_flux",
+          "Geophysical_Data_specific_humidity_lowatmmodlay",
+          "Geophysical_Data_surface_pressure",
+          "Geophysical_Data_surface_temp",
+          "Geophysical_Data_temp_lowatmmodlay",
+          "Geophysical_Data_vegetation_greenness_fraction",
+          "Geophysical_Data_windspeed_lowatmmodlay"
+        ]
+      },
+      "HLSL30.020": {
+        "sha256": "e09e917fa57d15f15ce0c8d45e9c6e1e8e1a467bfaef6b6be71cee8cbc9516f4",
+        "layer_names": [
+          "B01",
+          "B02",
+          "B03",
+          "B04",
+          "B05",
+          "B06",
+          "B07",
+          "B09",
+          "B10",
+          "B11",
+          "Fmask",
+          "SAA",
+          "SZA",
+          "VAA",
+          "VZA"
+        ]
+      },
+      "HLSS30.020": {
+        "sha256": "ac32b165be47e156bc0a59c2d30b7ca3d3bb15d4681f3b2ebbd7635cdd553678",
+        "layer_names": [
+          "B01",
+          "B02",
+          "B03",
+          "B04",
+          "B05",
+          "B06",
+          "B07",
+          "B08",
+          "B09",
+          "B10",
+          "B11",
+          "B12",
+          "B8A",
+          "Fmask",
+          "SAA",
+          "SZA",
+          "VAA",
+          "VZA"
+        ]
+      }
+    }
+  }
+}

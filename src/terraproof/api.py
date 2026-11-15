@@ -1,14 +1,16 @@
-"""Local application API. Keep loopback-only until an identity boundary is added."""
+"""Soil explorer API with a public mode that disables private saved comparisons."""
 
 import csv
 import io
 import json
+import os
 from contextlib import asynccontextmanager
 from datetime import date
 from pathlib import Path
 from uuid import UUID
 
-from fastapi import FastAPI, HTTPException, Response
+import httpx
+from fastapi import FastAPI, HTTPException, Query, Response
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.base import BaseHTTPMiddleware
@@ -24,23 +26,36 @@ class RainfallRequest(Contract):
     issue_date: date
 
 
-def create_app(db_path: Path | None = None) -> FastAPI:
+def create_app(db_path: Path | None = None, public_mode: bool | None = None) -> FastAPI:
+    public_mode = (
+        public_mode if public_mode is not None else os.getenv("TERRAPROOF_PUBLIC_MODE") == "1"
+    )
+    allowed_hosts = [
+        host.strip()
+        for host in os.getenv("TERRAPROOF_ALLOWED_HOSTS", "localhost,127.0.0.1,testserver").split(
+            ","
+        )
+        if host.strip()
+    ]
+
     @asynccontextmanager
     async def lifespan(app):
         app.state.store = Store(db_path or DATA / "local" / "terraproof.sqlite3")
         yield
 
     app = FastAPI(title="TerraProof", version=__version__, lifespan=lifespan)
-    app.add_middleware(
-        TrustedHostMiddleware, allowed_hosts=["localhost", "127.0.0.1", "testserver"]
-    )
+    app.add_middleware(TrustedHostMiddleware, allowed_hosts=allowed_hosts)
 
     class SecurityHeaders(BaseHTTPMiddleware):
         async def dispatch(self, request, call_next):
+            if public_mode and request.url.path.startswith("/api/comparisons"):
+                return Response(
+                    "Private saved comparisons are disabled on the public soil explorer", 403
+                )
             # Same-origin JSON API: disallow browser writes from a different site.
             origin = request.headers.get("origin")
             if request.method not in {"GET", "HEAD", "OPTIONS"} and origin:
-                if origin not in {
+                if origin != str(request.base_url).rstrip("/") and origin not in {
                     "http://localhost:8000",
                     "http://127.0.0.1:8000",
                     "http://localhost:5173",
@@ -52,8 +67,15 @@ def create_app(db_path: Path | None = None) -> FastAPI:
             response.headers["Referrer-Policy"] = "no-referrer"
             response.headers["X-Frame-Options"] = "DENY"
             response.headers["Content-Security-Policy"] = (
-                "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; "
-                "img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'"
+                "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; "
+                "style-src 'self' 'unsafe-inline'; "
+                "img-src 'self' data: blob: https://gibs.earthdata.nasa.gov "
+                "https://server.arcgisonline.com https://services.arcgisonline.com; "
+                "font-src 'self'; "
+                "connect-src 'self' https://gibs.earthdata.nasa.gov "
+                "https://server.arcgisonline.com https://services.arcgisonline.com; "
+                "worker-src 'self' blob:; "
+                "frame-ancestors 'none'"
             )
             return response
 
@@ -61,7 +83,12 @@ def create_app(db_path: Path | None = None) -> FastAPI:
 
     @app.get("/api/health")
     def health():
-        return {"status": "ok", "version": __version__, "mode": "local-mvp"}
+        return {
+            "status": "ok",
+            "version": __version__,
+            "mode": "public-soil-explorer" if public_mode else "local-review",
+            "public_mode": public_mode,
+        }
 
     @app.get("/api/config")
     def config():
@@ -104,6 +131,46 @@ def create_app(db_path: Path | None = None) -> FastAPI:
     @app.post("/api/economics")
     def calculate(values: Economics):
         return economics(values)
+
+    from .soil import SoilRegion, assess_region
+
+    @app.post("/api/soil/assess")
+    def soil_assessment(request: SoilRegion):
+        return assess_region(request)
+
+    from .planting import (
+        FutureRequest,
+        PlantingRequest,
+        assess_future,
+        assess_planting,
+        crop_catalog,
+    )
+
+    @app.get("/api/planting/crops")
+    def crop_references():
+        return crop_catalog()
+
+    @app.post("/api/planting/assess")
+    def planting_assessment(request: PlantingRequest):
+        return assess_planting(request)
+
+    @app.post("/api/planting/future")
+    def future_assessment(request: FutureRequest):
+        try:
+            return assess_future(request)
+        except ClimateError as exc:
+            raise HTTPException(503, str(exc)) from exc
+
+    @app.get("/api/places/search")
+    def places_search(q: str = Query(min_length=3, max_length=120)):
+        from .places import search_places
+
+        try:
+            return search_places(q)
+        except (ClimateError, httpx.HTTPError, OSError) as exc:
+            raise HTTPException(
+                503, "Place search is unavailable. Try again or enter coordinates."
+            ) from exc
 
     @app.get("/api/comparisons")
     def list_comparisons():

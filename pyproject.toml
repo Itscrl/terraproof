@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "terraproof"
 version = "0.1.0"
-description = "Auditable rice planting calendars and historical climate replay"
+description = "Sourced regional soil predictions and NASA environmental context"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.115,<1",
@@ -16,6 +16,7 @@ dependencies = [
     "pandas>=2.2,<4",
     "joblib>=1.4,<2",
     "h5py>=3.12,<4",
+    "rasterio>=1.4,<2",
 ]
 
 [dependency-groups]
