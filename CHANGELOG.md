@@ -6,6 +6,8 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Added
 
+- A 4-minute-30-second demonstration video script following the six-part submission
+  structure, with narration, actual UI actions, source attribution and recording notes.
 - Guided two-season crop-rotation comparisons with current practice and two chosen
   alternatives, soil/NASA reference checks, timing conflicts, water-use explanations,
   farmer onboarding, plain-language results and downloadable text plans.
