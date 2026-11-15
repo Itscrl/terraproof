@@ -160,6 +160,10 @@ source and public references into an ignored deployment bundle. Python 3.12 and
 web dependencies are declared alongside that project; training dependencies remain
 local. A successful frontend build alone is not confirmation of working API routes.
 
+The subsequent runtime log identified missing `libexpat.so.1` during Rasterio
+startup. Linux builds now bundle and preload that library; CI also checks the
+packaged API and a synthetic soil TIFF in a minimal Python runtime container.
+
 ## Run locally
 
 Requirements: Python 3.12+, [uv](https://docs.astral.sh/uv/), Node 24,

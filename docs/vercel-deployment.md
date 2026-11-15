@@ -1,5 +1,23 @@
 # Vercel: frontend and Python API
 
+## Native-library startup repair — 15 November 2026
+
+After routing was deployed, public requests reached the Python function but failed
+with HTTP 500. The dashboard runtime log showed Rasterio could not import because
+`libexpat.so.1` was absent. This affected health/search as well as soil assessment,
+since Rasterio is imported while the application starts.
+
+The Linux staging step now copies the builder's Expat shared library (dereferencing
+its symlink) and its upstream MIT licence into `server_bundle/lib`. The function
+loads that absolute library path globally before importing the application.
+Windows/macOS local builds do not redistribute a Linux library. A Linux builder
+without Expat fails explicitly rather than producing a known broken bundle.
+
+CI additionally installs only the web requirements inside the AWS Python 3.12
+minimal runtime image and checks the packaged API plus a synthetic georeferenced
+TIFF. This checks native-loader compatibility beyond Ubuntu/Windows unit tests;
+it does not replace public deployment and real-provider checks below.
+
 ## Why search returned 404
 
 The Vite interface sends requests to /api on the same domain. The earlier static

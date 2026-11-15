@@ -93,6 +93,10 @@ All notable changes to TerraProof are documented here. Entries describe complete
 
 ### Fixed
 
+- Bundle and preload Linux Expat for Rasterio in the Vercel Python function;
+  missing `libexpat.so.1` crashed health, place search and soil routes on startup.
+  Add a minimal-runtime CI check covering the packaged API and a synthetic TIFF.
+
 - Keep phone search and saved-plot controls within the viewport, allow long notebook
   records to scroll, and improve contrast on the soil panel's next-step caption.
 

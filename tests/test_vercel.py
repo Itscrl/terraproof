@@ -22,6 +22,7 @@ def test_vercel_bundle_serves_api_without_local_state(tmp_path):
     )
     (tmp_path / "frontend/scripts").mkdir()
     shutil.copy(root / "frontend/scripts/prepare-api.mjs", tmp_path / "frontend/scripts")
+    shutil.copytree(root / "frontend/licenses", tmp_path / "frontend/licenses")
     subprocess.run(
         [node, "frontend/scripts/prepare-api.mjs"],
         cwd=tmp_path,
@@ -34,6 +35,9 @@ import os, runpy
 from pathlib import Path
 os.environ["VERCEL_URL"] = "preview-terraproof.vercel.app"
 app = runpy.run_path("frontend/api/index.py")["app"]
+if __import__("sys").platform == "linux":
+    assert Path("frontend/server_bundle/lib/libexpat.so.1").is_file()
+    assert Path("frontend/server_bundle/lib/expat-MIT.txt").is_file()
 from fastapi.testclient import TestClient
 from terraproof import places, climate
 assert "server_bundle" in str(climate.__file__)

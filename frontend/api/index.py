@@ -1,11 +1,16 @@
 """Same-origin public FastAPI function for the Vite Vercel project."""
 
+import ctypes
 import os
 import sys
 import tempfile
 from pathlib import Path
 
 bundle = Path(__file__).resolve().parents[1] / "server_bundle"
+# Load by absolute path before GDAL/Rasterio imports. Changing LD_LIBRARY_PATH
+# after Python starts does not update the ELF loader's startup search path.
+if sys.platform == "linux":
+    _expat = ctypes.CDLL(str(bundle / "lib/libexpat.so.1"), mode=ctypes.RTLD_GLOBAL)
 sys.path.insert(0, str(bundle / "src"))
 os.environ["TERRAPROOF_DATA_DIR"] = str(Path(tempfile.gettempdir()) / "terraproof")
 os.environ["TERRAPROOF_PUBLIC_MODE"] = "1"

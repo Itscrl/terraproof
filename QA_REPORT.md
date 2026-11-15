@@ -1,5 +1,18 @@
 # Local MVP verification
 
+## Public runtime diagnosis — 15 November 2026
+
+GitHub Actions run 43712418170 for `f1f3665` passed its Python, production build and
+Linux Chromium checks. The public frontend returned HTTP 200, but health, crop
+catalog and search returned HTTP 500. The Vercel runtime log identified Rasterio's
+missing `libexpat.so.1`; successful build status did not establish runtime health.
+
+The deployment repair bundles/preloads the builder's Linux Expat library with its
+MIT licence. Local lint/formatting, **50 Python tests** and production build pass.
+The added AWS Python 3.12 container smoke test exercises native TIFF handling and
+packaged public routes. Docker was not running locally, so that check must execute
+in CI; deployment success must be verified against the public endpoints.
+
 ## Redesigned interface regression — 15 November 2026
 
 The supplied CI failures were caused by browser journeys targeting headings and
